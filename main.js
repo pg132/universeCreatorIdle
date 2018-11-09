@@ -37,27 +37,44 @@ var user = {
         cost:10,
         amount:0,
         multiplier:1,
-        base:0
+        base:0,
+        unlocked:false
     },
     mk7:{
         cost:10,
         amount:0,
         multiplier:1,
-        base:0
+        base:0,
+        unlocked:false
     },
     mk8:{
         cost:10,
         amount:0,
         multiplier:1,
-        base:0
+        base:0,
+        unlocked:false
     },
     mk9:{
         cost:10,
         amount:0,
         multiplier:1,
-        base:0
+        base:0,
+        unlocked:false
     },
-    
+    wells:{
+        cost:20,
+        tiercost:5,
+        defaultMults:4,
+        totalMult:1,
+        amount:0,
+        costScale:20
+    },
+    pulse:{
+        cost:5,
+        amount:0
+        
+        
+    },
 
 
 
