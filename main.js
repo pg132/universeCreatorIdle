@@ -2,7 +2,7 @@
 
 var version = 0.0;
 var user = {
-    gravicels: 10,
+    gravicles: 10,
     mk1:{
         cost:10,
         amount:0,
@@ -91,12 +91,46 @@ var user = {
     pulse:{
         cost:5,
         amount:0
-        
-        
     },
-
+    points:{
+        amount:0
+        
+        
+    }
 
 
 };
+
+
+
+
+function getPulseReward(wells){
+    return 1+Math.sqrt(wells/2000)
+}
+
+function buyMK(tier) {
+    var tierCost = user["mk"+tier].previousTierCost
+    var gravCost = user["mk"+tier].cost
+    var costMult = user["mk"+tier].costMult
+    if (tier == 1){
+        if (gravCost <= user.gravicles){
+            user.gravicles -= gravCost
+            user.["mk"+tier].cost *= costMult
+            ##what should the multiplier formula be? rn im gonna make it 1% stronger
+            user["mk"+tier].multiplier *= 1.01
+        }
+    }
+    if (gravCost <= user.gravicles && tierCost <= user["mk"+(tier-1)].base){
+        user.gravicles -= gravCost
+        user.["mk"+tier].cost *= costMult
+        ##what should the multiplier formula be? rn im gonna make it 1% stronger
+        user["mk"+tier].multiplier *= 1.01
+        user["mk"+(tier-1)].base -= tierCost
+    }
+}
+
+
+
+
 
 
