@@ -129,6 +129,29 @@ function buyMK(tier) {
     }
 }
 
+function gravityWellBoost(tier){
+    var w = user.wells.amount
+    if (w<=3+tier) return Math.max(1,2**(w-tier+1))##fifth is worse
+    return 8*(w-tier-1)
+}
+
+function updateMKUnlocks(){
+    var w = user.wells.amount
+    user.mk6.unlocked = false
+    user.mk7.unlocked = false
+    user.mk8.unlocked = false
+    user.mk9.unlocked = false
+    if (w >= 1) user.mk6.unlocked = true
+    if (w >= 2) user.mk7.unlocked = true
+    if (w >= 3) user.mk8.unlocked = true
+    if (w >= 4) user.mk9.unlocked = true
+}
+
+
+
+
+
+
 
 
 
