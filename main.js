@@ -131,8 +131,9 @@ function buyMK(tier) {
 
 function gravityWellBoost(tier){
     var w = user.wells.amount
-    if (w<=3+tier) return Math.max(1,2**(w-tier+1))##fifth is worse
-    return 8*(w-tier-1)
+    var d = user.wells.defaultMults
+    if (w<=d-1+tier) return Math.max(1,2**(w-tier+1))##fifth is worse
+    return 2**(d-1)*(w-d-tier+3)##just try it, it should work
 }
 
 function updateMKUnlocks(){
@@ -146,6 +147,14 @@ function updateMKUnlocks(){
     if (w >= 3) user.mk8.unlocked = true
     if (w >= 4) user.mk9.unlocked = true
 }
+
+
+
+
+
+
+
+
 
 
 
