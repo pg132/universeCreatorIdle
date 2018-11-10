@@ -107,7 +107,7 @@ var user = {
 
 
 function getPulseReward(wells){
-	if (user.points.upgrade.contains("GP11") == false){
+	if (user.points.upgrades.contains("GP11") == false){
 		return 1+Math.sqrt(wells/2000)
 	}
 	return 1+Math.pow(wells/2000,.5)*Math.pow(wells,.1)
@@ -152,8 +152,10 @@ function buyMK(tier) {
 function gravityWellBoost(tier){
        	var w = user.wells.amount
 	var d = user.wells.defaultMults
-	if (w<=d-1+tier) return Decimal.max(1,2**(w-tier+1))//fifth is worse
-	return Decimal.pow(2,(d-1)).times(w-d-tier+3)//just try it, it should work
+	var base = 2
+	if (user.points.upgrades.contains("GP42")) base = 2.1
+	if (w<=d-1+tier) return Decimal.max(1,base**(w-tier+1))//fifth is worse
+	return Decimal.pow(base,(d-1)).times(w-d-tier+3)//just try it, it should work
 }
 
 function fullPowerWellsUpdate(){
