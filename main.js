@@ -252,6 +252,7 @@ function updateMKUnlocks(){
 function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
+	if (tier == 9 && (user.points.upgrades.contains("GP41"))) mult = mult.times(2)
 	//put additional mults here
 	return amt.times(mult).times(.1)//the times(.1) is for time since we update 10 times per second
 }
