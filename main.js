@@ -259,7 +259,7 @@ function MKproduction(){
 		if(i === 1) {
 			user.gravicles = user.gravicles.plus(baseMKproduction(i));
 		} else {
-			user["mk"+(i-1)].base = user["mk"+(i-1)].base.plus(baseMKproduction(i));
+			user["mk"+(i-1)].amount = user["mk"+(i-1)].amount.plus(baseMKproduction(i));
 		}
 	}
 }
