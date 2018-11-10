@@ -263,7 +263,9 @@ function gameLoop(){
 	MKproduction();
 }
 
-
+function startInterval(){
+	setInterval(gameLoop,33);
+}
 
 
 
