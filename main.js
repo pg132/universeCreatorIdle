@@ -226,7 +226,7 @@ function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
 	//put additional mults here
-	return amt.times(mult)
+	return amt.times(mult).times(.1)//the times(.1) is for time since we update 10 times per second
 }
 
 function MKproduction(){
