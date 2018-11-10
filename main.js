@@ -154,8 +154,10 @@ function gravityWellBoost(tier){
 	var d = user.wells.defaultMults
 	var base = 2
 	if (user.points.upgrades.contains("GP42")) base = 2.1
-	if (w<=d-1+tier) return Decimal.max(1,base**(w-tier+1))//fifth is worse
-	return Decimal.pow(base,(d-1)).times(w-d-tier+3)//just try it, it should work
+	var q = new Decimal(1)
+	if (user.points.upgrades.contains("GP61"))  q = Decimal.pow(1.5,Math.floor(w/5))
+	if (w<=d-1+tier) return Decimal.max(1,base**(w-tier+1)).times(q)//fifth is worse
+	return Decimal.pow(base,(d-1)).times(w-d-tier+3).times(q)//just try it, it should work
 }
 
 function fullPowerWellsUpdate(){
