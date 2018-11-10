@@ -243,7 +243,10 @@ function gameLoop(){
 	MKproduction();
 }
 
-
+var gameLoopIntervalId;
+function startInterval() {
+	gameLoopIntervalId = setInterval(gameLoop, 33);
+}
 
 
 
