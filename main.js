@@ -116,14 +116,14 @@ function buyMK(tier) {
         if (gravCost <= user.gravicles){
             user.gravicles -= gravCost
             user.["mk"+tier].cost *= costMult
-            ##what should the multiplier formula be? rn im gonna make it 1% stronger
+            //what should the multiplier formula be? rn im gonna make it 1% stronger
             user["mk"+tier].multiplier *= 1.01
         }
     }
     if (gravCost <= user.gravicles && tierCost <= user["mk"+(tier-1)].base){
         user.gravicles -= gravCost
         user.["mk"+tier].cost *= costMult
-        ##what should the multiplier formula be? rn im gonna make it 1% stronger
+        //what should the multiplier formula be? rn im gonna make it 1% stronger
         user["mk"+tier].multiplier *= 1.01
         user["mk"+(tier-1)].base -= tierCost
     }
@@ -132,8 +132,8 @@ function buyMK(tier) {
 function gravityWellBoost(tier){
     var w = user.wells.amount
     var d = user.wells.defaultMults
-    if (w<=d-1+tier) return Math.max(1,2**(w-tier+1))##fifth is worse
-    return 2**(d-1)*(w-d-tier+3)##just try it, it should work
+    if (w<=d-1+tier) return Math.max(1,2**(w-tier+1))//fifth is worse
+    return 2**(d-1)*(w-d-tier+3)//just try it, it should work
 }
 
 function updateMKUnlocks(){
@@ -148,6 +148,13 @@ function updateMKUnlocks(){
     if (w >= 4) user.mk9.unlocked = true
 }
 
+
+function baseMKproduction(tier){
+    var amt = user["mk"+tier].amount
+    var mult = user["mk"+tier].multiplier
+    //put additional mults here
+    return amt*mult
+}
 
 
 
