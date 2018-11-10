@@ -151,6 +151,64 @@ function gravityWellBoost(tier){
 			return Decimal.pow(2,(d-1)).times(w-d-tier+3)//just try it, it should work
 }
 
+
+function buyMaxMK(tier){
+    var tierCost = user["mk"+tier].previousTierCost
+    var gravCost = user["mk"+tier].cost
+    var costMult = user["mk"+tier].costMult
+    var grav = user.gravicels
+    if (grav.gt(gravCost)){
+        var p = grav.log10()-gravCost.log10()
+        var c = Decimal.log10(costMult)
+        //var sumCost = Decimal.pow(c,numberbuying).minus(1).times(1/(1-costMult))
+        var costDiff = grav.div(gravCost)
+        costDiff = costDiff.times(1-costMult)
+        costDiff = costDiff.plus(gravCost)//now its the ratio of the total cost to the start cost
+        var w = costDiff.log10()/c //we want to buy w of them we first want to check if we have the tierCost
+        if (tier == 1){
+            user.mk1.multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
+            user.mk1.base += w
+            user.mk1.amount = user.mk1.amount.plus(w)
+            user.gravicels = user.gravicels.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
+            user.mk1.cost = user.mk1.cost.times(Decimal.pow(costMult,w))
+        }
+        if (tier <= 5){
+            var tC2 = tierCost*w
+            if (user["mk"+tier-1].base >= tC2){
+                user["mk"+tier].multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
+                user["mk"+tier].base += w
+                user["mk"+tier].amount = user.mk1.amount.plus(w)
+                user.gravicels = user.gravicels.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
+                user["mk"+tier].cost = user.mk1.cost.times(Decimal.pow(costMult,w))
+                user["mk"+tier-1].base -= tC2
+            } else{
+                for (var i = 0; i< w; i++){
+                    buyMK(tier)
+                }
+            }
+        } else {
+            if (user.["mk"+tier].unlocked){
+                var tC2 = tierCost*w
+                if (user["mk"+tier-1].base >= tC2){
+                    user["mk"+tier].multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
+                    user["mk"+tier].base += w
+                    user["mk"+tier].amount = user.mk1.amount.plus(w)
+                    user.gravicels = user.gravicels.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
+                    user["mk"+tier].cost = user.mk1.cost.times(Decimal.pow(costMult,w))
+                    user["mk"+tier-1].base -= tC2
+                } else{
+                    for (var i = 0; i< w; i++){
+                        buyMK(tier)
+                    }
+                }
+            }//closes unlocked if
+        }//closes else refering to tier >= 5        
+        
+    }
+}
+
+
+
 function updateMKUnlocks(){
 	var w = user.wells.amount
 	user.mk6.unlocked = false
