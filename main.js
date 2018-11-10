@@ -159,7 +159,7 @@ function gravityWellBoost(tier){
 function fullPowerWellsUpdate(){
 	var constant = 5
 	var multiplier = 1.05
-	if (user.points.upgrade.contains("GP31") multiplier = 1.075
+	if (user.points.upgrade.contains("GP31")) multiplier = 1.075
 	for (var i = 0; i<= user.pulse.amount; i++){
 		constant = Math.ceil(constant*multiplier)
 	}
