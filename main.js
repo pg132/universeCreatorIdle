@@ -2,7 +2,7 @@
 
 var version = 0.0;
 var user = {
-	gravicles: new Decimal(10),
+	gravicles: new Deicmal(10),
 	mk1:{
 		cost:new Decimal(10),
 		amount:new Decimal(0),
@@ -207,6 +207,16 @@ function buyMaxMK(tier){
     }
 }
 
+
+function sacPulses(amt){
+	if (user.pulse.amount>= amt){
+		user.points.amount = user.points.amount.plus(amt)
+		user.pulse.amount = user.pulse.amount.minus(amt)
+	}
+}
+function sacMaxPulses(){
+	sacPulses(user.pulse.amount)
+}
 
 
 function updateMKUnlocks(){
