@@ -20,7 +20,7 @@ var user = {
 		costMult:1.16
 	},
 	mk3:{
-		cost:new Decimal(10),
+		cost:new Decimal(1000),
 		amount:new Decimal(0),
 		multiplier:new Decimal(1),	
 		base:0,
