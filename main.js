@@ -163,7 +163,7 @@ function fullPowerWellsUpdate(){
 	for (var i = 0; i<= user.pulse.amount; i++){
 		constant = Math.ceil(constant*multiplier)
 	}
-	return constant
+	user.wells.defaultMults = constant
 }
 
 
