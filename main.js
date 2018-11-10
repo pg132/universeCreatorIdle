@@ -171,6 +171,16 @@ function baseMKproduction(tier){
 	return amt.times(mult)
 }
 
+function MKproduction(){
+	for(var i = 1; i <=9; i++) {
+		if(i === 1) {
+			user.gravicles = user.gravicles.plus(baseMKproduction(i));
+		} else {
+			user["mk"+(i-1)].base = user["mk"+(i-1)].base.plus(baseMKproduction(i));
+		}
+	}
+}
+
 
 
 
