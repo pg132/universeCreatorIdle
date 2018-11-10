@@ -156,6 +156,16 @@ function gravityWellBoost(tier){
 	return Decimal.pow(2,(d-1)).times(w-d-tier+3)//just try it, it should work
 }
 
+function fullPowerWellsUpdate(){
+	var constant = 5
+	var multiplier = 1.05
+	if (user.points.upgrade.contains("GP31") multiplier = 1.075
+	for (var i = 0; i<= user.pulse.amount; i++){
+		constant = Math.ceil(constant*multiplier)
+	}
+	return constant
+}
+
 
 function buyMaxMK(tier){
     	var tierCost = user["mk"+tier].previousTierCost
