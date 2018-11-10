@@ -122,7 +122,7 @@ function buyMK(tier) {
             user.mk1.base += 1
         }
     }
-    if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].base)){
+    if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].base)&&tier<=5){
         user.gravicles = user.gravicles.minus(gravCost)
         user.["mk"+tier].cost = user.["mk"+tier].cost.times(costMult)
         //what should the multiplier formula be? rn im gonna make it 1% stronger
@@ -130,6 +130,17 @@ function buyMK(tier) {
         user["mk"+(tier-1)].base = user["mk"+(tier-1)].base.minus(tierCost)
         user["mk"+tier].amount = user.mk1.amount.plus(1)
         user["mk"+tier].base += 1
+    }
+    if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].base)&&tier>=6){
+        if (user.["mk"+tier].unlocked == true){
+            user.gravicles = user.gravicles.minus(gravCost)
+            user.["mk"+tier].cost = user.["mk"+tier].cost.times(costMult)
+        //what should the multiplier formula be? rn im gonna make it 1% stronger
+            user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
+            user["mk"+(tier-1)].base = user["mk"+(tier-1)].base.minus(tierCost)
+            user["mk"+tier].amount = user.mk1.amount.plus(1)
+            user["mk"+tier].base += 1
+        }
     }
 }
 
