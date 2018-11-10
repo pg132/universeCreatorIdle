@@ -115,7 +115,7 @@ function buyMK(tier) {
 	if (tier == 1){
 		if (gravCost.lte(user.gravicles)){
 			user.gravicles = user.gravicles.minus(gravCost)
-			user.["mk"+tier].cost = user.["mk"+tier].cost.times(costMult)
+			user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 			//what should the multiplier formula be? rn im gonna make it 1% stronger
 			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
 			user.mk1.amount = user.mk1.amount.plus(1)
@@ -124,7 +124,7 @@ function buyMK(tier) {
 	}
 	if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].base)&&tier<=5){
 		user.gravicles = user.gravicles.minus(gravCost)
-		user.["mk"+tier].cost = user.["mk"+tier].cost.times(costMult)
+		user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 		//what should the multiplier formula be? rn im gonna make it 1% stronger
 		user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
 		user["mk"+(tier-1)].base = user["mk"+(tier-1)].base.minus(tierCost)
@@ -132,9 +132,9 @@ function buyMK(tier) {
 		user["mk"+tier].base += 1
 	}
 	if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].base)&&tier>=6){
-		if (user.["mk"+tier].unlocked == true){
+		if (user["mk"+tier].unlocked == true){
 			user.gravicles = user.gravicles.minus(gravCost)
-			user.["mk"+tier].cost = user.["mk"+tier].cost.times(costMult)
+			user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 			//what should the multiplier formula be? rn im gonna make it 1% stronger
 			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
 			user["mk"+(tier-1)].base = user["mk"+(tier-1)].base.minus(tierCost)
@@ -187,7 +187,7 @@ function buyMaxMK(tier){
 				}
 			}//closes else for for loop
 		} else {//tier is abv 5
-            		if (user.["mk"+tier].unlocked){
+            		if (user["mk"+tier].unlocked){
                 		var tC2 = tierCost*w
                 		if (user["mk"+tier-1].base >= tC2){
                     			user["mk"+tier].multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
