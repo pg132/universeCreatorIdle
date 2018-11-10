@@ -239,6 +239,14 @@ function MKproduction(){
 	}
 }
 
+function update(){
+	document.getElementById("gravicle amount") = user.gravicles.toString();
+	for(var i = 1; i <=9; i++) {
+		var str = "mk"+i+"Amount";
+		document.getElementById(str) = user["mk"+i].toString();
+	}
+}
+
 function gameLoop(){
 	MKproduction();
 }
