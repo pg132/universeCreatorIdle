@@ -2,79 +2,79 @@
 
 var version = 0.0;
 var user = {
-    gravicles: 10,
+    gravicles: new Deicmal(10),
     mk1:{
-        cost:10,
-        amount:0,
-        multiplier:1,
+        cost:new Decimal(10),
+        amount:new Decimal(0),
+        multiplier:new Decimal(1),
         base:0,
         previousTierCost:0,
         costMult:1.15
     },
     mk2:{
-        cost:100,
-        amount:0,
-        multiplier:1,
+        cost:new Decimal(100),
+        amount:new Decimal(0),
+        multiplier:new Decimal(1),
         base:0,
         previousTierCost:10,
         costMult:1.16
     },
     mk3:{
-        cost:10,
-        amount:0,
-        multiplier:1,
+        cost:new Decimal(10),
+        amount:new Decimal(0),
+        multiplier:new Decimal(1),
         base:0,
         previousTierCost:10,
         costMult:1.17
     },
     mk4:{
-        cost:10,
-        amount:0,
-        multiplier:1,
+        cost:new Decimal(10),
+        amount:new Decimal(0),
+        multiplier:new Decimal(1),
         base:0,
         previousTierCost:10,
         costMult:1.18
     },
     mk5:{
-        cost:10,
-        amount:0,
-        multiplier:1,
+        cost:new Decimal(10),
+        amount:new Decimal(0),
+        multiplier:new Decimal(1),
         base:0,
         previousTierCost:10,
         previousTierCost:10,
         costMult:1.19
     },
     mk6:{
-        cost:10,
-        amount:0,
-        multiplier:1,
+        cost:new Decimal(10),
+        amount:new Decimal(0),
+        multiplier:new Decimal(1),
         base:0,
         unlocked:false,
         previousTierCost:10,
         costMult:1.20
     },
     mk7:{
-        cost:10,
-        amount:0,
-        multiplier:1,
+        cost:new Decimal(10),
+        amount:new Decimal(0),
+        multiplier:new Decimal(1),
         base:0,
         unlocked:false,
         previousTierCost:10,
         costMult:1.21
     },
     mk8:{
-        cost:10,
-        amount:0,
-        multiplier:1,
+        cost:new Decimal(10),
+        amount:new Decimal(0),
+        multiplier:new Decimal(1),
         base:0,
         unlocked:false,
         previousTierCost:10,
         costMult:1.22
     },
     mk9:{
-        cost:10,
-        amount:0,
-        multiplier:1,
+        cost:new Decimal(10),
+        amount:new Decimal(0),
+        multiplier:new Decimal(1),
         base:0,
         unlocked:false,
         previousTierCost:10,
@@ -93,7 +93,7 @@ var user = {
         amount:0
     },
     points:{
-        amount:0
+        amount:new Decimal(0)
         
         
     }
@@ -105,7 +105,7 @@ var user = {
 
 
 function getPulseReward(wells){
-    return 1+Math.sqrt(wells/2000)
+    return 1+Decimal.sqrt(wells/2000)
 }
 
 function buyMK(tier) {
@@ -114,26 +114,26 @@ function buyMK(tier) {
     var costMult = user["mk"+tier].costMult
     if (tier == 1){
         if (gravCost <= user.gravicles){
-            user.gravicles -= gravCost
-            user.["mk"+tier].cost *= costMult
+            user.gravicles = user.gravicles.minus(gravCost)
+            user.["mk"+tier].cost = user.["mk"+tier].cost.times(costMult)
             //what should the multiplier formula be? rn im gonna make it 1% stronger
-            user["mk"+tier].multiplier *= 1.01
+            user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
         }
     }
     if (gravCost <= user.gravicles && tierCost <= user["mk"+(tier-1)].base){
-        user.gravicles -= gravCost
-        user.["mk"+tier].cost *= costMult
+        user.gravicles = user.gravicles.minus(gravCost)
+        user.["mk"+tier].cost = user.["mk"+tier].cost.times(costMult)
         //what should the multiplier formula be? rn im gonna make it 1% stronger
-        user["mk"+tier].multiplier *= 1.01
-        user["mk"+(tier-1)].base -= tierCost
+        user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
+        user["mk"+(tier-1)].base = user["mk"+(tier-1)].base.minus(tierCost)
     }
 }
 
 function gravityWellBoost(tier){
     var w = user.wells.amount
     var d = user.wells.defaultMults
-    if (w<=d-1+tier) return Math.max(1,2**(w-tier+1))//fifth is worse
-    return 2**(d-1)*(w-d-tier+3)//just try it, it should work
+    if (w<=d-1+tier) return Decimal.max(1,2**(w-tier+1))//fifth is worse
+    return Decimal.pow(2,(d-1)).times(w-d-tier+3)//just try it, it should work
 }
 
 function updateMKUnlocks(){
@@ -153,7 +153,7 @@ function baseMKproduction(tier){
     var amt = user["mk"+tier].amount
     var mult = user["mk"+tier].multiplier
     //put additional mults here
-    return amt*mult
+    return amt.times(mult)
 }
 
 
