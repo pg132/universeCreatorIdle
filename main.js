@@ -93,8 +93,9 @@ var user = {
 		amount:0
 	},
 	points:{
-		amount:new Decimal(0)
-		
+		amount:new Decimal(0),
+		upgradesCost:[1,2,5,10,15,30,50,60,70,80,90,100,110,120,130,75],
+		upgrades:[],
 		
 	}
 
