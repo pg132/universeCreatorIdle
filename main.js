@@ -2,7 +2,7 @@
 
 var version = 0.0;
 var user = {
-	gravicles: new Deicmal(10),
+	gravicles: new Decimal(10),
 	mk1:{
 		cost:new Decimal(10),
 		amount:new Decimal(0),
