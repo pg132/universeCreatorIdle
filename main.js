@@ -107,7 +107,10 @@ var user = {
 
 
 function getPulseReward(wells){
-	return 1+Decimal.sqrt(wells/2000)
+	if (user.points.upgrade.contains("GP11") == false){
+		return 1+Math.sqrt(wells/2000)
+	}
+	return 1+Math.pow(wells/2000,.5)*Math.pow(wells,.1)
 }
 
 function buyMK(tier) {
