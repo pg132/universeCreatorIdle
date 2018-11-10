@@ -94,7 +94,8 @@ var user = {
 	},
 	points:{
 		amount:new Decimal(0),
-		upgradesCost:[1,2,5,10,15,30,50,60,70,80,90,100,110,120,130,75],
+		upgradesCost:[1,2,5,50,60,70,80,90,100,110,120,130,10,15,30,75],//next line GP starts for gravity points and GPA stands for gravity points autobuyer
+		possibleUpgrade:["GP11","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61"],
 		upgrades:[],
 		
 	}
