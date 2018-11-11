@@ -392,7 +392,10 @@ function save(){
 	localStorage.setItem("save",JSON.stringify(user));
 }
 function load(){
-	user = JSON.parse(localStorage.getItem("save"));
+	var save = JSON.parse(localStorage.getItem("save"));
+	if(save !== undefined) {
+		user = save;
+	}
 }
 function gameLoop(){
 	MKproduction();
