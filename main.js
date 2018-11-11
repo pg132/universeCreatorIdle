@@ -281,8 +281,6 @@ function buyMaxMK(tier){
          		while(grav.gte(gravCost)) {
 				buyMK(tier);
 			}
-			
-                }
         	} else if (tier <= 5){//closes tier==1 and opens tier<=5&&tier>1
             		while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
 				buyMK(tier);
