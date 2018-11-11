@@ -82,7 +82,6 @@ function getDefaultSave() {
 			cost:20,
 			tiercost:5,
 			defaultMults:4,
-			totalMult:1,
 			amount:0,
 			costScale:20
 		},
@@ -174,6 +173,110 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the player 
 		user.wells.amount += 1
 	}
 }
+
+function updatePulseCost(){
+	user.pulse.cost = user.wells.defaultMults*2-3
+}
+
+function gravityPulse(autobuyer){
+	//first check if we afford
+	if (user.wells.amount >= user.pulse.cost){
+		//clear mk and then give boosts
+		user.pulse.multipliers += [getPulseReward(user.wells.amount)]//add the thing to the end
+		user = {//update user
+			gravicles: new Decimal(10),
+			mk1:{
+				cost:new Decimal(10),
+				amount:new Decimal(0),
+				multiplier:new Decimal(1),
+				base:0,
+				previousTierCost:0,
+				costMult:1.15
+			},
+			mk2:{
+				cost:new Decimal(100),
+				amount:new Decimal(0),
+				multiplier:new Decimal(1),
+				base:0,
+				previousTierCost:10,
+				costMult:1.165
+			},
+			mk3:{
+				cost:new Decimal(1000),
+				amount:new Decimal(0),
+				multiplier:new Decimal(1),	
+				base:0,
+				previousTierCost:10,
+				costMult:1.18
+			},
+			mk4:{
+				cost:new Decimal(1e4),
+				amount:new Decimal(0),
+				multiplier:new Decimal(1),
+				base:0,
+				previousTierCost:10,
+				costMult:1.2
+			},
+			mk5:{
+				cost:new Decimal(1e6),
+				amount:new Decimal(0),
+				multiplier:new Decimal(1),
+				base:0,
+				previousTierCost:10,
+				costMult:1.22
+			},
+			mk6:{
+				cost:new Decimal(1e9),
+				amount:new Decimal(0),
+				multiplier:new Decimal(1),
+				base:0,
+				unlocked:false,
+				previousTierCost:10,
+				costMult:1.24
+			},
+			mk7:{
+				cost:new Decimal(1e13),
+				amount:new Decimal(0),
+				multiplier:new Decimal(1),
+				base:0,
+				unlocked:false,
+				previousTierCost:10,
+				costMult:1.265
+			},
+			mk8:{
+				cost:new Decimal(1e19),
+				amount:new Decimal(0),
+				multiplier:new Decimal(1),
+				base:0,
+				unlocked:false,
+				previousTierCost:10,
+				costMult:1.28
+			},
+			mk9:{
+				cost:new Decimal(1e28),
+				amount:new Decimal(0),
+				multiplier:new Decimal(1),
+				base:0,
+				unlocked:false,
+				previousTierCost:10,
+				costMult:1.3
+			},
+			wells: {
+				cost:20,
+				tiercost:5,
+				defaultMults:4,
+				amount:0,
+				costScale:20
+			},
+			pulse:user.pulse,
+			points:user.points
+	
+		}
+		user.pulse.amount += 1 //give another pulse
+}
+
+
+ 
 
 function resetMK(){
 	user = {
@@ -525,6 +628,7 @@ function gameLoop(){
 	MKproduction();
 	updateMKUnlocks();
 	fullPowerWellsUpdate();
+	updatePulseCost();
 	update();
 }
 
