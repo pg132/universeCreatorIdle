@@ -410,7 +410,7 @@ function load(){
 	return user;
 }
 function convertDecimals(obj) {
-	if(typeof obj === "object") {
+	if(typeof obj === "object" && obj !== null) {
 		for(var i in obj) {
 			obj[i] = convertDecimals(obj[i]);
 		}
