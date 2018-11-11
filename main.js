@@ -387,6 +387,7 @@ function fullPowerWellsUpdate(){
 		constant = Math.ceil(constant*(1+(multiplier*(user.pulse.multipliers[i]-1))))
 	}
 	user.wells.defaultMults = constant
+	
 }
 
 
@@ -473,7 +474,11 @@ function baseMKproduction(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
-	mult = mult.times(Decimal.pow(1+1/tier,user.pulse.amount))
+	var pulseMult = 1
+	for (var i = 0; i< user.pulse.amount; i++){
+		pulseMult = pulseMult*(user.pulse.multipliers[i])
+	}
+	mult = mult.times(Decimal.pow(1+1/tier,pulseMult))
 	//put additional mults here
 	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
 }
@@ -482,7 +487,11 @@ function baseMKmult(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
-	mult = mult.times(Decimal.pow(1+1/tier,user.pulse.amount))
+	var pulseMult = 1
+	for (var i = 0; i< user.pulse.amount; i++){
+		pulseMult = pulseMult*(user.pulse.multipliers[i])
+	}
+	mult = mult.times(Decimal.pow(1+1/tier,pulseMult))
 	//put additional mults here
 	return mult
 	
