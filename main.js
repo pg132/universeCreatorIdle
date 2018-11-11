@@ -391,7 +391,7 @@ function save(){
 }
 function load(){
 	var save = JSON.parse(localStorage.getItem("save"));
-	if(save !== undefined || save !== null) {
+	if(localStorage.getItem("save") !== null) {
 		user = save;
 	}
 }
