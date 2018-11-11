@@ -374,12 +374,12 @@ function update(){
 
 function displayRound(num) {
     var conv = new Decimal(num).toString()
-    if (parseInt(conv)<1e16) return Math.round(parseInt(conv))
+    if (parseFloat(conv)<1e16) return Math.round(parseFloat(conv))
     return conv
 }
 function displayLessRound(num) {
     var conv = new Decimal(num).toString()
-    if (parseInt(conv)<1e16) return Math.round(parseInt(conv)*1000)/1000
+    if (parseFloat(conv)<1e16) return Math.round(parseFloat(conv)*1000)/1000
     return conv
 }
 
