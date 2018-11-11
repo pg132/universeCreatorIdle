@@ -250,7 +250,7 @@ function resetMK(){
 
 
 function pulseCostUpdate(){
-	user.pluse.cost = user.wells.defaultMults
+	user.pluse.cost = user.wells.defaultMults+1
 }
 
 function gravityWellBoost(tier){
