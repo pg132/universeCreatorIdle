@@ -478,7 +478,7 @@ function baseMKproduction(tier){
 	for (var i = 0; i< user.pulse.amount; i++){
 		pulseMult = pulseMult*(user.pulse.multipliers[i])
 	}
-	mult = mult.times(Decimal.pow(1+1/tier,pulseMult))
+	mult = mult.times(Decimal.pow(1+1/tier,pulseMult*user.pulse.amount))
 	//put additional mults here
 	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
 }
