@@ -402,7 +402,26 @@ function save(){
 function load(){
 	var save = JSON.parse(localStorage.getItem("save"));
 	if(localStorage.getItem("save") !== null) {
-		user = save;
+		convertDecimals(save);
+		for(var i in save) {
+			user[i] = save[i];
+		}
+	}
+	return user;
+}
+function convertDecimals(obj) {
+	if(typof obj === "object") {
+		for(var i in obj) {
+			obj[i] = convertDecimals(obj[i]);
+		}
+		if(obj._class === "Decimal") {
+			return new Decimal(Decimal.pow(10,obj.logarithm));
+		} else {
+			return obj;
+		}
+		
+	} else {
+		return obj;
 	}
 }
 function expo(){
@@ -421,7 +440,12 @@ function impo(){
 	if(save === "") {
 		//:C
 	} else {
-		user = save;
+		save = JSON.parse(save);
+		
+		convertDecimals(save);
+		for(var i in save) {
+			user[i] = save[i];
+		}
 	}
 }
 function clear(){
