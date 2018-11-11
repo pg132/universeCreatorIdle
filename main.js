@@ -394,6 +394,7 @@ function update(){
 		document.getElementById("buy"+i).innerHTML = user["mk"+i].cost.floor().toString();
 		document.getElementById("mult"+i).innerHTML = user["mk"+i].cost.toString();
 	}
+	showMK();
 }
 
 function gameLoop(){
