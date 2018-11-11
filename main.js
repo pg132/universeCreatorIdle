@@ -274,25 +274,24 @@ function fullPowerWellsUpdate(){
 
 function buyMaxMK(tier){
 	var tierCost = user["mk"+tier].previousTierCost
-    	var gravCost = user["mk"+tier].cost
-    	var costMult = user["mk"+tier].costMult
-    	var grav = user.gravicles
-        	if (tier == 1){
-         		while(grav.gte(gravCost)) {
+	var gravCost = user["mk"+tier].cost
+	var costMult = user["mk"+tier].costMult
+	var grav = user.gravicles
+	if (tier == 1){
+		while(grav.gte(gravCost)) {
+				buyMK(tier);
+		}
+	} else if (tier <= 5){//closes tier==1 and opens tier<=5&&tier>1
+		while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
+			buyMK(tier);
+		}
+	} else {//tier is abv 5
+		if (user["mk"+tier].unlocked){
+			while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
 				buyMK(tier);
 			}
-        	} else if (tier <= 5){//closes tier==1 and opens tier<=5&&tier>1
-            		while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
-				buyMK(tier);
-			}
-		} else {//tier is abv 5
-            		if (user["mk"+tier].unlocked){
-                		while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
-					buyMK(tier);
-				}
-			}//closes unlocked if
-		}//closes else refering to tier >= 5
-	}
+		}//closes unlocked if
+	}//closes else refering to tier >= 5
 	update();
 }
 
