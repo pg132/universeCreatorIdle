@@ -415,6 +415,9 @@ function convertDecimals(obj) {
 			obj[i] = convertDecimals(obj[i]);
 		}
 		if(obj._class === "Decimal") {
+			if(obj.logarithm === null) {
+				return new Decimal(0);
+			}
 			return Decimal.pow(10,obj.logarithm);
 		} else {
 			return obj;
