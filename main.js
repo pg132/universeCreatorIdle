@@ -395,6 +395,25 @@ function load(){
 		user = save;
 	}
 }
+function expo(){
+	var exp = btoa(JSON.stringify(player));
+	document.getElementById("export thing").innerHTML = exp;
+	document.getElementById("export").innerHTML = "Close";
+	document.getElementById("export").onClick = close;
+}
+function close(){
+	document.getElementById("export thing").innerHTML = "";
+	document.getElementById("export").innerHTML = "Export";
+	document.getElementById("export").onClick = expo;
+}
+function impo(){
+	var save = window.prompt("Paste your save here");
+	if(save === "") {
+		//:C
+	} else {
+		user = save;
+	}
+}
 function gameLoop(){
 	MKproduction();
 	updateMKUnlocks();
