@@ -563,17 +563,3 @@ function startInterval(){
 	setInterval(gameLoop,33);
 	setInterval(save,60000);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
