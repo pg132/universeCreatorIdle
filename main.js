@@ -365,8 +365,8 @@ function update(){
 	document.getElementById("gravicle amount").innerHTML = displayRound(user.gravicles.floor());
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
-		document.getElementById(str).innerHTML = displayRound(user["mk"+i].amount.floor());
-		document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost.ceil());
+		document.getElementById(str).innerHTML = displayRound(user["mk"+i].amount.round());
+		document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost.round());
 		document.getElementById("mult"+i).innerHTML = "x"+displayRound(user["mk"+i].multiplier);
 	}
 	showMK();
