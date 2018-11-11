@@ -249,7 +249,9 @@ function resetMK(){
 
 
 
-
+function pulseCostUpdate(){
+	user.pluse.cost = user.wells.defaultMults
+}
 
 function gravityWellBoost(tier){
        	var w = user.wells.amount
@@ -468,6 +470,7 @@ function gameLoop(){
 	MKproduction();
 	updateMKUnlocks();
 	fullPowerWellsUpdate();
+	pulseCostUpdate();
 	update();
 }
 
