@@ -369,7 +369,8 @@ function update(){
 		if(i === 1) {
 			document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost);
 		} else {
-			document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost)+"<br/>+"+displayRound(user["mk"+i].cost)+" mk"+(i-1);
+			
+			document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost)+"<br/>+"+displayRound(user["mk"+i].previousTierCost)+" mk"+(i-1)+"s";
 		}
 		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(user["mk"+i].multiplier);
 	}
