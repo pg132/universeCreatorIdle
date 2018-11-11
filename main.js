@@ -491,7 +491,7 @@ function baseMKmult(tier){
 	for (var i = 0; i< user.pulse.amount; i++){
 		pulseMult = pulseMult*(user.pulse.multipliers[i])
 	}
-	mult = mult.times(Decimal.pow(1+1/tier,pulseMult))
+	mult = mult.times(Decimal.pow(1+1/tier,pulseMult*user.pulse.amount))
 	//put additional mults here
 	return mult
 	
