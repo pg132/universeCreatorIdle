@@ -402,6 +402,7 @@ function gameLoop(){
 }
 
 function startInterval(){
+	load();
 	setInterval(gameLoop,33);
 }
 
