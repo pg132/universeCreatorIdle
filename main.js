@@ -331,10 +331,14 @@ function showMK(){
 		if (i<6){
 			if(user["mk"+(i-1)].amount.gt(0)) {
 				document.getElementById("row"+i).style.display = "table-row";
+			} else {
+				document.getElementById("row"+i).style.display = "none";
 			}
 		} else{
 			if(user["mk"+(i-1)].amount.gt(0) && user["mk"+i].unlocked) {
 				document.getElementById("row"+i).style.display = "table-row";
+			} else {
+				document.getElementById("row"+i).style.display = "none";
 			}
 		}
 	}
