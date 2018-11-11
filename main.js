@@ -28,7 +28,7 @@ var user = {
 		costMult:1.17
 	},
 	mk4:{
-		cost:new Decimal(10),
+		cost:new Decimal(1e5),
 		amount:new Decimal(0),
 		multiplier:new Decimal(1),
 		base:0,
@@ -36,7 +36,7 @@ var user = {
 		costMult:1.18
 	},
 	mk5:{
-		cost:new Decimal(10),
+		cost:new Decimal(1e8),
 		amount:new Decimal(0),
 		multiplier:new Decimal(1),
 		base:0,
@@ -44,7 +44,7 @@ var user = {
 		costMult:1.19
 	},
 	mk6:{
-		cost:new Decimal(10),
+		cost:new Decimal(1e13),
 		amount:new Decimal(0),
 		multiplier:new Decimal(1),
 		base:0,
@@ -53,7 +53,7 @@ var user = {
 		costMult:1.20
 	},
 	mk7:{
-		cost:new Decimal(10),
+		cost:new Decimal(1e21),
 		amount:new Decimal(0),
 		multiplier:new Decimal(1),
 		base:0,
@@ -62,7 +62,7 @@ var user = {
 		costMult:1.21
 	},
 	mk8:{
-		cost:new Decimal(10),
+		cost:new Decimal(1e34),
 		amount:new Decimal(0),
 		multiplier:new Decimal(1),
 		base:0,
@@ -71,7 +71,7 @@ var user = {
 		costMult:1.22
 	},
 	mk9:{
-		cost:new Decimal(10),
+		cost:new Decimal(1e55),
 		amount:new Decimal(0),
 		multiplier:new Decimal(1),
 		base:0,
@@ -189,7 +189,7 @@ function resetMK(){
 			costMult:1.17
 		},
 		mk4:{
-			cost:new Decimal(10),
+			cost:new Decimal(1e5),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
@@ -197,7 +197,7 @@ function resetMK(){
 			costMult:1.18
 		},
 		mk5:{
-			cost:new Decimal(10),
+			cost:new Decimal(1e8),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
@@ -205,7 +205,7 @@ function resetMK(){
 			costMult:1.19
 		},
 		mk6:{
-			cost:new Decimal(10),
+			cost:new Decimal(1e13),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
@@ -214,7 +214,7 @@ function resetMK(){
 			costMult:1.20
 		},
 		mk7:{
-			cost:new Decimal(10),
+			cost:new Decimal(1e21),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
@@ -223,7 +223,7 @@ function resetMK(){
 			costMult:1.21
 		},
 		mk8:{
-			cost:new Decimal(10),
+			cost:new Decimal(1e34),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
@@ -232,7 +232,7 @@ function resetMK(){
 			costMult:1.22
 		},
 		mk9:{
-			cost:new Decimal(10),
+			cost:new Decimal(1e55),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
