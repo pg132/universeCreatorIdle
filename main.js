@@ -124,9 +124,11 @@ function buyMK(tier) {
 			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
 			user.mk1.amount = user.mk1.amount.plus(1)
 			user.mk1.base += 1
+			return true
 		}
+		return false
 	}
-	if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gt(tierCost)&&tier<=5&&tier>=2){
+	if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gt(tierCost)){
 		user.gravicles = user.gravicles.minus(gravCost)
 		user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 		//what should the multiplier formula be? rn im gonna make it 1% stronger
@@ -134,8 +136,9 @@ function buyMK(tier) {
 		user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 		user["mk"+tier].amount = user.mk1.amount.plus(1)
 		user["mk"+tier].base += 1
+		return true
 	}
-	if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gt(tierCost)&&tier>=6){
+	if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gt(tierCost)){
 		if (user["mk"+tier].unlocked == true){
 			user.gravicles = user.gravicles.minus(gravCost)
 			user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
@@ -144,7 +147,9 @@ function buyMK(tier) {
 			user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 			user["mk"+tier].amount = user.mk1.amount.plus(1)
 			user["mk"+tier].base += 1
+			return true
 		}
+		return false
 	}
 	update();
 }
