@@ -419,10 +419,10 @@ function update(){
 		var str = "mk"+i+"Amount";
 		document.getElementById(str).innerHTML = displayRound(user["mk"+i].amount);
 		if(i === 1) {
-			document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost);
+			document.getElementById("buy"+i).innerHTML = "Cost: "+displayRound(user["mk"+i].cost);
 		} else {
 			
-			document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost)+"<br/>+"+displayRound(user["mk"+i].previousTierCost)+" mk"+(i-1)+"s";
+			document.getElementById("buy"+i).innerHTML = "Cost: "+displayRound(user["mk"+i].cost)+"<br/> & "+displayRound(user["mk"+i].previousTierCost)+" mk"+(i-1)+"s";
 		}
 		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(baseMKmult(i));
 		if(buyable(i)) {
@@ -444,14 +444,14 @@ function update(){
 }
 
 function displayRound(num) {
-    var conv = new Decimal(num).toString()
-    if (parseFloat(conv)<1e16) return Math.round(parseFloat(conv))
-    return conv
+	if (Decimal.gte(num, 999.5)) return num.m.toFixed(3)+"e"+num.e
+    return num.toFixed(0)
 }
 function displayLessRound(num) {
-    var conv = new Decimal(num).toString()
-    if (parseFloat(conv)<1e16) return Math.round(parseFloat(conv)*1000)/1000
-    return conv
+	var precision=3-num.e
+	if (num.m>9.995) precision--
+	if (precision<0) return num.m.toFixed(3)+"e"+num.e
+    return num.toFixed(precision)
 }
 
 function save(){
