@@ -482,6 +482,7 @@ function baseMKmult(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
+	mult = mult.times(Decimal.pow(1+1/tier,user.pulse.amount))
 	//put additional mults here
 	return mult
 	
