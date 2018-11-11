@@ -414,15 +414,15 @@ function buyableWell() {
 	return false
 }
 function update(){
-	document.getElementById("gravicle amount").innerHTML = formatValues("Standard",user.gravicles.floor(),3,3);
+	document.getElementById("gravicle amount").innerHTML = formatValue("Standard",user.gravicles.floor(),3,3);
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
-		document.getElementById(str).innerHTML = formatValues("Standard",user["mk"+i].amount,3,3);
+		document.getElementById(str).innerHTML = formatValue("Standard",user["mk"+i].amount,3,3);
 		if(i === 1) {
-			document.getElementById("buy"+i).innerHTML = "Cost "+formatValues("Standard",user["mk"+i].cost,3,3);
+			document.getElementById("buy"+i).innerHTML = "Cost "+formatValue("Standard",user["mk"+i].cost,3,3);
 		} else {
 			
-			document.getElementById("buy"+i).innerHTML = "Cost "+formatValues("Standard",user["mk"+i].cost,3,3)+"<br/>+"+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
+			document.getElementById("buy"+i).innerHTML = "Cost "+formatValue("Standard",user["mk"+i].cost,3,3)+"<br/>+"+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
 		}
 		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(baseMKmult(i));
 		if(buyable(i)) {
