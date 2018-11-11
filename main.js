@@ -147,7 +147,7 @@ function buyMK(tier) {
 
 function gravityWell(autobuyer){//autobuyer helps us later to see if the player is doing it
 	//first check is if we can afford it
-	if (user["mk"+user.wells.tiercost] >= user.wells.cost){//otherwise kick us out of this function
+	if (user["mk"+user.wells.tiercost].amount.gt(user.wells.cost)){//otherwise kick us out of this function
 		resetMK() //we need this function DONE
 		if (!(user.wells.tiercost == 9)){
 			user.wells.tiercost += 1
