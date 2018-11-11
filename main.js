@@ -366,7 +366,11 @@ function update(){
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
 		document.getElementById(str).innerHTML = displayRound(user["mk"+i].amount);
-		document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost);
+		if(i === 1) {
+			document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost);
+		} else {
+			document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost)+"<br/>+"+displayRound(user["mk"+i].cost)+" mk"+(i-1);
+		}
 		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(user["mk"+i].multiplier);
 	}
 	showMK();
