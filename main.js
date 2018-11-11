@@ -182,7 +182,7 @@ function gravityPulse(autobuyer){
 	//first check if we afford
 	if (user.wells.amount >= user.pulse.cost){
 		//clear mk and then give boosts
-		user.pulse.multipliers += [getPulseReward(user.wells.amount)]//add the thing to the end
+		user.pulse.multipliers.push(getPulseReward(user.wells.amount))//add the thing to the end
 		user = {//update user
 			gravicles: new Decimal(10),
 			mk1:{
