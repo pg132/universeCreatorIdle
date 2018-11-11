@@ -1,106 +1,106 @@
 var version = 0.0;
 function getDefaultSave() {
-return {
-	gravicles: new Decimal(10),
-	mk1:{
-		cost:new Decimal(10),
-		amount:new Decimal(0),
-		multiplier:new Decimal(1),
-		base:0,
-		previousTierCost:0,
-		costMult:1.15
-	},
-	mk2:{
-		cost:new Decimal(100),
-		amount:new Decimal(0),
-		multiplier:new Decimal(1),
-		base:0,
-		previousTierCost:10,
-		costMult:1.165
-	},
-	mk3:{
-		cost:new Decimal(1000),
-		amount:new Decimal(0),
-		multiplier:new Decimal(1),	
-		base:0,
-		previousTierCost:10,
-		costMult:1.18
-	},
-	mk4:{
-		cost:new Decimal(1e4),
-		amount:new Decimal(0),
-		multiplier:new Decimal(1),
-		base:0,
-		previousTierCost:10,
-		costMult:1.2
-	},
-	mk5:{
-		cost:new Decimal(1e6),
-		amount:new Decimal(0),
-		multiplier:new Decimal(1),
-		base:0,
-		previousTierCost:10,
-		costMult:1.22
-	},
-	mk6:{
-		cost:new Decimal(1e9),
-		amount:new Decimal(0),
-		multiplier:new Decimal(1),
-		base:0,
-		unlocked:false,
-		previousTierCost:10,
-		costMult:1.24
-	},
-	mk7:{
-		cost:new Decimal(1e13),
-		amount:new Decimal(0),
-		multiplier:new Decimal(1),
-		base:0,
-		unlocked:false,
-		previousTierCost:10,
-		costMult:1.265
-	},
-	mk8:{
-		cost:new Decimal(1e19),
-		amount:new Decimal(0),
-		multiplier:new Decimal(1),
-		base:0,
-		unlocked:false,
-		previousTierCost:10,
-		costMult:1.28
-	},
-	mk9:{
-		cost:new Decimal(1e28),
-		amount:new Decimal(0),
-		multiplier:new Decimal(1),
-		base:0,
-		unlocked:false,
-		previousTierCost:10,
-		costMult:1.3
-	},
-	wells:{
-		cost:20,
-		tiercost:5,
-		defaultMults:4,
-		totalMult:1,
-		amount:0,
-		costScale:20
-	},
-	pulse:{
-		cost:5,
-		amount:0,
-		multipliers:[]
-	},
-	points:{
-		amount:new Decimal(0),
-		upgradesCost:[1,2,5,50,60,70,80,90,100,110,120,130,10,15,30,75],//next line GP starts for gravity points and GPA stands for gravity points autobuyer
-		possibleUpgrade:["GP11","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61"],
-		upgrades:[],
-		
-	}
+	return {
+		gravicles: new Decimal(10),
+		mk1:{
+			cost:new Decimal(10),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			previousTierCost:0,
+			costMult:1.15
+		},
+		mk2:{
+			cost:new Decimal(100),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			previousTierCost:10,
+			costMult:1.165
+		},
+		mk3:{
+			cost:new Decimal(1000),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),	
+			base:0,
+			previousTierCost:10,
+			costMult:1.18
+		},
+		mk4:{
+			cost:new Decimal(1e4),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			previousTierCost:10,
+			costMult:1.2
+		},
+		mk5:{
+			cost:new Decimal(1e6),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			previousTierCost:10,
+			costMult:1.22
+		},
+		mk6:{
+			cost:new Decimal(1e9),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			unlocked:false,
+			previousTierCost:10,
+			costMult:1.24
+		},
+		mk7:{
+			cost:new Decimal(1e13),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			unlocked:false,
+			previousTierCost:10,
+			costMult:1.265
+		},
+		mk8:{
+			cost:new Decimal(1e19),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			unlocked:false,
+			previousTierCost:10,
+			costMult:1.28
+		},
+		mk9:{
+			cost:new Decimal(1e28),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			unlocked:false,
+			previousTierCost:10,
+			costMult:1.3
+		},
+		wells:{
+			cost:20,
+			tiercost:5,
+			defaultMults:4,
+			totalMult:1,
+			amount:0,
+			costScale:20
+		},
+		pulse:{
+			cost:5,
+			amount:0,
+			multipliers:[]
+		},
+		points:{
+			amount:new Decimal(0),
+			upgradesCost:[1,2,5,50,60,70,80,90,100,110,120,130,10,15,30,75],//next line GP starts for gravity points and GPA stands for gravity points autobuyer
+			possibleUpgrade:["GP11","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61"],
+			upgrades:[],
+
+		}
 
 
-};
+	};
 }
 
 
@@ -388,7 +388,18 @@ function MKproduction(){
 	}
 	update();
 }
-
+function buyable(tier) {
+	if (tier == 1){
+		if (gravCost.lte(user.gravicles)){
+			return true
+		}
+	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier<=5&&tier>=2){
+		return true
+	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier>=6){
+		return true
+	}
+	return false
+}
 function update(){
 	document.getElementById("gravicle amount").innerHTML = displayRound(user.gravicles.floor());
 	for(var i = 1; i <=9; i++) {
@@ -401,6 +412,13 @@ function update(){
 			document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost)+"<br/>+"+displayRound(user["mk"+i].previousTierCost)+" mk"+(i-1)+"s";
 		}
 		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(baseMKmult(i));
+		if(buyable(i)) {
+			document.getElementById("buy"+i).className = "button";
+			document.getElementById("buy"+i+"Max").className = "button";
+		} else {
+			document.getElementById("buy"+i).className = "buttonlocked";
+			document.getElementById("buy"+i+"Max").className = "buttonlocked";
+		}
 	}
 	showMK();
 	document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+user.wells.tiercost+"s";
