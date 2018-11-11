@@ -125,7 +125,7 @@ function buyMK(tier) {
 			user.mk1.amount = user.mk1.amount.plus(1)
 			user.mk1.base += 1
 		}
-	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.lte(tierCost)&&tier<=5&&tier>=2){
+	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier<=5&&tier>=2){
 		user.gravicles = user.gravicles.minus(gravCost)
 		user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 		//what should the multiplier formula be? rn im gonna make it 1% stronger
@@ -344,7 +344,7 @@ function showMK(){
 function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
-	//mult = mult.times(gravityWellBoost(tier))
+	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
 	//put additional mults here
 	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
