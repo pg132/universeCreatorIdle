@@ -951,6 +951,12 @@
 		get mantissa() {return this.m;}
 		
 		valueOf() { return this.toString(); }
+		toJSON() {
+			return JSON.stringify({
+				logarithm: this.logarithm,
+				_class: "Decimal"
+			}); 
+		}
 	}
 	
 	//Used from Patashu's break_infinity.js (and credited the author too, https://github.com/Patashu/break_infinity.js)
