@@ -952,10 +952,10 @@
 		
 		valueOf() { return this.toString(); }
 		toJSON() {
-			return JSON.stringify({
+			return {
 				logarithm: this.logarithm,
 				_class: "Decimal"
-			}); 
+			}; 
 		}
 	}
 	
