@@ -8,12 +8,12 @@
 	</head>
 	<body onload="startInterval()">
 		<div>
-			<button onclick="save()">Save</button>
-			<button onclick="load()">Load</button>
-			<button onclick="expo()" id="export">Export</button>
+			<button onclick="save()" class="button">Save</button>
+			<button onclick="load()" class="button">Load</button>
+			<button onclick="expo()" id="export" class="button">Export</button>
 			<a id="export thing"><a>
-			<button onclick="impo()">Import</button>
-			<button onclick="hardReset()">HARD RESET</button>
+			<button onclick="impo()" class="button">Import</button>
+			<button onclick="hardReset()" class="button">HARD RESET</button>
 		</div>
 		<div>
 			<p>You have <span id="gravicle amount">10</span> gravicles</p>
@@ -29,10 +29,10 @@
 							<div id="mk1Amount">0</div>
 						</td>
 						<td>
-							<button id="buy1" onclick="buyMK(1)" align="right">Cost: 10</button>
+							<button id="buy1" onclick="buyMK(1)" align="right" class="button">Cost: 10</button>
 						</td>
 						<td align="right">
-							<button id="buy1Max" onclick="buyMaxMK(1)" align="right">Buy Max</button>
+							<button id="buy1Max" onclick="buyMaxMK(1)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row2" style="display: none;">
@@ -43,10 +43,10 @@
 							<div id="mk2Amount">0</div>
 						</td>
 						<td>
-							<button id="buy2" onclick="buyMK(2)" align="right">Cost: 10</button>
+							<button id="buy2" onclick="buyMK(2)" align="right" class="button">Cost: 10</button>
 						</td>
 						<td align="right">
-							<button id="buy2Max" onclick="buyMaxMK(2)" align="right">Buy Max</button>
+							<button id="buy2Max" onclick="buyMaxMK(2)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row3" style="display: none;">
@@ -57,10 +57,10 @@
 							<div id="mk3Amount">0</div>
 						</td>
 						<td>
-							<button id="buy3" onclick="buyMK(3)" align="right">Cost: 10</button>
+							<button id="buy3" onclick="buyMK(3)" align="right" class="button">Cost: 10</button>
 						</td>
 						<td align="right">
-							<button id="buy3Max" onclick="buyMaxMK(3)" align="right">Buy Max</button>
+							<button id="buy3Max" onclick="buyMaxMK(3)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row4" style="display: none;">
@@ -71,10 +71,10 @@
 							<div id="mk4Amount">0</div>
 						</td>
 						<td>
-							<button id="buy4" onclick="buyMK(4)" align="right">Cost: 10</button>
+							<button id="buy4" onclick="buyMK(4)" align="right" class="button">Cost: 10</button>
 						</td>
 						<td align="right">
-							<button id="buy4Max" onclick="buyMaxMK(4)" align="right">Buy Max</button>
+							<button id="buy4Max" onclick="buyMaxMK(4)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row5" style="display: none;">
@@ -85,10 +85,10 @@
 							<div id="mk5Amount">0</div>
 						</td>
 						<td>
-							<button id="buy5" onclick="buyMK(5)" align="right">Cost: 10</button>
+							<button id="buy5" onclick="buyMK(5)" align="right" class="button">Cost: 10</button>
 						</td>
 						<td align="right">
-							<button id="buy5Max" onclick="buyMaxMK(5)" align="right">Buy Max</button>
+							<button id="buy5Max" onclick="buyMaxMK(5)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row6" style="display: none;">
@@ -99,10 +99,10 @@
 							<div id="mk6Amount">0</div>
 						</td>
 						<td>
-							<button id="buy6" onclick="buyMK(6)" align="right">Cost: 10</button>
+							<button id="buy6" onclick="buyMK(6)" align="right" class="button">Cost: 10</button>
 						</td>
 						<td align="right">
-							<button id="buy6Max" onclick="buyMaxMK(6)" align="right">Buy Max</button>
+							<button id="buy6Max" onclick="buyMaxMK(6)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row7" style="display: none;">
@@ -113,10 +113,10 @@
 							<div id="mk7Amount">0</div>
 						</td>
 						<td>
-							<button id="buy7" onclick="buyMK(7)" align="right">Cost: 10</button>
+							<button id="buy7" onclick="buyMK(7)" align="right" class="button">Cost: 10</button>
 						</td>
 						<td align="right">
-							<button id="buy7Max" onclick="buyMaxMK(7)" align="right">Buy Max</button>
+							<button id="buy7Max" onclick="buyMaxMK(7)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row8" style="display: none;">
@@ -127,10 +127,10 @@
 							<div id="mk8Amount">0</div>
 						</td>
 						<td>
-							<button id="buy8" onclick="buyMK(8)" align="right">Cost: 10</button>
+							<button id="buy8" onclick="buyMK(8)" align="right" class="button">Cost: 10</button>
 						</td>
 						<td align="right">
-							<button id="buy8Max" onclick="buyMaxMK(8)" align="right">Buy Max</button>
+							<button id="buy8Max" onclick="buyMaxMK(8)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row9" style="display: none;">
@@ -141,10 +141,10 @@
 							<div id="mk9Amount">0</div>
 						</td>
 						<td>
-							<button id="buy9" onclick="buyMK(9)" align="right">Cost: 10</button>
+							<button id="buy9" onclick="buyMK(9)" align="right" class="button">Cost: 10</button>
 						</td>
 						<td align="right">
-							<button id="buy9Max" onclick="buyMaxMK(9)" align="right">Buy Max</button>
+							<button id="buy9Max" onclick="buyMaxMK(9)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
 				</tbody>
@@ -156,7 +156,7 @@
 							Gravity wells: 0
 						</td>
 						<td>
-							<button id="well" onclick="gravityWell(true)">
+							<button id="well" onclick="gravityWell(true)" class="button">
 								Reset the game for a boost<br/>Cost: 20 mk5s
 							</button>
 						</td>
