@@ -276,7 +276,7 @@ function gravityWellBoost(tier){
 }
 
 function fullPowerWellsUpdate(){
-	var constant = 5
+	var constant = 4
 	var multiplier = 1
 	if (user.points.upgrades.includes("GP31")) multiplier = 1.5
 	for (var i = 0; i< user.pulse.amount; i++){
