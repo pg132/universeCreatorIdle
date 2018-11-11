@@ -400,6 +400,12 @@ function buyable(tier) {
 	}
 	return false
 }
+function buyableWell() {
+	if (user["mk"+user.wells.tiercost].amount.gte(user.wells.cost)){
+		return true
+	}
+	return false
+}
 function update(){
 	document.getElementById("gravicle amount").innerHTML = displayRound(user.gravicles.floor());
 	for(var i = 1; i <=9; i++) {
@@ -422,6 +428,11 @@ function update(){
 	}
 	showMK();
 	document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+user.wells.tiercost+"s";
+	if(buyableWell()) {
+		document.getElementById("well").className = "button";
+	} else {
+		document.getElementById("well").className = "buttonlocked";
+	}
 	document.getElementById("well number").innerHTML = "Gravity wells: "+user.wells.amount;
 }
 
