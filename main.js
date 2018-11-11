@@ -557,7 +557,7 @@ function update(){
 		document.getElementById("pulse").className = "buttonlocked";
 	}
 	document.getElementById("well number").innerHTML = "Gravity wells: "+user.wells.amount;
-	document.getElementById("pulse number").innerHTML = "Gravitational pulses: "+user.pulse.amount+" ("+user.wells.defaultMult+" wells at full power)";
+	document.getElementById("pulse number").innerHTML = "Gravitational pulses: "+user.pulse.amount+" ("+user.wells.defaultMults+" wells at full power)";
 }
 
 function save(){
