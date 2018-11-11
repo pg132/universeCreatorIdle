@@ -19,20 +19,14 @@
 		<div>
 			<table style="width:100%">
 				<tbody id="parent">
-					<tr id="row1">
-						<td>
+					<tr class='large'>
+						<td colspan=2>
 							<p>You have <span id="gravicle amount">10</span> gravicles</p>
 						</td>
-						<td>
-							<button onclick="maxAll()" class="button" align="right">Max All</button>
+						<td colspan=2 align="right">
+							<button onclick="maxAll()" class="button">Max All</button>
 						</td>
 					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div>
-			<table style="width:100%">
-				<tbody id="parent">
 					<tr id="row1">
 						<td>
 							Generator MK 1 <span id="mult1">x1</span>
@@ -159,15 +153,11 @@
 							<button id="buy9Max" onclick="buyMaxMK(9)" align="right" class="button">Buy Max</button>
 						</td>
 					</tr>
-				</tbody>
-			</table>
-			<table>
-				<tbody>
-					<tr>
-						<td id="well number">
+					<tr class='large'>
+						<td colspan=2 id="well number">
 							Gravity wells: 0
 						</td>
-						<td>
+						<td colspan=2 align="right">
 							<button id="well" onclick="gravityWell(true)" class="button">
 								Reset the game for a boost<br/>Cost: 20 mk5s
 							</button>

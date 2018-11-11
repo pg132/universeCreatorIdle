@@ -414,17 +414,16 @@ function buyableWell() {
 	return false
 }
 function update(){
-	document.getElementById("gravicle amount").innerHTML = formatValue("Standard",user.gravicles.floor(),3,3);
+	document.getElementById("gravicle amount").innerHTML = formatValue("Standard",user.gravicles,3,0);
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
-		document.getElementById(str).innerHTML = formatValue("Standard",user["mk"+i].amount,3,3);
+		document.getElementById(str).innerHTML = formatValue("Standard",user["mk"+i].amount,3,0);
 		if(i === 1) {
-			document.getElementById("buy"+i).innerHTML = "Cost "+formatValue("Standard",user["mk"+i].cost,3,3);
+			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Standard",user["mk"+i].cost,3,0);
 		} else {
-			
-			document.getElementById("buy"+i).innerHTML = "Cost "+formatValue("Standard",user["mk"+i].cost,3,3)+"<br/>+"+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
+			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Standard",user["mk"+i].cost,3,0)+" & "+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
 		}
-		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(baseMKmult(i));
+		document.getElementById("mult"+i).innerHTML = "x"+formatValue("Standard",baseMKmult(i),3,3);
 		if(buyable(i)) {
 			document.getElementById("buy"+i).className = "button";
 			document.getElementById("buy"+i+"Max").className = "button";
@@ -441,17 +440,6 @@ function update(){
 		document.getElementById("well").className = "buttonlocked";
 	}
 	document.getElementById("well number").innerHTML = "Gravity wells: "+user.wells.amount;
-}
-
-function displayRound(num) {
-    var conv = new Decimal(num).toString()
-    if (parseFloat(conv)<1e16) return Math.round(parseFloat(conv))
-    return conv
-}
-function displayLessRound(num) {
-    var conv = new Decimal(num).toString()
-    if (parseFloat(conv)<1e16) return Math.round(parseFloat(conv)*1000)/1000
-    return conv
 }
 
 function save(){
