@@ -375,10 +375,10 @@ function MKproduction(){
 }
 
 function update(){
-	document.getElementById("gravicle amount").innerHTML = user.gravicles.toString();
+	document.getElementById("gravicle amount").innerHTML = user.gravicles.floor().toString();
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
-		document.getElementById(str).innerHTML = user["mk"+i].toString();
+		document.getElementById(str).innerHTML = user["mk"+i].amount.floor().toString();
 	}
 }
 
