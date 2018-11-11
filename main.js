@@ -125,8 +125,7 @@ function buyMK(tier) {
 			user.mk1.amount = user.mk1.amount.plus(1)
 			user.mk1.base += 1
 		}
-	}
-	if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].amount)&&tier<=5&&tier>=2){
+	}else if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].amount)&&tier<=5&&tier>=2){
 		user.gravicles = user.gravicles.minus(gravCost)
 		user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 		//what should the multiplier formula be? rn im gonna make it 1% stronger
@@ -134,8 +133,7 @@ function buyMK(tier) {
 		user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 		user["mk"+tier].amount = user.mk1.amount.plus(1)
 		user["mk"+tier].base += 1
-	}
-	if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].amount)&&tier>=6){
+	} else if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].amount)&&tier>=6){
 		if (user["mk"+tier].unlocked == true){
 			user.gravicles = user.gravicles.minus(gravCost)
 			user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
@@ -278,7 +276,7 @@ function buyMaxMK(tier){
     	var tierCost = user["mk"+tier].previousTierCost
     	var gravCost = user["mk"+tier].cost
     	var costMult = user["mk"+tier].costMult
-    	var grav = user.gravicels
+    	var grav = user.gravicles
     	if (grav.gt(gravCost)){
         	var p = grav.log10()-gravCost.log10()
         	var c = Decimal.log10(costMult)
@@ -291,7 +289,7 @@ function buyMaxMK(tier){
          		user.mk1.multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
             		user.mk1.base += w
             		user.mk1.amount = user.mk1.amount.plus(w)
-            		user.gravicels = user.gravicels.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
+            		user.gravicles = user.gravicles.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
             		user.mk1.cost = user.mk1.cost.times(Decimal.pow(costMult,w))
         	}//closes tier==1
         	if (tier <= 5){
@@ -300,7 +298,7 @@ function buyMaxMK(tier){
                			user["mk"+tier].multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
                 		user["mk"+tier].base += w
                 		user["mk"+tier].amount = user.mk1.amount.plus(w)
-                		user.gravicels = user.gravicels.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
+                		user.gravicles = user.gravicles.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
                 		user["mk"+tier].cost = user.mk1.cost.times(Decimal.pow(costMult,w))
                 		user["mk"+tier-1].amount = user["mk"+tier-1].amount.minus(tC2)
 			} else{
@@ -315,7 +313,7 @@ function buyMaxMK(tier){
                     			user["mk"+tier].multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
                     			user["mk"+tier].base += w
                     			user["mk"+tier].amount = user.mk1.amount.plus(w)
-                    			user.gravicels = user.gravicels.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
+                    			user.gravicles = user.gravicles.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
                     			user["mk"+tier].cost = user.mk1.cost.times(Decimal.pow(costMult,w))
                     			user["mk"+tier-1].amount = user["mk"+tier-1].amount.minus(tC2)
                 		} else{
@@ -391,7 +389,7 @@ function update(){
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
 		document.getElementById(str).innerHTML = user["mk"+i].amount.floor().toString();
-		document.getElementById("buy"+i).innerHTML = "Cost "+user["mk"+i].cost.floor().toString();
+		document.getElementById("buy"+i).innerHTML = "Cost "+user["mk"+i].cost.ceil().toString();
 		document.getElementById("mult"+i).innerHTML = "x"+user["mk"+i].multiplier.toString();
 	}
 	showMK();
