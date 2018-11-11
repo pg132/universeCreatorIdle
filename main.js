@@ -23,7 +23,7 @@ var user = {
 		multiplier:new Decimal(1),	
 		base:0,
 		previousTierCost:10,
-		costMult:1.8
+		costMult:1.18
 	},
 	mk4:{
 		cost:new Decimal(1e4),
@@ -184,7 +184,7 @@ function resetMK(){
 			multiplier:new Decimal(1),	
 			base:0,
 			previousTierCost:10,
-			costMult:1.8
+			costMult:1.18
 		},
 		mk4:{
 			cost:new Decimal(1e4),
