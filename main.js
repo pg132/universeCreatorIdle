@@ -280,7 +280,7 @@ function fullPowerWellsUpdate(){
 	var multiplier = 1
 	if (user.points.upgrades.includes("GP31")) multiplier = 1.5
 	for (var i = 0; i<= user.pulse.amount; i++){
-		constant = Math.ceil(constant*(1+(multiplier*(user.pluse.multipliers[i]-1))
+		constant = Math.ceil(constant*(1+(multiplier*(user.pluse.multipliers[i]-1))))
 	}
 	user.wells.defaultMults = constant
 }
