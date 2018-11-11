@@ -391,8 +391,8 @@ function update(){
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
 		document.getElementById(str).innerHTML = user["mk"+i].amount.floor().toString();
-		document.getElementById("buy"+i).innerHTML = user["mk"+i].cost.floor().toString();
-		document.getElementById("mult"+i).innerHTML = user["mk"+i].cost.toString();
+		document.getElementById("buy"+i).innerHTML = "Cost"+user["mk"+i].cost.floor().toString();
+		document.getElementById("mult"+i).innerHTML = "x"+user["mk"+i].cost.toString();
 	}
 	showMK();
 }
