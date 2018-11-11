@@ -14,3 +14,19 @@
     color: #FFFFFF;
     background: #5AC467;
 }
+.buttonlocked {
+	background: #A3A3A3;
+	height: auto;
+	line-height: 21px;
+	text-align: center;
+	width: auto;
+	border: 1px solid #B84B5F;
+	border-radius: 4px;
+	padding: 5px;
+	color: #000000;
+	transition-duration: 0.2s;
+}
+.buttonlocked:hover {
+    color: #000000;
+    background: #B84B5F;
+}
