@@ -279,16 +279,25 @@ function buyMaxMK(tier){
 	var grav = user.gravicles
 	if (tier == 1){
 		while(grav.gte(gravCost)) {
-				buyMK(tier);
+			buyMK(tier);
+			tierCost = user["mk"+tier].previousTierCost
+			gravCost = user["mk"+tier].cost
+			grav = user.gravicles
 		}
 	} else if (tier <= 5){//closes tier==1 and opens tier<=5&&tier>1
 		while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
 			buyMK(tier);
+			tierCost = user["mk"+tier].previousTierCost
+			gravCost = user["mk"+tier].cost
+			grav = user.gravicles
 		}
 	} else {//tier is abv 5
 		if (user["mk"+tier].unlocked){
 			while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
 				buyMK(tier);
+				tierCost = user["mk"+tier].previousTierCost
+				gravCost = user["mk"+tier].cost
+				grav = user.gravicles
 			}
 		}//closes unlocked if
 	}//closes else refering to tier >= 5
