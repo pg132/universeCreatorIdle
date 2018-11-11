@@ -125,7 +125,7 @@ function buyMK(tier) {
 			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
 			user.mk1.amount = user.mk1.amount.plus(1)
 			user.mk1.base += 1
-			if(user.mk1.base > 30 && user.mk1.base % 10 = 0) {
+			if(user.mk1.base > 30 && user.mk1.base % 10 === 0) {
 				user.mk1.costMult *= 0.01;
 			}
 		}
@@ -137,7 +137,7 @@ function buyMK(tier) {
 		user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 		user["mk"+tier].amount = user["mk"+tier].amount.plus(1)
 		user["mk"+tier].base += 1
-		if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 = 0) {
+		if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
 			user["mk"+tier].costMult *= 0.01;
 		}
 	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier>=6){
@@ -149,7 +149,7 @@ function buyMK(tier) {
 			user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 			user["mk"+tier].amount = user["mk"+tier].amount.plus(1)
 			user["mk"+tier].base += 1
-			if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 = 0) {
+			if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
 				user["mk"+tier].costMult *= 0.01;
 			}
 		}
