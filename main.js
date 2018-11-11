@@ -126,7 +126,7 @@ function buyMK(tier) {
 			user.mk1.base += 1
 		}
 	}
-	if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].amount)&&tier<=5){
+	if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].amount)&&tier<=5&&tier>=2){
 		user.gravicles = user.gravicles.minus(gravCost)
 		user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 		//what should the multiplier formula be? rn im gonna make it 1% stronger
