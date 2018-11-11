@@ -489,7 +489,7 @@ function expo(){
 	
 	try {
 		if (document.execCommand('copy')) {
-			document.getElementById("export status").innerHTML = "Copied to clipboard";
+			document.getElementById("export status").style.display = "";
 			output.blur();
 			document.getElementById("export").innerHTML = "Close";
 			document.getElementById("export").onclick = function() { close(); };
@@ -499,7 +499,7 @@ function expo(){
 	}
 }
 function close(){
-	document.getElementById("export status").innerHTML = "";
+		document.getElementById("export status").style.display = "none";
 	document.getElementById("export").innerHTML = "Export";
 	document.getElementById("export").onclick = function() { expo(); };
 }
