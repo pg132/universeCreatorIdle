@@ -124,11 +124,9 @@ function buyMK(tier) {
 			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
 			user.mk1.amount = user.mk1.amount.plus(1)
 			user.mk1.base += 1
-			return true
 		}
-		return false
 	}
-	if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gt(tierCost)){
+	if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].amount)&&tier<=5&&tier>=2){
 		user.gravicles = user.gravicles.minus(gravCost)
 		user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 		//what should the multiplier formula be? rn im gonna make it 1% stronger
@@ -136,9 +134,8 @@ function buyMK(tier) {
 		user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 		user["mk"+tier].amount = user.mk1.amount.plus(1)
 		user["mk"+tier].base += 1
-		return true
 	}
-	if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gt(tierCost)){
+	if (gravCost.lte(user.gravicles) && tierCost.lte(user["mk"+(tier-1)].amount)&&tier>=6){
 		if (user["mk"+tier].unlocked == true){
 			user.gravicles = user.gravicles.minus(gravCost)
 			user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
@@ -147,9 +144,7 @@ function buyMK(tier) {
 			user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 			user["mk"+tier].amount = user.mk1.amount.plus(1)
 			user["mk"+tier].base += 1
-			return true
 		}
-		return false
 	}
 	update();
 }
@@ -358,7 +353,19 @@ function updateMKUnlocks(){
 	if (w >= 4) user.mk9.unlocked = true
 }
 
-
+function showMK(){
+	for(var i = 2; i <= 9; i++) {
+		if (i<6){
+			if(user["mk"+(i-1)].amount.gt(0)) {
+				document.getElementById("row"+i).style.display = "table-row";
+			}
+		} else{
+			if(user["mk"+(i-1)].amount.gt(0) && user["mk"+i].unlocked) {
+				document.getElementById("row"+i).style.display = "table-row";
+			}
+		}
+	}
+}
 function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
@@ -384,6 +391,8 @@ function update(){
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
 		document.getElementById(str).innerHTML = user["mk"+i].amount.floor().toString();
+		document.getElementById("buy"+i).innerHTML = user["mk"+i].cost.floor().toString();
+		document.getElementById("mult"+i).innerHTML = user["mk"+i].cost.toString();
 	}
 }
 
