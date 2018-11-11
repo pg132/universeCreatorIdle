@@ -396,7 +396,7 @@ function load(){
 	}
 }
 function expo(){
-	var exp = btoa(JSON.stringify(player));
+	var exp = btoa(JSON.stringify(user));
 	document.getElementById("export thing").innerHTML = exp;
 	document.getElementById("export").innerHTML = "Close";
 	document.getElementById("export").onClick = close;
