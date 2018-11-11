@@ -125,7 +125,7 @@ function buyMK(tier) {
 			user.mk1.amount = user.mk1.amount.plus(1)
 			user.mk1.base += 1
 		}
-	}else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.lte(tierCost)&&tier<=5&&tier>=2){
+	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.lte(tierCost)&&tier<=5&&tier>=2){
 		user.gravicles = user.gravicles.minus(gravCost)
 		user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 		//what should the multiplier formula be? rn im gonna make it 1% stronger
@@ -153,7 +153,7 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the player 
 		resetMK() //we need this function DONE
 		if (!(user.wells.tiercost == 9)){
 			user.wells.tiercost += 1
-		}else{
+		} else{
 			user.wells.cost += user.wells.costScale//might be changed later by an upgrade
 		}
 		//now do the boosts if so
@@ -283,7 +283,7 @@ function buyMaxMK(tier){
 			}
 			
                 }
-        	}else if (tier <= 5){//closes tier==1 and opens tier<=5&&tier>1
+        	} else if (tier <= 5){//closes tier==1 and opens tier<=5&&tier>1
             		while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
 				buyMK(tier);
 			}
