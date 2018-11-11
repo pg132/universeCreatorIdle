@@ -474,11 +474,7 @@ function baseMKproduction(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
-	var pulseMult = 1
-	for (var i = 0; i< user.pulse.amount; i++){
-		pulseMult = pulseMult*(user.pulse.multipliers[i])
-	}
-	mult = mult.times(Decimal.pow(1+1/tier,pulseMult*user.pulse.amount))
+	mult = mult.times(Decimal.pow(1+1/tier,user.wells.defaultMult-4))
 	//put additional mults here
 	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
 }
@@ -487,11 +483,7 @@ function baseMKmult(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
-	var pulseMult = 1
-	for (var i = 0; i< user.pulse.amount; i++){
-		pulseMult = pulseMult*(user.pulse.multipliers[i])
-	}
-	mult = mult.times(Decimal.pow(1+1/tier,pulseMult*user.pulse.amount))
+	mult = mult.times(Decimal.pow(1+1/tier,user.wells.defaultMult-4))
 	//put additional mults here
 	return mult
 	
