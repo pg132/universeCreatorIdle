@@ -146,6 +146,7 @@ function buyMK(tier) {
 			user["mk"+tier].base += 1
 		}
 	}
+	update();
 }
 
 function gravityWell(autobuyer){//autobuyer helps us later to see if the player is doing it
@@ -323,9 +324,9 @@ function buyMaxMK(tier){
 					}
 				}//closes if for basecost
 			}//closes unlocked if
-		}//closes else refering to tier >= 5        
-        
-    }
+		}//closes else refering to tier >= 5
+	}
+	update();
 }
 
 
@@ -384,6 +385,7 @@ function gameLoop(){
 	MKproduction();
 	updateMKUnlocks();
 	fullPowerWellsUpdate();
+	update();
 }
 
 function startInterval(){
