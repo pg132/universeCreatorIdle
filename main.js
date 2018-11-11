@@ -412,7 +412,7 @@ function load(){
 function convertDecimals(obj) {
 	if(typeof obj === "object" && obj !== null) {
 		for(var i in obj) {
-			obj[i] = convertDecimals(JSON.parse(obj[i]));
+			obj[i] = convertDecimals(obj[i]);
 		}
 		if(obj._class === "Decimal") {
 			return new Decimal(Decimal.pow(10,obj.logarithm));
