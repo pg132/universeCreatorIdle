@@ -273,54 +273,25 @@ function fullPowerWellsUpdate(){
 
 
 function buyMaxMK(tier){
-    	var tierCost = user["mk"+tier].previousTierCost
+	var tierCost = user["mk"+tier].previousTierCost
     	var gravCost = user["mk"+tier].cost
     	var costMult = user["mk"+tier].costMult
     	var grav = user.gravicles
-    	if (grav.gt(gravCost)){
-        	var p = grav.log10()-gravCost.log10()
-        	var c = Decimal.log10(costMult)
-        	//var sumCost = Decimal.pow(c,numberbuying).minus(1).times(1/(1-costMult))
-        	var costDiff = grav.div(gravCost)
-        	costDiff = costDiff.times(1-costMult)
-        	costDiff = costDiff.plus(gravCost)//now its the ratio of the total cost to the start cost
-        	var w = costDiff.log10()/c //we want to buy w of them we first want to check if we have the tierCost
         	if (tier == 1){
-         		user.mk1.multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
-            		user.mk1.base += w
-            		user.mk1.amount = user.mk1.amount.plus(w)
-            		user.gravicles = user.gravicles.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
-            		user.mk1.cost = user.mk1.cost.times(Decimal.pow(costMult,w))
-        	}//closes tier==1
-        	if (tier <= 5){
-            		var tC2 = tierCost*w
-            		if (user["mk"+tier-1].base >= tC2){
-               			user["mk"+tier].multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
-                		user["mk"+tier].base += w
-                		user["mk"+tier].amount = user.mk1.amount.plus(w)
-                		user.gravicles = user.gravicles.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
-                		user["mk"+tier].cost = user.mk1.cost.times(Decimal.pow(costMult,w))
-                		user["mk"+tier-1].amount = user["mk"+tier-1].amount.minus(tC2)
-			} else{
-                		for (var i = 0; i< w; i++){
-                    			buyMK(tier)
-				}
-			}//closes else for for loop
+         		while(grav.gte(gravCost)) {
+				buyMK(tier);
+			}
+			
+                }
+        	}else if (tier <= 5){//closes tier==1 and opens tier<=5&&tier>1
+            		while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
+				buyMK(tier);
+			}
 		} else {//tier is abv 5
             		if (user["mk"+tier].unlocked){
-                		var tC2 = tierCost*w
-                		if (user["mk"+tier-1].base >= tC2){
-                    			user["mk"+tier].multiplier =user.mk1.multiplier.times(Decimal.pow(1.01,w))
-                    			user["mk"+tier].base += w
-                    			user["mk"+tier].amount = user.mk1.amount.plus(w)
-                    			user.gravicles = user.gravicles.minus(Decimal.pow(costMult,w).minus(gravCost).div(costMult-1))
-                    			user["mk"+tier].cost = user.mk1.cost.times(Decimal.pow(costMult,w))
-                    			user["mk"+tier-1].amount = user["mk"+tier-1].amount.minus(tC2)
-                		} else{
-                   			for (var i = 0; i< w; i++){
-                        			buyMK(tier)
-					}
-				}//closes if for basecost
+                		while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
+					buyMK(tier);
+				}
 			}//closes unlocked if
 		}//closes else refering to tier >= 5
 	}
