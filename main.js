@@ -389,6 +389,8 @@ function MKproduction(){
 	update();
 }
 function buyable(tier) {
+	var tierCost = user["mk"+tier].previousTierCost
+	var gravCost = user["mk"+tier].cost
 	if (tier == 1){
 		if (gravCost.lte(user.gravicles)){
 			return true
