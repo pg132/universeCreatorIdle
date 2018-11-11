@@ -273,6 +273,7 @@ function gravityPulse(autobuyer){
 	
 		}
 		user.pulse.amount += 1 //give another pulse
+	}
 }
 
 
