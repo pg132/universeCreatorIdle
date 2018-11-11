@@ -384,6 +384,7 @@ function update(){
 	}
 	showMK();
 	document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+user.wells.tiercost+"s";
+	document.getElementById("well number").innerHTML = "Gravity wells: "+user.wells.amount;
 }
 
 function displayRound(num) {
