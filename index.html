@@ -16,8 +16,16 @@
 			<button onclick="hardReset()" class="button">HARD RESET</button>
 		</div>
 		<div>
-			<p>You have <span id="gravicle amount" style="display:inline-block">10</span> gravicles</p>
-			<button onclick="maxAll()" style="display:inline-block" class="button" align="right">Max All</button>
+			<table style="width:100%">
+				<tbody id="parent">
+					<tr id="row1">
+						<td>
+							<p>You have <span id="gravicle amount">10</span> gravicles</p>
+							<button onclick="maxAll()" class="button" align="right">Max All</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div>
 			<table style="width:100%">
