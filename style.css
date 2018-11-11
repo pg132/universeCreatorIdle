@@ -1,9 +1,15 @@
 .button {
-  color: #FFFFFF;
-  height: auto;
-  line-height: 21px;
-  text-align: center;
-  width: auto;
-  border: 0px;
-  padding: 10px;
+	background: #F2F2F2;
+	height: auto;
+	line-height: 21px;
+	text-align: center;
+	width: auto;
+	border: 1px solid #127A20;
+	padding: 5px;
+	color: #000000;
+	transition-duration: 0.2s;
+}
+.button:hover {
+    color: #FFFFFF;
+    background: #5AC467;
 }
