@@ -344,7 +344,7 @@ function showMK(){
 function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
-	mult = mult.times(gravityWellBoost(tier))
+	//mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
 	//put additional mults here
 	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
