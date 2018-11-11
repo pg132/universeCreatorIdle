@@ -417,11 +417,21 @@ function close(){
 	document.getElementById("export").onclick = "expo()";
 }
 function impo(){
-	var save = window.prompt("Paste your save here");
-	if(save === "") {
-		//:C
-	} else {
-		user = save;
+	try {
+		var save = JSON.parse(atob(window.prompt("Paste your save here")))
+		var toConvert = ["gravicles","points.amount"]
+		for (i=1;i<10;i++) {
+			["cost","amount","multiplier"].forEach(function(foo) {
+				toConvert.push("mk"+i.toString()+"."+foo)
+			})
+		}
+		toConvert.forEach(function(foo) {
+			eval("save."+foo+" = new Decimal(save."+foo+");")
+		})
+		user = save
+	} catch(err) {
+		alert("Your exported save failed to load :(")
+		return
 	}
 }
 function clear(){
