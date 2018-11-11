@@ -423,7 +423,7 @@ function update(){
 		} else {
 			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Standard",user["mk"+i].cost,3,0)+" & "+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
 		}
-		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(baseMKmult(i));
+		document.getElementById("mult"+i).innerHTML = "x"+formatValue("Standard",baseMKmult(i),3,3);
 		if(buyable(i)) {
 			document.getElementById("buy"+i).className = "button";
 			document.getElementById("buy"+i+"Max").className = "button";
