@@ -317,6 +317,11 @@ function buyMaxMK(tier){
 	}//closes else refering to tier >= 5
 	update();
 }
+function maxAll(){
+	for(var i = 1; i <=9; i++) {
+		buyMaxMK(i);
+	}
+}
 
 
 function sacPulses(amt){
