@@ -414,15 +414,14 @@ function buyableWell() {
 	return false
 }
 function update(){
-	document.getElementById("gravicle amount").innerHTML = displayRound(user.gravicles.floor());
+	document.getElementById("gravicle amount").innerHTML = formatValue("Standard",user.gravicles,3,0);
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
-		document.getElementById(str).innerHTML = displayRound(user["mk"+i].amount);
+		document.getElementById(str).innerHTML = formatValue("Standard",user["mk"+i].amount,3,0);
 		if(i === 1) {
-			document.getElementById("buy"+i).innerHTML = "Cost: "+displayRound(user["mk"+i].cost);
+			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Standard",user["mk"+i].cost,3,0);
 		} else {
-			
-			document.getElementById("buy"+i).innerHTML = "Cost: "+displayRound(user["mk"+i].cost)+"<br/> & "+displayRound(user["mk"+i].previousTierCost)+" mk"+(i-1)+"s";
+			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Standard",user["mk"+i].cost,3,0)+" & "+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
 		}
 		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(baseMKmult(i));
 		if(buyable(i)) {
@@ -441,17 +440,6 @@ function update(){
 		document.getElementById("well").className = "buttonlocked";
 	}
 	document.getElementById("well number").innerHTML = "Gravity wells: "+user.wells.amount;
-}
-
-function displayRound(num) {
-	if (Decimal.gte(num, 999.5)) return num.m.toFixed(3)+"e"+num.e
-    return num.toFixed(0)
-}
-function displayLessRound(num) {
-	if (num.m>=9.9995) num=Decimal.pow(10,num.e+1)
-	if (num.e>2) return num.m.toFixed(3)+"e"+num.e
-	var precision=3-num.e
-    return num.toFixed(precision)
 }
 
 function save(){
