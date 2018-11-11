@@ -414,6 +414,9 @@ function impo(){
 		user = save;
 	}
 }
+function clear(){
+	localStorage.removeItem("save");
+}
 function gameLoop(){
 	MKproduction();
 	updateMKUnlocks();
