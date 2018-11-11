@@ -348,6 +348,16 @@ function baseMKproduction(tier){
 	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
 }
 
+function baseMKmult(tier){
+	var mult = user["mk"+tier].multiplier
+	mult = mult.times(gravityWellBoost(tier))
+	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
+	//put additional mults here
+	return mult
+	
+	
+}
+
 function MKproduction(){
 	for(var i = 1; i <=9; i++) {
 		if(i === 1) {
@@ -370,7 +380,7 @@ function update(){
 			
 			document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost)+"<br/>+"+displayRound(user["mk"+i].previousTierCost)+" mk"+(i-1)+"s";
 		}
-		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(user["mk"+i].multiplier);
+		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(baseMKmult(i));
 	}
 	showMK();
 }
