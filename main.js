@@ -149,6 +149,20 @@ function buyMK(tier) {
 	}
 }
 
+function gravityWell(autobuyer){
+	//first check is if we can afford it
+	if (user["mk"+user.wells.tiercost] >= user.wells.cost){//otherwise kick us out of this function
+		//resetMK() we need this function 
+		if (!(user.wells.tiercost == 9)){
+			user.wells.tiercost += 1
+		}else{
+			user.wells.cost += user.wells.costScale//might be changed later by an upgrade
+		}
+		//now do the boosts if so
+		user.wells.amount += 1
+	}
+}
+
 function gravityWellBoost(tier){
        	var w = user.wells.amount
 	var d = user.wells.defaultMults
@@ -254,9 +268,10 @@ function updateMKUnlocks(){
 function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
+	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.contains("GP41"))) mult = mult.times(2)
 	//put additional mults here
-	return amt.times(mult).times(.1)//the times(.1) is for time since we update 10 times per second
+	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
 }
 
 function MKproduction(){
@@ -279,6 +294,8 @@ function update(){
 
 function gameLoop(){
 	MKproduction();
+	updateMKUnlocks();
+	fullPowerWellsUpdate();
 }
 
 function startInterval(){
