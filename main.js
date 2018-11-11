@@ -371,6 +371,7 @@ function MKproduction(){
 			user["mk"+(i-1)].amount = user["mk"+(i-1)].amount.plus(baseMKproduction(i));
 		}
 	}
+	update();
 }
 
 function update(){
