@@ -518,6 +518,12 @@ function buyableWell() {
 	}
 	return false
 }
+function buyablePulse() {
+	if (user.wells.amount >= user.pulse.cost){
+		return true
+	}
+	return false
+}
 function update(){
 	document.getElementById("gravicle amount").innerHTML = formatValue("Standard",user.gravicles,3,0);
 	for(var i = 1; i <=9; i++) {
@@ -539,12 +545,19 @@ function update(){
 	}
 	showMK();
 	document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+user.wells.tiercost+"s";
+	document.getElementById("pulse").innerHTML = "Lose all of your previous progress, but get an improvement to wells<br/>Requires:"+user.pulse.cost+"wells";
 	if(buyableWell()) {
 		document.getElementById("well").className = "button";
 	} else {
 		document.getElementById("well").className = "buttonlocked";
 	}
+	if(buyablePulse()) {
+		document.getElementById("pulse").className = "button";
+	} else {
+		document.getElementById("pulse").className = "buttonlocked";
+	}
 	document.getElementById("well number").innerHTML = "Gravity wells: "+user.wells.amount;
+	document.getElementById("pulse number").innerHTML = "Gravitational pulses: "+user.pulse.amount+" ("+user.wells.defaultMult+" wells at full power)";
 }
 
 function save(){
