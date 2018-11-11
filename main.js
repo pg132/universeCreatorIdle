@@ -353,14 +353,20 @@ function MKproduction(){
 }
 
 function update(){
-	document.getElementById("gravicle amount").innerHTML = user.gravicles.floor().toString();
+	document.getElementById("gravicle amount").innerHTML = displayRound(user.gravicles.floor());
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
-		document.getElementById(str).innerHTML = user["mk"+i].amount.floor().toString();
-		document.getElementById("buy"+i).innerHTML = "Cost "+user["mk"+i].cost.ceil().toString();
-		document.getElementById("mult"+i).innerHTML = "x"+user["mk"+i].multiplier.toString();
+		document.getElementById(str).innerHTML = displayRound(user["mk"+i].amount.floor());
+		document.getElementById("buy"+i).innerHTML = "Cost "+displayRound(user["mk"+i].cost.ceil());
+		document.getElementById("mult"+i).innerHTML = "x"+displayRound(user["mk"+i].multiplier);
 	}
 	showMK();
+}
+
+function displayRound(num) {
+    var conv = new Decimal(num).toString()
+    if (parseInt(conv)<1e16) return Math.round(parseInt(conv))
+    return conv
 }
 
 function gameLoop(){
