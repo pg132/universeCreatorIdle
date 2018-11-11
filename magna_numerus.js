@@ -951,7 +951,6 @@
 		get mantissa() {return this.m;}
 		
 		valueOf() { return this.toString(); }
-		toJSON() { return this.toString(); }
 	}
 	
 	//Used from Patashu's break_infinity.js (and credited the author too, https://github.com/Patashu/break_infinity.js)
