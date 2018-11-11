@@ -448,9 +448,9 @@ function displayRound(num) {
     return num.toFixed(0)
 }
 function displayLessRound(num) {
+	if (num.m>=9.9995) num=Decimal.pow(10,num.e+1)
+	if (num.e>2) return num.m.toFixed(3)+"e"+num.e
 	var precision=3-num.e
-	if (num.m>9.995) precision--
-	if (precision<0) return num.m.toFixed(3)+"e"+num.e
     return num.toFixed(precision)
 }
 
