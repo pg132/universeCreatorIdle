@@ -445,7 +445,7 @@ function impo(){
 	if(save === "") {
 		//:C
 	} else {
-		save = JSON.parse(save);
+		save = JSON.parse(atob(save));
 		
 		convertDecimals(save);
 		for(var i in save) {
