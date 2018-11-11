@@ -1,5 +1,6 @@
 var version = 0.0;
-var user = {
+function getDefaultSave() {
+return {
 	gravicles: new Decimal(10),
 	mk1:{
 		cost:new Decimal(10),
@@ -99,9 +100,11 @@ var user = {
 
 
 };
+}
 
 
 
+var user = getDefaultSave();
 
 function getPulseReward(wells){
 	if (user.points.upgrades.includes("GP11") == false){
@@ -459,106 +462,7 @@ function impo(){
 }
 function clear(){
 	localStorage.removeItem("save");
-	user = {
-		gravicles: new Decimal(10),
-		mk1:{
-			cost:new Decimal(10),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),
-			base:0,
-			previousTierCost:0,
-			costMult:1.15
-		},
-		mk2:{
-			cost:new Decimal(100),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),
-			base:0,
-			previousTierCost:10,
-			costMult:1.16
-		},
-		mk3:{
-			cost:new Decimal(1000),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),	
-			base:0,
-			previousTierCost:10,
-			costMult:1.17
-		},
-		mk4:{
-			cost:new Decimal(1e5),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),
-			base:0,
-			previousTierCost:10,
-			costMult:1.18
-		},
-		mk5:{
-			cost:new Decimal(1e8),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),
-			base:0,
-			previousTierCost:10,
-			costMult:1.19
-		},
-		mk6:{
-			cost:new Decimal(1e13),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),
-			base:0,
-			unlocked:false,
-			previousTierCost:10,
-			costMult:1.20
-		},
-		mk7:{
-			cost:new Decimal(1e21),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),
-			base:0,
-			unlocked:false,
-			previousTierCost:10,
-			costMult:1.21
-		},
-		mk8:{
-			cost:new Decimal(1e34),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),
-			base:0,
-			unlocked:false,
-			previousTierCost:10,
-			costMult:1.22
-		},
-		mk9:{
-			cost:new Decimal(1e55),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),
-			base:0,
-			unlocked:false,
-			previousTierCost:10,
-			costMult:1.23
-		},
-		wells:{
-			cost:20,
-			tiercost:5,
-			defaultMults:4,
-			totalMult:1,
-			amount:0,
-			costScale:20
-		},
-		pulse:{
-			cost:5,
-			amount:0
-		},
-		points:{
-			amount:new Decimal(0),
-			upgradesCost:[1,2,5,50,60,70,80,90,100,110,120,130,10,15,30,75],//next line GP starts for gravity points and GPA stands for gravity points autobuyer
-			possibleUpgrade:["GP11","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61"],
-			upgrades:[],
-
-		}
-
-
-	};
+	user = getDefaultSave()
 }
 function gameLoop(){
 	MKproduction();
@@ -570,5 +474,12 @@ function gameLoop(){
 function startInterval(){
 	load();
 	setInterval(gameLoop,33);
-	setInterval(save,60000);
+	setInterval(save,5000);
+}
+
+
+function hardReset() {
+	if (confirm("Are you sure you want to delete your save?")) {
+		clear()
+	}
 }
