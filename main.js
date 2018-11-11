@@ -176,7 +176,7 @@ function resetMK(){
 			multiplier:new Decimal(1),
 			base:0,
 			previousTierCost:10,
-			costMult:1.16
+			costMult:1.175
 		},
 		mk3:{
 			cost:new Decimal(1000),
@@ -184,59 +184,59 @@ function resetMK(){
 			multiplier:new Decimal(1),	
 			base:0,
 			previousTierCost:10,
-			costMult:1.17
+			costMult:1.2
 		},
 		mk4:{
-			cost:new Decimal(1e5),
+			cost:new Decimal(1e4),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
 			previousTierCost:10,
-			costMult:1.18
+			costMult:1.225
 		},
 		mk5:{
-			cost:new Decimal(1e8),
+			cost:new Decimal(1e6),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
 			previousTierCost:10,
-			costMult:1.19
+			costMult:1.25
 		},
 		mk6:{
+			cost:new Decimal(1e9),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			unlocked:false,
+			previousTierCost:10,
+			costMult:1.275
+		},
+		mk7:{
 			cost:new Decimal(1e13),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
-			unlocked:user.mk6.unlocked,
+			unlocked:false,
 			previousTierCost:10,
-			costMult:1.20
-		},
-		mk7:{
-			cost:new Decimal(1e21),
-			amount:new Decimal(0),
-			multiplier:new Decimal(1),
-			base:0,
-			unlocked:user.mk7.unlocked,
-			previousTierCost:10,
-			costMult:1.21
+			costMult:1.3
 		},
 		mk8:{
-			cost:new Decimal(1e34),
+			cost:new Decimal(1e19),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
-			unlocked:user.mk8.unlocked,
+			unlocked:false,
 			previousTierCost:10,
-			costMult:1.22
+			costMult:1.325
 		},
 		mk9:{
-			cost:new Decimal(1e55),
+			cost:new Decimal(1e28),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
-			unlocked:user.mk9.unlocked,
+			unlocked:false,
 			previousTierCost:10,
-			costMult:1.23
+			costMult:1.35
 		},
 		wells:user.wells,
 		pulse:user.pulse,
