@@ -1,1 +1,9 @@
-
+.button {
+  color: #FFFFFF;
+  height: auto;
+  line-height: 21px;
+  text-align: center;
+  width: auto;
+  border: 0px;
+  padding: 10px;
+}
