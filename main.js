@@ -106,7 +106,7 @@ var user = {
 
 
 function getPulseReward(wells){
-	if (user.points.upgrades.contains("GP11") == false){
+	if (user.points.upgrades.includes("GP11") == false){
 		return 1+Math.sqrt(wells/2000)
 	}
 	return 1+Math.pow(wells/2000,.5)*Math.pow(wells,.1)
@@ -255,9 +255,9 @@ function gravityWellBoost(tier){
        	var w = user.wells.amount
 	var d = user.wells.defaultMults
 	var base = 2
-	if (user.points.upgrades.contains("GP42")) base = 2.1
+	if (user.points.upgrades.includes("GP42")) base = 2.1
 	var q = new Decimal(1)
-	if (user.points.upgrades.contains("GP61"))  q = Decimal.pow(1.5,Math.floor(w/5))
+	if (user.points.upgrades.includes("GP61"))  q = Decimal.pow(1.5,Math.floor(w/5))
 	if (w<=d-1+tier) return Decimal.max(1,base**(w-tier+1)).times(q)//fifth is worse
 	return Decimal.pow(base,(d-1)).times(w-d-tier+3).times(q)//just try it, it should work
 }
@@ -265,7 +265,7 @@ function gravityWellBoost(tier){
 function fullPowerWellsUpdate(){
 	var constant = 5
 	var multiplier = 1.05
-	if (user.points.upgrades.contains("GP31")) multiplier = 1.075
+	if (user.points.upgrades.includes("GP31")) multiplier = 1.075
 	for (var i = 0; i<= user.pulse.amount; i++){
 		constant = Math.ceil(constant*multiplier)
 	}
@@ -357,7 +357,7 @@ function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
-	if (tier == 9 && (user.points.upgrades.contains("GP41"))) mult = mult.times(2)
+	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
 	//put additional mults here
 	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
 }
