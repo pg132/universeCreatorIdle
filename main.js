@@ -388,6 +388,12 @@ function displayLessRound(num) {
     return conv
 }
 
+function save(){
+	localStorage.setItem("save",JSON.stringify(user));
+}
+function load(){
+	user = JSON.parse(localStorage.getItem("save"));
+}
 function gameLoop(){
 	MKproduction();
 	updateMKUnlocks();
