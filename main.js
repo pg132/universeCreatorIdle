@@ -475,12 +475,31 @@ function convertDecimals(obj) {
 }
 function expo(){
 	var exp = btoa(JSON.stringify(user));
-	document.getElementById("export thing").innerHTML = exp;
-	document.getElementById("export").innerHTML = "Close";
-	document.getElementById("export").onclick = function() { close(); };
+	let output = document.getElementById('export thing');
+	let parent = output.parentElement;
+
+	parent.style.display = "";
+	output.value = exp;
+
+	output.onblur = function() {
+		parent.style.display = "none";
+	}
+	output.focus();
+	output.select();
+	
+	try {
+		if (document.execCommand('copy')) {
+			document.getElementById("export status").innerHTML = "Copied to clipboard";
+			output.blur();
+			document.getElementById("export").innerHTML = "Close";
+			document.getElementById("export").onclick = function() { close(); };
+		}
+	} catch(ex) {
+		// aww
+	}
 }
 function close(){
-	document.getElementById("export thing").innerHTML = "";
+	document.getElementById("export status").innerHTML = "";
 	document.getElementById("export").innerHTML = "Export";
 	document.getElementById("export").onclick = function() { expo(); };
 }
