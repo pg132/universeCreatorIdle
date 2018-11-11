@@ -383,6 +383,7 @@ function update(){
 		document.getElementById("mult"+i).innerHTML = "x"+displayLessRound(baseMKmult(i));
 	}
 	showMK();
+	document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+user.wells.tiercost+"s";
 }
 
 function displayRound(num) {
