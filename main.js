@@ -1,5 +1,3 @@
-
-
 var version = 0.0;
 var user = {
 	gravicles: new Decimal(10),
