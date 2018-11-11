@@ -41,7 +41,6 @@ var user = {
 		multiplier:new Decimal(1),
 		base:0,
 		previousTierCost:10,
-		previousTierCost:10,
 		costMult:1.19
 	},
 	mk6:{
@@ -152,7 +151,7 @@ function buyMK(tier) {
 function gravityWell(autobuyer){//autobuyer helps us later to see if the player is doing it
 	//first check is if we can afford it
 	if (user["mk"+user.wells.tiercost] >= user.wells.cost){//otherwise kick us out of this function
-		//resetMK() we need this function 
+		resetMK() //we need this function DONE
 		if (!(user.wells.tiercost == 9)){
 			user.wells.tiercost += 1
 		}else{
@@ -162,6 +161,95 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the player 
 		user.wells.amount += 1
 	}
 }
+
+function resetMK(){
+	user = {
+		gravicles: new Decimal(10),
+		mk1:{
+			cost:new Decimal(10),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			previousTierCost:0,
+			costMult:1.15
+		},
+		mk2:{
+			cost:new Decimal(100),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			previousTierCost:10,
+			costMult:1.16
+		},
+		mk3:{
+			cost:new Decimal(1000),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),	
+			base:0,
+			previousTierCost:10,
+			costMult:1.17
+		},
+		mk4:{
+			cost:new Decimal(10),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			previousTierCost:10,
+			costMult:1.18
+		},
+		mk5:{
+			cost:new Decimal(10),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			previousTierCost:10,
+			costMult:1.19
+		},
+		mk6:{
+			cost:new Decimal(10),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			unlocked:user.mk6.unlocked,
+			previousTierCost:10,
+			costMult:1.20
+		},
+		mk7:{
+			cost:new Decimal(10),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			unlocked:user.mk7.unlocked,
+			previousTierCost:10,
+			costMult:1.21
+		},
+		mk8:{
+			cost:new Decimal(10),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			unlocked:user.mk8.unlocked,
+			previousTierCost:10,
+			costMult:1.22
+		},
+		mk9:{
+			cost:new Decimal(10),
+			amount:new Decimal(0),
+			multiplier:new Decimal(1),
+			base:0,
+			unlocked:user.mk9.unlocked,
+			previousTierCost:10,
+			costMult:1.23
+		},
+		wells:user.wells,
+		pulse:user.pulse,
+		points:user.points
+	}
+}
+
+
+
+
 
 function gravityWellBoost(tier){
        	var w = user.wells.amount
