@@ -275,6 +275,7 @@ function gravityPulse(autobuyer){
 	
 		}
 		user.pulse.amount += 1 //give another pulse
+		if (user.points.upgrades.includes("GP41")) user.wells.amount += 1
 	}
 }
 
