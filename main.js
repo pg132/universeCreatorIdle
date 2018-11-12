@@ -92,8 +92,8 @@ function getDefaultSave() {
 		},
 		points:{
 			amount:new Decimal(0),
-			upgradesCost:[1,2,5,50,60,70,80,90,100,110,120,130,10,15,30,75],//next line GP starts for gravity points and GPA stands for gravity points autobuyer
-			possibleUpgrade:["GP11","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61"],
+			upgradesCost:[1,2,5,50,60,70,80,90,100,110,120,130,10,15,30,75,200,200,25,50],//next line GP starts for gravity points and GPA stands for gravity points autobuyer
+			possibleUpgrade:["GP11","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61","GPWA","GP71","GP81","GP82"],
 			upgrades:[],
 
 		}
@@ -173,6 +173,10 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the player 
 		}
 		//now do the boosts if so
 		user.wells.amount += 1
+		if (user.points.upgrades.includes("GP81")){
+			user.gravicles += 100000//1e5
+			user.mk1.amount = user.mk1.amount.plus(200)
+		}
 	}
 }
 
@@ -277,6 +281,7 @@ function gravityPulse(autobuyer){
 		}
 		user.pulse.amount += 1 //give another pulse
 		if (user.points.upgrades.includes("GP41")) user.wells.amount += 1
+		if (user.points.upgrades.includes("GP71")) user.wells.costScale -= 5
 	}
 }
 
@@ -480,6 +485,10 @@ function baseMKproduction(tier){
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
 	mult = mult.times(Decimal.pow(1+1/tier,user.wells.defaultMults-4))
 	//put additional mults here
+	if (user.points.upgrades.includes("GP82")) {
+		if (user["mk"+tier].amount == 0) return new Decimal (0)
+		return amt.plus(10).times(mult).times(.033)
+	}
 	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
 }
 
