@@ -61,7 +61,7 @@ function getDefaultSave() {
 			costMult:1.265
 		},
 		mk8:{
-			cost:new Decimal(1e19),
+			cost:new Decimal(1e18),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
@@ -70,7 +70,7 @@ function getDefaultSave() {
 			costMult:1.28
 		},
 		mk9:{
-			cost:new Decimal(1e28),
+			cost:new Decimal(1e25),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
@@ -251,7 +251,7 @@ function gravityPulse(autobuyer){
 				costMult:1.265
 			},
 			mk8:{
-				cost:new Decimal(1e19),
+				cost:new Decimal(1e18),
 				amount:new Decimal(0),
 				multiplier:new Decimal(1),
 				base:0,
@@ -260,7 +260,7 @@ function gravityPulse(autobuyer){
 				costMult:1.28
 			},
 			mk9:{
-				cost:new Decimal(1e28),
+				cost:new Decimal(1e25),
 				amount:new Decimal(0),
 				multiplier:new Decimal(1),
 				base:0,
@@ -350,7 +350,7 @@ function resetMK(){
 			costMult:1.265
 		},
 		mk8:{
-			cost:new Decimal(1e19),
+			cost:new Decimal(1e18),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
@@ -359,7 +359,7 @@ function resetMK(){
 			costMult:1.28
 		},
 		mk9:{
-			cost:new Decimal(1e28),
+			cost:new Decimal(1e25),
 			amount:new Decimal(0),
 			multiplier:new Decimal(1),
 			base:0,
