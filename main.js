@@ -178,6 +178,7 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the player 
 
 function updatePulseCost(){
 	user.pulse.cost = user.wells.defaultMults*2-3
+	if (user.points.upgrades.includes("GP21")) user.pulse.cost = user.wells.defaultMults*2-5
 }
 
 function gravityPulse(autobuyer){
