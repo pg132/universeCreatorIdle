@@ -154,7 +154,7 @@ function buyMK(tier) {
 			user["mk"+tier].amount = user["mk"+tier].amount.plus(1)
 			user["mk"+tier].base += 1
 			if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
-				user["mk"+tier].costMult *= 1.02;
+				user["mk"+tier].costMult *= 1.01;
 				if (user["mk"+tier].base%50 === 0 && user["mk"+tier].base > 300) user["mk"+tier].costMult *= w
 			}
 		}
@@ -489,7 +489,7 @@ function baseMKproduction(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
-	mult = mult.times(Decimal.pow(1+2/tier,user.wells.defaultMults-4))
+	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
 	//put additional mults here
 	if (user.points.upgrades.includes("GP82")) {
 		if (user["mk"+tier].amount == 0) return new Decimal (0)
@@ -502,7 +502,7 @@ function baseMKmult(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
-	mult = mult.times(Decimal.pow(1+2/tier,user.wells.defaultMults-4))
+	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
 	//put additional mults here
 	return mult
 	
