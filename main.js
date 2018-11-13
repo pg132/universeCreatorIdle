@@ -159,6 +159,8 @@ function buyMK(tier) {
 			}
 		}
 	}
+	if (user["mk"+tier].cost.gte(Decimal.pow(10,308)) && gravCost.lte(Decimal.pow(10,308))) user["mk"+tier].costMult *= 2
+	//abv is init mult scale after e308
 	update();
 }
 
