@@ -154,7 +154,7 @@ function buyMK(tier) {
 			user["mk"+tier].amount = user["mk"+tier].amount.plus(1)
 			user["mk"+tier].base += 1
 			if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
-				user["mk"+tier].costMult *= 1.01;
+				user["mk"+tier].costMult *= 1.02;
 				if (user["mk"+tier].base%50 === 0 && user["mk"+tier].base > 300) user["mk"+tier].costMult *= w
 			}
 		}
