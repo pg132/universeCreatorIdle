@@ -383,7 +383,7 @@ function gravityWellBoost(tier){
        	var w = user.wells.amount
 	var d = user.wells.defaultMults
 	var base = 2
-	if (user.points.upgrades.includes("GP42")) base = 2.1
+	if (user.points.upgrades.includes("GP42")) base = 2.2
 	var q = new Decimal(1)
 	if (user.points.upgrades.includes("GP61"))  q = Decimal.pow(1.5,Math.floor(w/5))
 	if (w<=d-1+tier) return Decimal.max(1,base**(w-tier+1)).times(q)//fifth is worse
