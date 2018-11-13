@@ -439,13 +439,13 @@ function maxAll(){
 
 
 function sacPulses(amt){
-	if (user.pulse.amount>= amt){
+	if (user.pulse.amount>= amt+2 && amt > 0){
 		user.points.amount = user.points.amount.plus(amt)
 		user.pulse.amount = user.pulse.amount.minus(amt)
 	}
 }
 function sacMaxPulses(){
-	sacPulses(user.pulse.amount)
+	sacPulses(Math.max(0,user.pulse.amount-2))
 }
 
 
