@@ -444,6 +444,10 @@ function sacPulses(amt){
 	if (user.pulse.amount>= amt+2 && amt > 0){
 		user.points.amount = user.points.amount.plus(amt)
 		user.pulse.amount = user.pulse.amount.minus(amt)
+		//remove the last amt elems from user.pulse.multipliers this is done by the .pop()
+		for (var i = 0; i<amt;i++){
+			user.pulse.multipliers.pop()
+		}
 	}
 }
 function sacMaxPulses(){
@@ -485,7 +489,7 @@ function baseMKproduction(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
-	mult = mult.times(Decimal.pow(1+1/tier,user.wells.defaultMults-4))
+	mult = mult.times(Decimal.pow(1+2/tier,user.wells.defaultMults-4))
 	//put additional mults here
 	if (user.points.upgrades.includes("GP82")) {
 		if (user["mk"+tier].amount == 0) return new Decimal (0)
@@ -498,7 +502,7 @@ function baseMKmult(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
-	mult = mult.times(Decimal.pow(1+1/tier,user.wells.defaultMults-4))
+	mult = mult.times(Decimal.pow(1+2/tier,user.wells.defaultMults-4))
 	//put additional mults here
 	return mult
 	
