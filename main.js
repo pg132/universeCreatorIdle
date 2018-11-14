@@ -471,7 +471,7 @@ var showPoints = user.pulse.amount >= 6 || user.points.amount.gte(1) || !(user.p
 function updateShowPoints(){
 	showPoints = showPoints || user.pulse.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
 }
-function showPoints(){
+function showGravPoints(){
 	document.getElementById("points display").style.display = "none";
 	if (showPoints) document.getElementById("points display").style.display = "";
 }
@@ -580,7 +580,7 @@ function update(){
 		}
 	}
 	showMK();
-	showPoints();
+	showGravPoints();
 	document.getElementById("pointsBuy1").innerHTML = "Sacrifice one galaxy pulse, for one galaxy point";
 	if (buyablePulse()) {
 		document.getElementById("pointsBuy1").className = "button"
