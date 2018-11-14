@@ -499,7 +499,7 @@ function baseMKproduction(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 2 && user.wells.amount >= 1 && user.points.upgrades.includes("GP12")) mult = mult.times(2)
-	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
+	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(5)
 	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
 	//put additional mults here
 	if (user.points.upgrades.includes("GP82")) {
@@ -513,7 +513,7 @@ function baseMKmult(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 2 && user.wells.amount >= 1 && user.points.upgrades.includes("GP12")) mult = mult.times(2)
-	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
+	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(5)
 	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
 	//put additional mults here
 	return mult
