@@ -435,7 +435,7 @@ function buyMaxMK(tier){
 }
 function maxAll(){
 	for(var i = 1; i <=9; i++) {
-		buyMaxMK(i);
+		buyMaxMK(10-i);
 	}
 }
 
