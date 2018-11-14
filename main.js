@@ -686,6 +686,7 @@ function gameLoop(){
 	updateMKUnlocks();
 	fullPowerWellsUpdate();
 	updatePulseCost();
+	updateShowPoints();
 	update();
 }
 
