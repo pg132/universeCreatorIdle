@@ -519,6 +519,11 @@ function MKproduction(){
 	}
 	update();
 }
+
+function buyablePoints(amt){
+	return user.pulse.amount-2>=amt && amt > 0	
+}
+
 function buyable(tier) {
 	var tierCost = user["mk"+tier].previousTierCost
 	var gravCost = user["mk"+tier].cost
