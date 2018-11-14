@@ -117,8 +117,8 @@ function buyMK(tier) {
 	var tierCost = user["mk"+tier].previousTierCost
 	var gravCost = user["mk"+tier].cost
 	var costMult = user["mk"+tier].costMult
-	var w = 1.02
-	if (user.points.upgrades.includes("GP51")) w = 1.015
+	var w = 1.1
+	if (user.points.upgrades.includes("GP51")) w = 1.075
 	if (tier == 1){
 		if (gravCost.lte(user.gravicles)){
 			user.gravicles = user.gravicles.minus(gravCost)
