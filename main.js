@@ -129,7 +129,7 @@ function buyMK(tier) {
 			user.mk1.base += 1
 			if(user.mk1.base > 30 && user.mk1.base % 10 === 0) {
 				user.mk1.costMult *= 1.01;
-				if (user.mk1.base%50 === 0 && user.mk1.base > 300) user.mk1.costMult *= w
+				if (user.mk1.base%50 === 0 && user.mk1.base >= 300) user.mk1.costMult *= w
 			}
 		}
 	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier<=5&&tier>=2){
@@ -142,7 +142,7 @@ function buyMK(tier) {
 		user["mk"+tier].base += 1
 		if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
 			user["mk"+tier].costMult *= 1.01;
-			if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base > 300) user["mk"+tier].costMult *= w
+			if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300) user["mk"+tier].costMult *= w
 		}
 	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier>=6){
 		if (user["mk"+tier].unlocked == true){
@@ -155,7 +155,7 @@ function buyMK(tier) {
 			user["mk"+tier].base += 1
 			if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
 				user["mk"+tier].costMult *= 1.01;
-				if (user["mk"+tier].base%50 === 0 && user["mk"+tier].base > 300) user["mk"+tier].costMult *= w
+				if (user["mk"+tier].base%50 === 0 && user["mk"+tier].base >= 300) user["mk"+tier].costMult *= w
 			}
 		}
 	}
