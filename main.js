@@ -92,8 +92,8 @@ function getDefaultSave() {
 		},
 		points:{
 			amount:new Decimal(0),
-			upgradesCost:[1,2,5,50,60,70,80,90,100,110,120,130,10,15,30,75,200,200,25,50],//next line GP starts for gravity points and GPA stands for gravity points autobuyer
-			possibleUpgrade:["GP11","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61","GPWA","GP71","GP81","GP82"],
+			upgradesCost:[1,1,2,5,50,60,70,80,90,100,110,120,130,10,15,30,75,200,200,25,50],//next line GP starts for gravity points and GPA stands for gravity points autobuyer
+			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61","GPWA","GP71","GP81","GP82"],
 			upgrades:[],
 
 		}
@@ -498,6 +498,7 @@ function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
+	if (tier == 2 && user.wells.amount >= 1 && user.points.upgrades.includes("GP12")) mult = mult.times(2)
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
 	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
 	//put additional mults here
@@ -511,6 +512,7 @@ function baseMKproduction(tier){
 function baseMKmult(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
+	if (tier == 2 && user.wells.amount >= 1 && user.points.upgrades.includes("GP12")) mult = mult.times(2)
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(2)
 	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
 	//put additional mults here
