@@ -443,7 +443,7 @@ function maxAll(){
 function sacPulses(amt){
 	if (user.pulse.amount>= amt+2 && amt > 0){
 		user.points.amount = user.points.amount.plus(amt)
-		user.pulse.amount = user.pulse.amount.minus(amt)
+		user.pulse.amount -= amt
 		//remove the last amt elems from user.pulse.multipliers this is done by the .pop()
 		for (var i = 0; i<amt;i++){
 			user.pulse.multipliers.pop()
@@ -530,7 +530,7 @@ function MKproduction(){
 	update();
 }
 
-function buyablePoints(amt){
+function buyablePoints(amt=1){
 	return user.pulse.amount-2>=amt && amt > 0	
 }
 
@@ -582,7 +582,7 @@ function update(){
 	showMK();
 	showGravPoints();
 	document.getElementById("pointsBuy1").innerHTML = "Sacrifice one galaxy pulse, for one galaxy point";
-	if (buyablePulse()) {
+	if (buyablePoints()) {
 		document.getElementById("pointsBuy1").className = "button"
 	} else{
 		document.getElementById("pointsBuy1").className = "buttonlocked";
