@@ -434,7 +434,7 @@ function buyMaxMK(tier, quick){
 	if (!quick) update();
 }
 function maxAll(){
-	for(var i = 8; i > 0; i--) {
+	for(var i = 9; i > 0; i--) {
 		buyMaxMK(i, true);
 	}
 }
