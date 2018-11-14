@@ -8,6 +8,11 @@
 	width: 50%;
 	max-width: 50%;
 }
+#parent .verylarge td {
+	min-width: 100%;
+	width: 100%;
+	max-width: 100%;
+}
 .button {
 	background: #F2F2F2;
 	height: auto;
@@ -39,4 +44,7 @@
 .buttonlocked:hover {
     color: #000000;
     background: #B84B5F;
+}
+.tab {
+	display: none
 }

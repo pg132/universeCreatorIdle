@@ -8,7 +8,10 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body onload="startInterval()">
-		<div>
+		<button onclick="showTab('generators')" class="button">Generators</button>
+		<button onclick="showTab('options')" class="button">Options</button>
+		<p>You have <span id="gravicle amount">10</span> gravicles</p>
+		<div id='options' class='tab'>
 			<div style="display:none;position:fixed;left:0;top:0"><textarea id="export thing" style="color:black; width: 200px; height: 55px;"></textarea></div>
 			<button onclick="save()" class="button">Save</button>
 			<button onclick="load()" class="button">Load</button>
@@ -17,14 +20,11 @@
 			<button onclick="impo()" class="button">Import</button>
 			<button onclick="hardReset()" class="button">HARD RESET</button>
 		</div>
-		<div>
+		<div id='generators' class='tab' style='display:block'>
 			<table style="width:100%">
 				<tbody id="parent">
-					<tr class='large'>
-						<td colspan=2>
-							<p>You have <span id="gravicle amount">10</span> gravicles</p>
-						</td>
-						<td colspan=2 align="right">
+					<tr class='verylarge'>
+						<td colspan=4 align="right">
 							<button onclick="maxAll()" class="button">Max All</button>
 						</td>
 					</tr>

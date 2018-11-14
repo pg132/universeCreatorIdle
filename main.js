@@ -96,9 +96,8 @@ function getDefaultSave() {
 			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61","GPWA","GP71","GP81","GP82","GPptA","GPpuA"],       
 			upgrades:[],
 
-		}
-
-
+		},
+		lastTick: new Date().getTime()
 	};
 }
 
@@ -113,7 +112,7 @@ function getPulseReward(wells){
 	return 1+Math.pow(wells/2000,.5)*Math.pow(wells,.1)
 }
 
-function buyMK(tier) {
+function buyMK(tier, quick) {
 	var tierCost = user["mk"+tier].previousTierCost
 	var gravCost = user["mk"+tier].cost
 	var costMult = user["mk"+tier].costMult
@@ -161,10 +160,10 @@ function buyMK(tier) {
 	}
 	if (user["mk"+tier].cost.gte(Decimal.pow(10,308)) && gravCost.lte(Decimal.pow(10,308))) user["mk"+tier].costMult *= 2
 	//abv is init mult scale after e308
-	update();
+	if (!quick) update();
 }
 
-function gravityWell(autobuyer){//autobuyer helps us later to see if the player is doing it
+function gravityWell(autobuyer){//autobuyer helps us later to see if the user is doing it
 	//first check is if we can afford it
 	if (user["mk"+user.wells.tiercost].amount.gte(new Decimal(user.wells.cost-.0001))){//otherwise kick us out of this function
 		resetMK() //we need this function DONE
@@ -278,8 +277,8 @@ function gravityPulse(autobuyer){
 				costScale:20
 			},
 			pulse:user.pulse,
-			points:user.points
-	
+			points:user.points,
+			lastTick:user.lastTick
 		}
 		user.pulse.amount += 1 //give another pulse
 		if (user.points.upgrades.includes("GP41")) user.wells.amount += 1
@@ -371,7 +370,8 @@ function resetMK(){
 		},
 		wells:user.wells,
 		pulse:user.pulse,
-		points:user.points
+		points:user.points,
+		lastTick:user.lastTick
 	}
 }
 
@@ -402,21 +402,21 @@ function fullPowerWellsUpdate(){
 }
 
 
-function buyMaxMK(tier){
+function buyMaxMK(tier, quick){
 	var tierCost = user["mk"+tier].previousTierCost
 	var gravCost = user["mk"+tier].cost
 	var costMult = user["mk"+tier].costMult
 	var grav = user.gravicles
 	if (tier == 1){
 		while(grav.gte(gravCost)) {
-			buyMK(tier);
+			buyMK(tier, true);
 			tierCost = user["mk"+tier].previousTierCost
 			gravCost = user["mk"+tier].cost
 			grav = user.gravicles
 		}
 	} else if (tier <= 5){//closes tier==1 and opens tier<=5&&tier>1
 		while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
-			buyMK(tier);
+			buyMK(tier, true);
 			tierCost = user["mk"+tier].previousTierCost
 			gravCost = user["mk"+tier].cost
 			grav = user.gravicles
@@ -424,18 +424,18 @@ function buyMaxMK(tier){
 	} else {//tier is abv 5
 		if (user["mk"+tier].unlocked){
 			while(grav.gte(gravCost)&&user["mk"+(tier-1)].amount.gte(tierCost)) {
-				buyMK(tier);
+				buyMK(tier, true);
 				tierCost = user["mk"+tier].previousTierCost
 				gravCost = user["mk"+tier].cost
 				grav = user.gravicles
 			}
 		}//closes unlocked if
 	}//closes else refering to tier >= 5
-	update();
+	if (!quick) update();
 }
 function maxAll(){
-	for(var i = 1; i <=9; i++) {
-		buyMaxMK(10-i);
+	for(var i = 8; i > 0; i--) {
+		buyMaxMK(i, true);
 	}
 }
 
@@ -494,6 +494,13 @@ function showMK(){
 		}
 	}
 }
+
+function getMkAmount(tier) {
+	if (tier > 8) return user.mk9.amount.round()
+	if (user["mk"+(tier+1)].amount.eq(0)) return user["mk"+tier].amount.round()
+	return user["mk"+tier].amount
+}
+
 function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
@@ -504,9 +511,9 @@ function baseMKproduction(tier){
 	//put additional mults here
 	if (user.points.upgrades.includes("GP82")) {
 		if (user["mk"+tier].amount == 0) return new Decimal (0)
-		return amt.plus(10).times(mult).times(.033)
+		return amt.plus(10).times(mult)
 	}
-	return amt.times(mult).times(.033)//the times(.033) is for time since we update 30 times per second
+	return amt.times(mult)
 }
 
 function baseMKmult(tier){
@@ -521,14 +528,9 @@ function baseMKmult(tier){
 	
 }
 
-function MKproduction(){
-	for(var i = 1; i <=9; i++) {
-		if(i === 1) {
-			user.gravicles = user.gravicles.plus(baseMKproduction(i));
-		} else {
-			user["mk"+(i-1)].amount = user["mk"+(i-1)].amount.plus(baseMKproduction(i));
-		}
-	}
+function MKproduction(diff){
+	user.gravicles = user.gravicles.plus(baseMKproduction(1).times(diff))
+	for (var i = 2; i <=9; i++) user["mk"+(i-1)].amount = user["mk"+(i-1)].amount.plus(baseMKproduction(i).times(diff))
 	update();
 }
 
@@ -537,21 +539,17 @@ function buyablePoints(amt=1){
 }
 
 function buyable(tier) {
-	var tierCost = user["mk"+tier].previousTierCost
 	var gravCost = user["mk"+tier].cost
-	if (tier == 1){
-		if (gravCost.lte(user.gravicles)){
-			return true
-		}
-	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier<=5&&tier>=2){
-		return true
-	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier>=6){
-		return true
-	}
-	return false
+	if (gravCost.gt(user.gravicles)) return false
+	var tierCost = user["mk"+tier].previousTierCost
+	var unlocked = true
+	if (tier > 5) unlocked = user["mk"+tier].unlocked
+	if (tier < 2) return true
+	return gravCost.lte(user.gravicles) && getMkAmount(tier-1).gte(tierCost) && unlocked
 }
+
 function buyableWell() {
-	if (user["mk"+user.wells.tiercost].amount.gte(new Decimal(user.wells.cost-0.0001))){
+	if (getMkAmount(user.wells.tiercost).gte(new Decimal(user.wells.cost-0.0001))){
 		return true
 	}
 	return false
@@ -604,6 +602,17 @@ function update(){
 	document.getElementById("well number").innerHTML = "Gravity Wells: "+user.wells.amount;
 	document.getElementById("pulse number").innerHTML = "Gravitational Pulses: "+user.pulse.amount+" ("+user.wells.defaultMults+" wells at full power)";
 	document.getElementById("point amount").innerHTML = "Gravitational Points: "+formatValue("Standard",user.points.amount,3,0);
+}
+
+function showTab(tabName) {
+	//iterate over all elements in div_tab class. Hide everything that's not tabName and show tabName
+	var tabs = document.getElementsByClassName('tab');
+	var tab;
+	for (var i = 0; i < tabs.length; i++) {
+		tab = tabs.item(i);
+		if (tab.id === tabName) tab.style.display = 'block';
+		else tab.style.display = 'none';
+	}
 }
 
 function save(){
@@ -685,7 +694,10 @@ function clear(){
 	user = getDefaultSave()
 }
 function gameLoop(){
-	MKproduction();
+	var newTime = new Date().getTime()
+	var diff = (newTime - user.lastTick) / 1000
+	user.lastTick = newTime
+	MKproduction(diff);
 	updateMKUnlocks();
 	fullPowerWellsUpdate();
 	updatePulseCost();
