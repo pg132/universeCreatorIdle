@@ -570,6 +570,12 @@ function update(){
 		}
 	}
 	showMK();
+	document.getElementById("pointsBuy1").innerHTML = "Sacrifice one galaxy pulse, for one galaxy point";
+	if (buyablePulse()) {
+		document.getElementById("pointsBuy1").className = "button"
+	} else{
+		document.getElementById("pointsBuy1").className = "buttonlocked";
+	}
 	document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+user.wells.tiercost+"s";
 	document.getElementById("pulse").innerHTML = "Lose all of your previous progress, but get an improvement to wells<br/>Requires: "+user.pulse.cost+" wells";
 	if(buyableWell()) {
