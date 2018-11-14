@@ -467,7 +467,7 @@ function updateMKUnlocks(){
 	if (w >= 4) user.mk9.unlocked = true
 }
 
-var showPoints = user.pulse.amount 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
+var showPoints = user.pulse.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
 function updateShowPoints(){
 	showPoints = showPoints || user.pulse.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
 }
