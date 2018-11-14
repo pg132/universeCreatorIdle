@@ -92,7 +92,7 @@ function getDefaultSave() {
 		},
 		points:{
 			amount:new Decimal(0),
-			upgradesCost:[1,1,2,5,50,60,70,80,90,100,110,120,130,10,15,30,75,200,200,25,50,500,500],//next line GP starts for gravity points and GPA stands for gravity points autobuyer
+			upgradesCost:   [1     ,     1,     2,     5,    50,    60,    70,    80,    90,   100,   110,   120,   130,    10,    15,    30,    75,   200,   200,    25,    50,    500,    500],//next line GP starts for gravity points and GPA stands for gravity points autobuyer             
 			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61","GPWA","GP71","GP81","GP82","GPptA","GPpuA"],       
 			upgrades:[],
 
