@@ -588,8 +588,9 @@ function update(){
 	} else {
 		document.getElementById("pulse").className = "buttonlocked";
 	}
-	document.getElementById("well number").innerHTML = "Gravity wells: "+user.wells.amount;
-	document.getElementById("pulse number").innerHTML = "Gravitational pulses: "+user.pulse.amount+" ("+user.wells.defaultMults+" wells at full power)";
+	document.getElementById("well number").innerHTML = "Gravity Wells: "+user.wells.amount;
+	document.getElementById("pulse number").innerHTML = "Gravitational Pulses: "+user.pulse.amount+" ("+user.wells.defaultMults+" wells at full power)";
+	document.getElementById("point amount").innerHTML = "Gravitational Points: "+formatValue("Standard",user.points.amount,3,0);
 }
 
 function save(){
