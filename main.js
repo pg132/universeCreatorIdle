@@ -534,7 +534,7 @@ function buyable(tier) {
 	return false
 }
 function buyableWell() {
-	if (user["mk"+user.wells.tiercost].amount.gte(new Decimal(user.wells.cost))){
+	if (user["mk"+user.wells.tiercost].amount.gte(new Decimal(user.wells.cost-0.0001))){
 		return true
 	}
 	return false
