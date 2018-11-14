@@ -580,6 +580,7 @@ function update(){
 		}
 	}
 	showMK();
+	showPoints();
 	document.getElementById("pointsBuy1").innerHTML = "Sacrifice one galaxy pulse, for one galaxy point";
 	if (buyablePulse()) {
 		document.getElementById("pointsBuy1").className = "button"
