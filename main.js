@@ -467,9 +467,9 @@ function updateMKUnlocks(){
 	if (w >= 4) user.mk9.unlocked = true
 }
 
-var showPoints = user.pulses.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
+var showPoints = user.pulse.amount 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
 function updateShowPoints(){
-	showPoints = showPoints || user.pulses.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
+	showPoints = showPoints || user.pulse.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
 }
 function showPoints(){
 	document.getElementById("points display").style.display = "none";
