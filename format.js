@@ -160,7 +160,7 @@ function formatValue(notation, value, places, placesUnder1000) {
             var power = Math.floor(Math.log10(value));
         }
         if ((notation === "Mixed scientific" && power >= 33) || notation === "Scientific") {
-            if (player.options.scientific !== undefined && player.options.scientific.significantDigits !== undefined) places=player.options.scientific.significantDigits-1
+            places=3
             matissa = matissa.toFixed(places)
             if (matissa >= 10) {
                 matissa = (1).toFixed(places);
