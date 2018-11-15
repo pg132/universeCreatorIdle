@@ -561,16 +561,16 @@ function buyablePulse() {
 	return false
 }
 function update(){
-	document.getElementById("gravicle amount").innerHTML = formatValue("Standard",user.gravicles,3,0);
+	document.getElementById("gravicle amount").innerHTML = formatValue("Scientific",user.gravicles,3,0);
 	for(var i = 1; i <=9; i++) {
 		var str = "mk"+i+"Amount";
-		document.getElementById(str).innerHTML = formatValue("Standard",user["mk"+i].amount,3,0);
+		document.getElementById(str).innerHTML = formatValue("Scientific",user["mk"+i].amount,3,0);
 		if(i === 1) {
-			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Standard",user["mk"+i].cost,3,0);
+			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Scientific",user["mk"+i].cost,3,0);
 		} else {
-			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Standard",user["mk"+i].cost,3,0)+" & "+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
+			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Scientific",user["mk"+i].cost,3,0)+" & "+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
 		}
-		document.getElementById("mult"+i).innerHTML = "x"+formatValue("Standard",baseMKmult(i),3,3);
+		document.getElementById("mult"+i).innerHTML = "x"+formatValue("Scientific",baseMKmult(i),3,3);
 		if(buyable(i)) {
 			document.getElementById("buy"+i).className = "button";
 			document.getElementById("buy"+i+"Max").className = "button";
@@ -601,7 +601,7 @@ function update(){
 	}
 	document.getElementById("well number").innerHTML = "Gravity Wells: "+user.wells.amount;
 	document.getElementById("pulse number").innerHTML = "Gravitational Pulses: "+user.pulse.amount+" ("+user.wells.defaultMults+" wells at full power)";
-	document.getElementById("point amount").innerHTML = "Gravitational Points: "+formatValue("Standard",user.points.amount,3,0);
+	document.getElementById("point amount").innerHTML = "Gravitational Points: "+formatValue("Scientific",user.points.amount,3,0);
 }
 
 function showTab(tabName) {
