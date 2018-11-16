@@ -414,7 +414,7 @@ function buyGPupg(ID){//ID is a string
 			var rowVal = (p-p%10)
 			if (rowVal == 10) x = true
 			for (var i = 0; i< user.points.upgrades.length; i++){
-				if (parseInt(user.points.upgrades[i].substring(2),10)>=rowVal) x = true
+				if (parseInt(user.points.upgrades[i].substring(2),10)>=rowVal-10) x = true
 			}
 		}
 		if (user.points.amount.gte(cost) && x){//buy upgrade then
