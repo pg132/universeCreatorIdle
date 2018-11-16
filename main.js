@@ -397,7 +397,7 @@ function resetMK(){
 
 function buyGPupg(ID){//ID is a string
 	var k = "GP"+ID
-	if (!user.points.upgrades.contains(k) && user.points.possibleUpgrade.contains(k)){
+	if (!user.points.upgrades.includes(k) && user.points.possibleUpgrade.includes(k)){
 		var w = 0//value of the location of k
 		for(var i = 0; i< user.points.possibleUpgrade.length; i++){
 			if (user.points.possible[i] == k) w = i
@@ -407,7 +407,7 @@ function buyGPupg(ID){//ID is a string
 		var x = false
 		if (k.substring(0,3) == "GPA"){
 			value = parseInt(k.substring(3),10)	
-			if (user.points.upgrades.contains("GPA"+(value-1))) x = true
+			if (user.points.upgrades.includes("GPA"+(value-1))) x = true
 		} else {
 			var p = parseInt(k.substring(2),10)
 			var rowVal = (p-p%10)
