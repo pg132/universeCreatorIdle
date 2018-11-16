@@ -92,8 +92,8 @@ function getDefaultSave() {
 		},
 		points:{
 			amount:new Decimal(0),
-			upgradesCost:   [     1,     1,     2,     5,    50,    60,    70,    80,    90,   100,   110,   120,   130,    10,    10,    15,    20,   200,   30,    75,    100,    500,    500,   200,    25,   50],//next line GP starts for gravity points and GPA stands for gravity points autobuyer             
-			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA","GP61","GP71","GP72","GP10","GP11","GP81","GP91","GP92"],       
+			upgradesCost:   [     1,     1,     2,     5,    50,    60,    70,    80,    90,   100,   110,   120,   130,    10,    10,    15,    20,   200,    30,    75,   100,    500,    500,   200,    25,    50],//next line GP starts for gravity points and GPA stands for gravity points autobuyer             
+			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA","GP61","GP71","GP72","GPA10","GPA11","GP81","GP91","GP92"],       
 			upgrades:[],
 			autobuyers:[],
 			autobuyerTimes:[10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
@@ -384,6 +384,34 @@ function resetMK(){
 	}
 }
 
+
+function buyGPupg(ID){//ID is a string
+	var k = "GP"+ID
+	if (!user.points.upgrades.contains(k) && user.points.possibleUpgrade.contains(k)){
+		var w = 0//value of the location of k
+		for(var i = 0; i< user.points.possibleUpgrade.length; i++){
+			if (user.points.possible[i] == k) w = i
+		}//now w is the thing we are looking at 
+		var cost = user.points.upgradesCost[w]
+		//also check for if being in previous row
+		var x = false
+		if (k.substring(0,3) == "GPA"){
+			value = parseInt(k.substring(3),10)	
+			if (user.points.upgrades.contains("GPA"+(value-1))) x = true
+		} else {
+			var p = parseInt(k.substring(2),10)
+			var rowVal = (p-p%10)
+			if (rowVal == 10) x = true
+			for (var i = 0; i< user.points.upgrades.length; i++){
+				if (parseInt(user.points.upgrades[i].substring(2),10)>=rowVal) x = true
+			}
+		}
+		if (user.points.amount.gte(cost) && x){//buy upgrade then
+			user.points.upgrades.push(k)
+			user.points.amount = user.points.amount.minus(cost)
+		}
+	}
+}
 
 
 
