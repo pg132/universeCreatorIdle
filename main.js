@@ -93,10 +93,11 @@ function getDefaultSave() {
 		points:{
 			amount:new Decimal(0),
 			upgradesCost:   [     1,     1,     2,     5,    50,    60,    70,    80,    90,   100,   110,   120,   130,    10,    10,    15,    20,   200,   30,    75,    100,    500,    500,   200,    25,   50],//next line GP starts for gravity points and GPA stands for gravity points autobuyer             
-			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA","GP61","GP71","GP72","GPptA","GPpuA","GP81","GP91","GP92],       
+			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA","GP61","GP71","GP72","GP10","GP11","GP81","GP91","GP92"],       
 			upgrades:[],
 			autobuyers:[],
-			autobuyerTimes:[10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000]
+			autobuyerTimes:[10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
+			lastTimes:[new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime()]//11 of them
 		},
 		lastTick: new Date().getTime()
 	};
@@ -447,6 +448,25 @@ function maxAll(){
 	}
 }
 
+function runMKAutobuyers(){
+	var k = user.points.autobuyers
+	for(var i = 0; i < k.length; i++){
+		var p = k[i]
+		var number = parseInt(p.substring(2),10)
+		var lastTime = user.points.lastTimes[number]
+		var time = new Date().getTime()
+		var interval = user.points.autobuyerTimes[number]
+		if (interval+lastTime <= time && p<= 9){
+			buyMK(p,true)
+			user.points.lastTimes[number] = time
+		}
+		if (interval+lastTime <= time && !p<= 9){
+			var hi = 0//do other stuff that i will not think abt
+			user.points.lastTimes[number] = time
+		}
+	}
+}
+
 
 function sacPulses(amt){
 	if (user.pulse.amount>= amt+2 && amt > 0){
@@ -533,8 +553,6 @@ function baseMKmult(tier){
 	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
 	//put additional mults here
 	return mult
-	
-	
 }
 
 function MKproduction(diff){
@@ -711,6 +729,7 @@ function gameLoop(){
 	fullPowerWellsUpdate();
 	updatePulseCost();
 	updateShowPoints();
+	runMKAutobuyers();
 	update();
 }
 
