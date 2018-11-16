@@ -398,10 +398,11 @@ function resetMK(){
 function buyGPupg(ID){//ID is a string
 	var k = "GP"+ID
 	if (!user.points.upgrades.includes(k) && user.points.possibleUpgrade.includes(k)){
-		var w = 0//value of the location of k
+		var w = -1//value of the location of k
 		for(var i = 0; i< user.points.possibleUpgrade.length; i++){
-			if (user.points.possible[i] == k) w = i
+			if (user.points.possibleUpgrade[i] == k) w = i
 		}//now w is the thing we are looking at 
+		if (w==-1) return
 		var cost = user.points.upgradesCost[w]
 		//also check for if being in previous row
 		var x = false
