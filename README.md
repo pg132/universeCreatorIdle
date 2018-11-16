@@ -1,4 +1,5 @@
 # universeCreatorIdle
 
-The idea was from "PigOlympus"
-Coding done by pg132 and PlanetN9ne
+The idea was from PigOlympus<br/>
+Coding done by pg132 and PlanetN9ne<br/>
+Coding also done by: Aarex, Username5243
