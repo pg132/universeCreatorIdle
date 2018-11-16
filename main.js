@@ -160,7 +160,7 @@ function buyMK(tier, quick) {
 				user["mk"+tier].costMult *= 1.01;
 				if (user["mk"+tier].base%50 === 0 && user["mk"+tier].base >= 300) user["mk"+tier].costMult *= w
 			}
-			giveAch(9+tier)
+			giveAch(10+tier)
 		}
 	}
 	if (user["mk"+tier].cost.gte(Decimal.pow(10,308)) && gravCost.lte(Decimal.pow(10,308))) user["mk"+tier].costMult *= 2
@@ -179,6 +179,9 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the user is
 		}
 		//now do the boosts if so
 		user.wells.amount += 1
+		giveAch(15)
+		if (user.wells.amount >= 5) giveAch(20)
+		if (user.wells.amount >= user.pulse.cost) giveAch(22)
 	}
 }
 
@@ -193,6 +196,7 @@ function updatePulseCost(){
 function gravityPulse(autobuyer){
 	//first check if we afford
 	if (user.wells.amount >= user.pulse.cost){
+		giveAch(21)
 		//clear mk and then give boosts
 		user.pulse.multipliers.push(getPulseReward(user.wells.amount))//add the thing to the end
 		user = {//update user
@@ -291,6 +295,9 @@ function gravityPulse(autobuyer){
 			user.gravicles = user.gravicles.plus(1e5)
 			user.mk1.amount = user.mk1.amount.plus(200)
 		}
+		if (user.wells.defaultMults>= 10) giveAch(23)
+		updatePulseCost()
+		if (user.wells.amount >= user.pulse.cost) giveAch(26)
 	}
 }
 
@@ -473,6 +480,7 @@ function buyMaxMK(tier, quick){
 	}//closes else refering to tier >= 5
 	if (!quick) update();
 }
+
 function maxAll(){
 	for(var i = 9; i > 0; i--) {
 		buyMaxMK(i, true);
@@ -482,6 +490,7 @@ function maxAll(){
 function runMKAutobuyers(){
 	var k = user.points.autobuyers
 	for(var i = 0; i < k.length; i++){
+		giveAch(29)
 		var p = k[i]
 		var number = parseInt(p.substring(2),10)
 		var lastTime = user.points.lastTimes[number]
@@ -508,6 +517,9 @@ function sacPulses(amt){
 		for (var i = 0; i<amt;i++){
 			user.pulse.multipliers.pop()
 		}
+		giveAch(24)
+		if (user.pulse.amount == 2) giveAch(25)
+		if (user.points.amount >= 10) giveAch(28)
 	}
 }
 function sacMaxPulses(){
@@ -525,6 +537,12 @@ function updateMKUnlocks(){
 	if (w >= 2) user.mk7.unlocked = true
 	if (w >= 3) user.mk8.unlocked = true
 	if (w >= 4) user.mk9.unlocked = true
+}
+
+function checkAchUnlocks(){
+	if (user.pulse.amount == 9 && user.wells.amount == 9 && user.mk9.amount == new Decimal(99)) giveAch(27)
+	
+	
 }
 
 var showPoints = user.pulse.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
@@ -761,6 +779,7 @@ function gameLoop(){
 	updatePulseCost();
 	updateShowPoints();
 	runMKAutobuyers();
+	checkAchUnlocks();
 	update();
 }
 
