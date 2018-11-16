@@ -92,10 +92,11 @@ function getDefaultSave() {
 		},
 		points:{
 			amount:new Decimal(0),
-			upgradesCost:   [1     ,     1,     2,     5,    50,    60,    70,    80,    90,   100,   110,   120,   130,    10,    15,    30,    75,   200,   200,    25,    50,    500,    500],//next line GP starts for gravity points and GPA stands for gravity points autobuyer             
-			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP61","GPWA","GP71","GP81","GP82","GPptA","GPpuA"],       
+			upgradesCost:   [     1,     1,     2,     5,    50,    60,    70,    80,    90,   100,   110,   120,   130,    10,    10,    15,    20,   200,   30,    75,    100,    500,    500,   200,    25,   50],//next line GP starts for gravity points and GPA stands for gravity points autobuyer             
+			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA","GP61","GP71","GP72","GPptA","GPpuA","GP81","GP91","GP92],       
 			upgrades:[],
-
+			autobuyers:[],
+			autobuyerTimes:[10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000]
 		},
 		lastTick: new Date().getTime()
 	};
@@ -117,7 +118,7 @@ function buyMK(tier, quick) {
 	var gravCost = user["mk"+tier].cost
 	var costMult = user["mk"+tier].costMult
 	var w = 1.1
-	if (user.points.upgrades.includes("GP51")) w = 1.075
+	if (user.points.upgrades.includes("GP61")) w = 1.075
 	if (tier == 1){
 		if (gravCost.lte(user.gravicles)){
 			user.gravicles = user.gravicles.minus(gravCost)
@@ -174,16 +175,15 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the user is
 		}
 		//now do the boosts if so
 		user.wells.amount += 1
-		if (user.points.upgrades.includes("GP81")){
-			user.gravicles += 100000//1e5
-			user.mk1.amount = user.mk1.amount.plus(200)
-		}
 	}
 }
 
 function updatePulseCost(){
-	user.pulse.cost = user.wells.defaultMults*2-3
-	if (user.points.upgrades.includes("GP21")) user.pulse.cost = user.wells.defaultMults*2-5
+	var mult = 2
+	var con = -3
+	if (user.points.upgrades.includes("GP21")) con += -2
+	if (user.points.upgrades.includes("GP72")) mult = 1.8
+	user.pulse.cost = user.wells.defaultMults*mult+con
 }
 
 function gravityPulse(autobuyer){
@@ -281,8 +281,12 @@ function gravityPulse(autobuyer){
 			lastTick:user.lastTick
 		}
 		user.pulse.amount += 1 //give another pulse
-		if (user.points.upgrades.includes("GP41")) user.wells.amount += 1
-		if (user.points.upgrades.includes("GP71")) user.wells.costScale -= 5
+		if (user.points.upgrades.includes("GP42")) user.wells.amount += 1
+		if (user.points.upgrades.includes("GP81")) user.wells.costScale -= 5
+		if (user.points.upgrades.includes("GP91")) {
+			user.gravicles = user.gravicles.plus(1e5)
+			user.mk1.amount = user.mk1.amount.plus(200)
+		}
 	}
 }
 
@@ -373,6 +377,10 @@ function resetMK(){
 		points:user.points,
 		lastTick:user.lastTick
 	}
+	if (user.points.upgrades.includes("GP91")) {
+		user.gravicles = user.gravicles.plus(1e5)
+		user.mk1.amount = user.mk1.amount.plus(200)
+	}
 }
 
 
@@ -383,9 +391,9 @@ function gravityWellBoost(tier){
        	var w = user.wells.amount
 	var d = user.wells.defaultMults
 	var base = 2
-	if (user.points.upgrades.includes("GP42")) base = 2.2
+	if (user.points.upgrades.includes("GP51")) base = 2.2
 	var q = new Decimal(1)
-	if (user.points.upgrades.includes("GP61"))  q = Decimal.pow(1.5,Math.floor(w/5))
+	if (user.points.upgrades.includes("GP71"))  q = Decimal.pow(2.5,Math.floor(w-tier/5)).max(1)
 	if (w<=d-1+tier) return Decimal.max(1,base**(w-tier+1)).times(q)//fifth is worse
 	return Decimal.pow(base,(d-1)).times(w-d-tier+3).times(q)//just try it, it should work
 }
@@ -443,6 +451,7 @@ function maxAll(){
 function sacPulses(amt){
 	if (user.pulse.amount>= amt+2 && amt > 0){
 		user.points.amount = user.points.amount.plus(amt)
+		if (user.points.upgrades.includes("GP52")) user.points.amount = user.points.amount.plus(amt)
 		user.pulse.amount -= amt
 		//remove the last amt elems from user.pulse.multipliers this is done by the .pop()
 		for (var i = 0; i<amt;i++){
@@ -509,7 +518,7 @@ function baseMKproduction(tier){
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(5)
 	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
 	//put additional mults here
-	if (user.points.upgrades.includes("GP82")) {
+	if (user.points.upgrades.includes("GP92")) {
 		if (user["mk"+tier].amount == 0) return new Decimal (0)
 		return amt.plus(10).times(mult)
 	}
