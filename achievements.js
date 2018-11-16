@@ -14,6 +14,7 @@ function getAllAch(){
         return achievements       
 }
 function getAchName(ID){
-        var k = 0
-        for (var i = 0; i<possAchieve.length; i++
+        var k = achieveNames.length
+        if (ID-9 > k || ID<10) return
+        return achieveNames[ID-10]
 }
