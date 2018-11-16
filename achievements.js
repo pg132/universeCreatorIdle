@@ -3,6 +3,7 @@ var achieveNames = ["Just Starting","Baby’s first tier upgrade","That’s a lo
                    "Stupid well, WORK","This really better be worth it","Going above and beyond","Now they’re working better","Sacrifice SACRIFICE SACRIFICE","Not the best idea","Ya see, I pulled a sneaky on ya","See? It is real","That’s a lot of killing","Look ma, no hands!"
                    ]
 var possAchieve = [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+//checkAchUnlocks() function is for everytick check achivements
 function hasAch(ID){
         return achievements.includes(ID)
 }
