@@ -537,33 +537,15 @@ function getFullExpansion(num) {
 }
 
 shorten = function (money) {
-  return formatValue(player.options.notation, money, 2, 2);
+  return formatValue(user.options.notation, money, 3, 0);
 };
 
-shortenCosts = function (money) {
-  return formatValue(player.options.notation, money, 0, 0);
-};
-
-shortenPreInfCosts = function (money) {
-    if (money.exponent<0) return Math.round(money.mantissa) + " / " + formatValue(player.options.notation, Decimal.pow(10, -money.exponent), 0, 0)
-	return formatValue(player.options.notation, money, (money.mantissa>1&&money.exponent>308)?2:0, 0);
-};
-
-shortenInfDimCosts = function (money) {
-	return formatValue(player.options.notation, money, ECTimesCompleted("eterc12")?2:0, 0);
-};
-
-shortenDimensions = function (money) {
-  return formatValue(player.options.notation, money, 2, 0);
-};
-
-shortenMoney = function (money) {
-  return formatValue(player.options.notation, money, 2, 1);
+shortenMult = function (money) {
+  return formatValue(user.options.notation, money, 3, 3);
 };
 
 
 function timeDisplay(time) {
-  time = time / 10
   if (time <= 10) return time.toFixed(3) + " seconds"
   time = Math.floor(time)
 

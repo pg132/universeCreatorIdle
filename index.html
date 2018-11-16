@@ -4,6 +4,7 @@
 		<script src="magna_numerus.js"></script>
 		<script src="format.js"></script>
 		<script src="main.js"></script>
+		<script src="versions.js"></script>
 		<script src="achievements.js"></script>
 		<title>Universe Creator Idle</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
@@ -12,6 +13,7 @@
 		<button onclick="showTab('generators')" class="button">Generators</button>
 		<button onclick="showTab('options')" class="button">Options</button>
 		<button onclick="showTab('achievements')" class="button">Achievements</button>
+		<button onclick="showTab('statistics')" class="button">Statistics</button>
 		<p>You have <span id="gravicle amount">10</span> gravicles</p>
 		<div id="achievements" class = "tab">
 			
@@ -23,6 +25,7 @@
 			<button onclick="expo()" id="export" class="button">Export</button>
 			<p id="export status" style="display:none">Exported to clipboard</p>
 			<button onclick="impo()" class="button">Import</button>
+			<button id='notation' onclick="switchNotation()" class="button"></button>
 			<button onclick="hardReset()" class="button">HARD RESET</button>
 		</div>
 		<div id='generators' class='tab' style='display:block'>
@@ -191,6 +194,13 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
+		<div id='statistics' class='tab'>
+			<div id='playtime'>You have played this game for 0 seconds.</div>
+			<div id='total gravicles'>You made 0 gravicles in total.</div>
+			<div id='wells stat'>You currently have 0 wells.</div>
+			<div id='pulses stat'>You currently have 0 pulses.</div>
+			<div id='sacrifices stat'>You have sacrificed pulses 0 times.</div>
 		</div>
 	</body>
 </html>

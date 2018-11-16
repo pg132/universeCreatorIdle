@@ -99,6 +99,15 @@ function getDefaultSave() {
 			autobuyerTimes:[10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
 			lastTimes:[new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime()]//11 of them
 		},
+		statistics: {
+			playtime: 0,
+			totalGravicles: new Decimal(0),
+			sacrificed: 0
+		},
+		options: {
+			notation: "Scientific"
+		},
+		version: 0.01,
 		lastTick: new Date().getTime()
 	};
 }
@@ -286,6 +295,9 @@ function gravityPulse(autobuyer){
 			},
 			pulse:user.pulse,
 			points:user.points,
+			statistics:user.statistics,
+			options:user.options,
+			version:user.version,
 			lastTick:user.lastTick
 		}
 		user.pulse.amount += 1 //give another pulse
@@ -386,6 +398,9 @@ function resetMK(){
 		wells:user.wells,
 		pulse:user.pulse,
 		points:user.points,
+		statistics:user.statistics,
+		options:user.options,
+		version:user.version,
 		lastTick:user.lastTick
 	}
 	if (user.points.upgrades.includes("GP91")) {
@@ -511,6 +526,7 @@ function runMKAutobuyers(){
 
 function sacPulses(amt){
 	if (user.pulse.amount>= amt+2 && amt > 0){
+		user.statistics.sacrificed++
 		user.points.amount = user.points.amount.plus(amt)
 		if (user.points.upgrades.includes("GP52")) user.points.amount = user.points.amount.plus(amt)
 		user.pulse.amount -= amt
@@ -606,7 +622,9 @@ function baseMKmult(tier){
 }
 
 function MKproduction(diff){
-	user.gravicles = user.gravicles.plus(baseMKproduction(1).times(diff))
+	var addGrav = baseMKproduction(1).times(diff)
+	user.gravicles = user.gravicles.plus(addGrav)
+	user.statistics.totalGravicles = user.statistics.totalGravicles.plus(addGrav)
 	for (var i = 2; i <=9; i++) user["mk"+(i-1)].amount = user["mk"+(i-1)].amount.plus(baseMKproduction(i).times(diff))
 	update();
 }
@@ -638,47 +656,68 @@ function buyablePulse() {
 	return false
 }
 function update(){
-	document.getElementById("gravicle amount").innerHTML = formatValue("Scientific",user.gravicles,3,0);
-	for(var i = 1; i <=9; i++) {
-		var str = "mk"+i+"Amount";
-		document.getElementById(str).innerHTML = formatValue("Scientific",user["mk"+i].amount,3,0);
-		if(i === 1) {
-			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Scientific",user["mk"+i].cost,3,0);
-		} else {
-			document.getElementById("buy"+i).innerHTML = "Cost: "+formatValue("Scientific",user["mk"+i].cost,3,0)+" & "+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
+	document.getElementById("gravicle amount").innerHTML = shorten(user.gravicles);
+	if (document.getElementById('generators').style.display != "none") {
+		for(var i = 1; i <=9; i++) {
+			var str = "mk"+i+"Amount";
+			document.getElementById(str).innerHTML = shorten(user["mk"+i].amount);
+			if(i === 1) {
+				document.getElementById("buy"+i).innerHTML = "Cost: "+shorten(user["mk"+i].cost);
+			} else {
+				document.getElementById("buy"+i).innerHTML = "Cost: "+shorten(user["mk"+i].cost)+" & "+user["mk"+i].previousTierCost+" mk"+(i-1)+"s";
+			}
+			document.getElementById("mult"+i).innerHTML = "x"+shortenMult(baseMKmult(i));
+			if(buyable(i)) {
+				document.getElementById("buy"+i).className = "button";
+				document.getElementById("buy"+i+"Max").className = "button";
+			} else {
+				document.getElementById("buy"+i).className = "buttonlocked";
+				document.getElementById("buy"+i+"Max").className = "buttonlocked";
+			}
 		}
-		document.getElementById("mult"+i).innerHTML = "x"+formatValue("Scientific",baseMKmult(i),3,3);
-		if(buyable(i)) {
-			document.getElementById("buy"+i).className = "button";
-			document.getElementById("buy"+i+"Max").className = "button";
-		} else {
-			document.getElementById("buy"+i).className = "buttonlocked";
-			document.getElementById("buy"+i+"Max").className = "buttonlocked";
+		showMK();
+		showGravPoints();
+		document.getElementById("pointsBuy1").innerHTML = "Sacrifice one galaxy pulse, for one galaxy point";
+		if (buyablePoints()) {
+			document.getElementById("pointsBuy1").className = "button"
+		} else{
+			document.getElementById("pointsBuy1").className = "buttonlocked";
 		}
+		document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+user.wells.tiercost+"s";
+		document.getElementById("pulse").innerHTML = "Lose all of your previous progress, but get an improvement to wells<br/>Requires: "+user.pulse.cost+" wells";
+		if(buyableWell()) {
+			document.getElementById("well").className = "button";
+		} else {
+			document.getElementById("well").className = "buttonlocked";
+		}
+		if(buyablePulse()) {
+			document.getElementById("pulse").className = "button";
+		} else {
+			document.getElementById("pulse").className = "buttonlocked";
+		}
+		document.getElementById("well number").innerHTML = "Gravity Wells: "+user.wells.amount;
+		document.getElementById("pulse number").innerHTML = "Gravitational Pulses: "+user.pulse.amount+" ("+user.wells.defaultMults+" wells at full power)";
+		document.getElementById("point amount").innerHTML = "Gravitational Points: "+shorten(user.points.amount);
 	}
-	showMK();
-	showGravPoints();
-	document.getElementById("pointsBuy1").innerHTML = "Sacrifice one galaxy pulse, for one galaxy point";
-	if (buyablePoints()) {
-		document.getElementById("pointsBuy1").className = "button"
-	} else{
-		document.getElementById("pointsBuy1").className = "buttonlocked";
+	if (document.getElementById('statistics').style.display != "none") {
+		document.getElementById("playtime").innerHTML = "You have played this game for " + timeDisplay(user.statistics.playtime) + "."
+		document.getElementById("total gravicles").innerHTML = "You made " + shorten(user.statistics.totalGravicles) + " gravicles in total."
+		var showMoreStats = user.statistics.sacrificed > 0
+		if (showMoreStats) {
+			document.getElementById("sacrifices stat").style.display = "block"
+			document.getElementById("sacrifices stat").innerHTML = "You have sacrificed pulses " + user.statistics.sacrificed + "time" + (user.statistics.sacrificed == 1 ? "." : "s.") 
+		} else document.getElementById("sacrifices stat").style.display = "none"
+		showMoreStats = showMoreStats || user.pulse.amount > 0
+		if (showMoreStats) {
+			document.getElementById("pulses stat").style.display = "block"
+			document.getElementById("pulses stat").innerHTML = "You currently have " + user.pulse.amount + " pulse" + (user.pulse.amount == 1 ? "." : "s.")
+		} else document.getElementById("pulses stat").style.display = "none"
+		showMoreStats = showMoreStats || user.wells.amount > 0
+		if (showMoreStats) {
+			document.getElementById("wells stat").style.display = "block"
+			document.getElementById("wells stat").innerHTML = "You currently have " + user.wells.amount + " well" + (user.wells.amount == 1 ? "." : "s.")
+		} else document.getElementById("wells stat").style.display = "none"
 	}
-	document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+user.wells.tiercost+"s";
-	document.getElementById("pulse").innerHTML = "Lose all of your previous progress, but get an improvement to wells<br/>Requires: "+user.pulse.cost+" wells";
-	if(buyableWell()) {
-		document.getElementById("well").className = "button";
-	} else {
-		document.getElementById("well").className = "buttonlocked";
-	}
-	if(buyablePulse()) {
-		document.getElementById("pulse").className = "button";
-	} else {
-		document.getElementById("pulse").className = "buttonlocked";
-	}
-	document.getElementById("well number").innerHTML = "Gravity Wells: "+user.wells.amount;
-	document.getElementById("pulse number").innerHTML = "Gravitational Pulses: "+user.pulse.amount+" ("+user.wells.defaultMults+" wells at full power)";
-	document.getElementById("point amount").innerHTML = "Gravitational Points: "+formatValue("Scientific",user.points.amount,3,0);
 }
 
 function showTab(tabName) {
@@ -702,7 +741,9 @@ function load(){
 		for(var i in save) {
 			user[i] = save[i];
 		}
+		updateSave()
 	}
+	document.getElementById("notation").innerHTML = "Notation: " + user.options.notation
 	return user;
 }
 function convertDecimals(obj) {
@@ -766,14 +807,11 @@ function impo(){
 		}
 	}
 }
-function clear(){
-	localStorage.removeItem("save");
-	user = getDefaultSave()
-}
 function gameLoop(){
 	var newTime = new Date().getTime()
 	var diff = (newTime - user.lastTick) / 1000
 	user.lastTick = newTime
+	user.statistics.playtime += diff
 	MKproduction(diff);
 	updateMKUnlocks();
 	fullPowerWellsUpdate();
@@ -784,15 +822,25 @@ function gameLoop(){
 	update();
 }
 
-function startInterval(){
-	load();
-	setInterval(gameLoop,33);
-	setInterval(save,5000);
+function switchNotation() {
+	if (user.options.notation == "Scientific") user.options.notation = "Standard"
+	else user.options.notation = "Scientific"
+	document.getElementById("notation").innerHTML = "Notation: " + user.options.notation
 }
-
 
 function hardReset() {
 	if (confirm("Are you sure you want to delete your save?")) {
 		clear()
 	}
+}
+function clear(){
+	localStorage.removeItem("save");
+	user = getDefaultSave()
+}
+
+
+function startInterval(){
+	load();
+	setInterval(gameLoop,33);
+	setInterval(save,5000);
 }
