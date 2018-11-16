@@ -1,4 +1,4 @@
-var version = 0.0;
+var version = version ? version :0.0;
 function getDefaultSave() {
 	return {
 		gravicles: new Decimal(10),
