@@ -99,6 +99,28 @@ function getDefaultSave() {
 			autobuyerTimes:[10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
 			lastTimes:[new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime()]//11 of them
 		},
+		eaters:{
+			GE1:{
+				cost: new Decimal(1e120),
+				scale: new Decimal(1e2),
+				amount: 0
+			},
+			GE2:{
+				cost: new Decimal(1e120),
+				scale: new Decimal(1e2),
+				amount: 0
+			},
+			GE3:{
+				cost: new Decimal(1e120),
+				scale: new Decimal(1e2),
+				amount: 0
+			},
+			GE4:{
+				cost: new Decimal(1e120),
+				scale: new Decimal(1e2),
+				amount: 0
+			}
+		},
 		statistics: {
 			playtime: 0,
 			totalGravicles: new Decimal(0),
@@ -198,7 +220,6 @@ function updatePulseCost(){
 	var mult = 2
 	var con = -3
 	if (user.points.upgrades.includes("GP21")) con += -2
-	if (user.points.upgrades.includes("GP72")) mult = 1.8
 	user.pulse.cost = user.wells.defaultMults*mult+con
 }
 
@@ -296,13 +317,13 @@ function gravityPulse(autobuyer){
 			pulse:user.pulse,
 			points:user.points,
 			statistics:user.statistics,
+			eaters:user.eaters,
 			options:user.options,
 			version:user.version,
 			lastTick:user.lastTick
 		}
 		user.pulse.amount += 1 //give another pulse
 		if (user.points.upgrades.includes("GP42")) user.wells.amount += 1
-		if (user.points.upgrades.includes("GP81")) user.wells.costScale -= 5
 		if (user.points.upgrades.includes("GP91")) {
 			user.gravicles = user.gravicles.plus(1e5)
 			user.mk1.amount = user.mk1.amount.plus(200)
@@ -398,6 +419,7 @@ function resetMK(){
 		wells:user.wells,
 		pulse:user.pulse,
 		points:user.points,
+		eaters:user.eaters,
 		statistics:user.statistics,
 		options:user.options,
 		version:user.version,
@@ -407,6 +429,16 @@ function resetMK(){
 		user.gravicles = user.gravicles.plus(1e5)
 		user.mk1.amount = user.mk1.amount.plus(200)
 	}
+}
+
+function getEaterReward(number){
+	var k = user.eaters["GE"+number]
+	var amt = 0.01
+	if (user.points.upgrades.includes("GP72")) amt = amt * 2
+	var comp = false
+	if (user.points.upgrades.includes("GP81")) comp = true
+	if (comp) return Decimal.pow(1+amt,k)
+	return 1+amt*k
 }
 
 
