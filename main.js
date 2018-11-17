@@ -423,6 +423,7 @@ function buyGPupg(ID){//ID is a string
 		var x = false
 		if (k.substring(0,3) == "GPA"){
 			value = parseInt(k.substring(3),10)	
+			if (k == "GPA1") x = user.points.upgrades.includes("GP31")
 			if (user.points.upgrades.includes("GPA"+(value-1))) x = true
 		} else {
 			var p = parseInt(k.substring(2),10)
