@@ -208,7 +208,7 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the user is
 		if (!(user.wells.tiercost == 9)){
 			user.wells.tiercost += 1
 		} else{
-			user.wells.cost += user.wells.costScale*getEaterReward(2)//might be changed later by an upgrade
+			user.wells.cost += user.wells.costScale/getEaterReward(2)//might be changed later by an upgrade
 		}
 		//now do the boosts if so
 		user.wells.amount += 1
