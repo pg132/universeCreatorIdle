@@ -237,7 +237,7 @@ function buyGE(number,amt=1){
 
 function buyMaxGE(number){
 	while (user.eaters["GE"+number].cost < user.gravicles){
-	buyGE(number)
+		buyGE(number)
 	}
 }
 
