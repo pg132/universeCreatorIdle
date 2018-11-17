@@ -58,6 +58,12 @@ var lore = [
         //after sacing
         "Buy something with it! Don’t be shy you only have 2 options right now.",
         "You can sacrifice a pulse and get points whenever you want, as long as you don't go under 2 pulses",
+        //after eaters
+        "you would have never guessed that there are little living things at a scale this low",
+        "hehehe theyre kinda cute",
+        "anyway, you can hire those 4 by feeding them gravicles so that they stomp on space time for you",
+        "each one does it in a different way, but we aren't telling how...",
+        "they’re kinda expensive but its worth it",
         //after autobuyer
         "oooh, autobuyers, they’re great!",
         "doing less work is always a plus!",
