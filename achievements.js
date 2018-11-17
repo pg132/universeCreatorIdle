@@ -20,7 +20,23 @@ function getAchName(ID){
 }
 
 
-
+function getNextLoreSet(){
+        var k = currentLoreVal
+        var goal = 0
+        for (var i = 0; i < breakPoints.length; i++){
+                if (breakPoints[i]> k){
+                        goal = breakPoints[i]
+                }
+        }
+        var l = []
+        for (var i = k; i<goal; i++){
+                l.push(lore[i])       
+        }
+        return l
+}
+var currentLoreVal = -1
+//note next line, its 0 stored, and the numbers are the last one that should be outputted. 
+var breakPoints = [7,8,9,12,14,15,16,18,21,23,25,30,34,36]
 var lore = [
         "Computer, make a note",
         "Subject #364 has died of a malfunction in the system causing every atom of his body to be ripped apart across all of space time",
@@ -64,14 +80,14 @@ var lore = [
         "anyway, you can hire those 4 by feeding them gravicles so that they stomp on space time for you",
         "each one does it in a different way, but we aren't telling how...",
         "they’re kinda expensive but its worth it",
-        //after autobuyer
-        "oooh, autobuyers, they’re great!",
-        "doing less work is always a plus!",
         //e80 grav
         "you have A LOT of gravicles right now, but to let you appreciate the size here’s an example",
         "there are e80 ATOMS in the UNIVERSE",
         "WOOOWWEEE thats a lot",
-        "not enough though, carry on"
+        "not enough though, carry on",
+        //after autobuyer
+        "oooh, autobuyers, they’re great!",
+        "doing less work is always a plus!"
         ]
         
         
