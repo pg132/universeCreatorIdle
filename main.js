@@ -776,11 +776,13 @@ function update(){
 		}
 		document.getElementById("GP41 effect").innerHTML = shorten(1e3)
 	}
-	if (document.getElementById('eaters').style.display != "none") {
-		for (var i = 1; i<= 4; i++){
-			document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,3,0)
-			document.getElementById("eater"+i).className = "buttonlocked"
-			if (buyableGE(i)) document.getElementById("eater"+i).className = "button"
+	if (document.getElementById('eaters').style.display){
+		if (document.getElementById('eaters').style.display != "none") {
+			for (var i = 1; i<= 4; i++){
+				document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,3,0)
+				document.getElementById("eater"+i).className = "buttonlocked"
+				if (buyableGE(i)) document.getElementById("eater"+i).className = "button"
+			}
 		}
 	}
 	if (document.getElementById('statistics').style.display != "none") {
