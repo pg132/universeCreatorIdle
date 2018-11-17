@@ -221,7 +221,8 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the user is
 function updatePulseCost(){
 	var mult = 2
 	var con = -3
-	mult *= 1/getEaterReward(1)
+	var frozenAmt = 1//the amount that eaters cant effect, may be change by upgrades later
+	mult = frozenAmt+(mult-frozenAmt)/getEaterReward(1)
 	if (user.points.upgrades.includes("GP21")) con += -2
 	user.pulse.cost = user.wells.defaultMults*mult+con
 }
