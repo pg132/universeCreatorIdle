@@ -705,7 +705,7 @@ function update(){
 		var showMoreStats = user.statistics.sacrificed > 0
 		if (showMoreStats) {
 			document.getElementById("sacrifices stat").style.display = "block"
-			document.getElementById("sacrifices stat").innerHTML = "You have sacrificed pulses " + user.statistics.sacrificed + "time" + (user.statistics.sacrificed == 1 ? "." : "s.") 
+			document.getElementById("sacrifices stat").innerHTML = "You have sacrificed pulses " + user.statistics.sacrificed + " time" + (user.statistics.sacrificed == 1 ? "." : "s.") 
 		} else document.getElementById("sacrifices stat").style.display = "none"
 		showMoreStats = showMoreStats || user.pulse.amount > 0
 		if (showMoreStats) {
