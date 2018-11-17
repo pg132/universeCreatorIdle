@@ -1,4 +1,3 @@
-var version = version ? version :0.0;
 function getDefaultSave() {
 	return {
 		gravicles: new Decimal(10),
@@ -460,7 +459,6 @@ function getEaterReward(number){
 	return 1+amt*k
 }
 
-
 function buyGPupg(ID){//ID is a string
 	var k = "GP"+ID
 	if (!user.points.upgrades.includes(k) && user.points.possibleUpgrade.includes(k)){
@@ -470,29 +468,21 @@ function buyGPupg(ID){//ID is a string
 		}//now w is the thing we are looking at 
 		if (w==-1) return
 		var cost = user.points.upgradesCost[w]
-		//also check for if being in previous row
-		var x = false
-		if (k.substring(0,3) == "GPA"){
-			value = parseInt(k.substring(3),10)	
-			if (k == "GPA1") x = user.points.upgrades.includes("GP31")
-			if (user.points.upgrades.includes("GPA"+(value-1))) x = true
-		} else {
-			var p = parseInt(k.substring(2),10)
-			var rowVal = (p-p%10)
-			if (rowVal == 10) x = true
-			for (var i = 0; i< user.points.upgrades.length; i++){
-				if (parseInt(user.points.upgrades[i].substring(2),10)>=rowVal-10) x = true
-			}
-		}
-		if (user.points.amount.gte(cost) && x){//buy upgrade then
+		if (user.points.amount.gte(cost) && isGPupgradePossible(k)){//buy upgrade then
 			user.points.upgrades.push(k)
 			user.points.amount = user.points.amount.minus(cost)
 		}
 	}
 }
 
-
-
+function isGPupgradePossible(id) {
+	if (id == "GPA1") return user.points.upgrades.includes("GP31")
+	if (id.substring(0, 3) == "GPA") return user.points.upgrades.includes("GPA"+(parseInt(id.substring(3))-1))
+	rowid = parseInt(id.substring(2))
+	rowid = rowid - rowid%10
+	if (rowid < 20) return true
+	return user.points.upgrades.includes("GP"+(rowid-9)) || user.points.upgrades.includes("GP"+(rowid-8))
+}
 
 function gravityWellBoost(tier){
        	var w = user.wells.amount
@@ -714,6 +704,16 @@ function buyableGE(number){
 
 function update(){
 	document.getElementById("gravicle amount").innerHTML = shorten(user.gravicles);
+	if (user.statistics.sacrificed > 0 || user.points.amount.gt(0) || user.points.upgrades.length > 0) {
+		document.getElementById("upgrades button").style.display = "inline"
+	} else {
+		document.getElementById("upgrades button").style.display = "none"
+	}
+	if (user.statistics.totalGravicles.gt(1e100)) {
+		document.getElementById("eaters button").style.display = "inline"
+	} else {
+		document.getElementById("eaters button").style.display = "none"
+	}
 	if (document.getElementById('generators').style.display != "none") {
 		for(var i = 1; i <=9; i++) {
 			var str = "mk"+i+"Amount";
@@ -760,6 +760,28 @@ function update(){
 		document.getElementById("well number").innerHTML = "Gravity Wells: "+user.wells.amount;
 		document.getElementById("pulse number").innerHTML = "Gravitational Pulses: "+user.pulse.amount+" ("+user.wells.defaultMults+" wells at full power)";
 		document.getElementById("point amount").innerHTML = "Gravitational Points: "+shorten(user.points.amount);
+	}
+	if (document.getElementById('upgrades').style.display != "none") {
+		document.getElementById("point amount upgrades").innerHTML = "You have " + shorten(user.points.amount) + " Gravitational Points."
+		for (var i=0;i<user.points.possibleUpgrade.length;i++) {
+			var upgid = user.points.possibleUpgrade[i]
+			var div = document.getElementById(upgid)
+			if (div !== null) {
+				if (user.points.upgrades.includes(upgid)) div.className = "upgradebtn buttonbought"
+				else {
+					if (user.points.amount.lt(user.points.upgradesCost[i]) || !isGPupgradePossible(upgid)) div.className = "upgradebtn buttonlocked"
+					else div.className = "upgradebtn button"
+				}
+			}
+		}
+		document.getElementById("GP41 effect").innerHTML = shorten(1e3)
+	}
+	if (document.getElementById('eaters').style.display != "none") {
+		for (var i = 1; i<= 4; i++){
+			document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,3,0)
+			document.getElementById("eater"+i).className = "buttonlocked"
+			if (buyableGE(i)) document.getElementById("eater"+i).className = "button"
+		}
 	}
 	if (document.getElementById('statistics').style.display != "none") {
 		document.getElementById("playtime").innerHTML = "You have played this game for " + timeDisplay(user.statistics.playtime) + "."

@@ -48,3 +48,23 @@
 .tab {
 	display: none
 }
+.buttonbought {
+	color: #FFF;
+	background: #5AC467;
+	height: auto;
+	line-height: 21px;
+	text-align: center;
+	width: auto;
+	border: 1px solid #127A20;
+	border-radius: 4px;
+	padding: 5px;
+	color: #000000;
+	transition-duration: 0.2s;
+}
+.buttonbought:hover {
+	border-color: #5AC467;
+}
+.upgradebtn {
+	width: 180px;
+	height: 90px;
+}
