@@ -149,18 +149,20 @@ function buyMK(tier, quick) {
 	var tierCost = user["mk"+tier].previousTierCost
 	var gravCost = user["mk"+tier].cost
 	var costMult = user["mk"+tier].costMult
-	var w = 1.1
-	if (user.points.upgrades.includes("GP61")) w = 1.075
+	var mainScale = 1+.01/getEaterReward(4)
+	var buyingMult = 1.01
+	var w = 1+.1/getEaterReward(4)
+	if (user.points.upgrades.includes("GP61")) w = (w-1)*.75+1
 	if (tier == 1){
 		if (gravCost.lte(user.gravicles)){
 			user.gravicles = user.gravicles.minus(gravCost)
 			user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 			//what should the multiplier formula be? rn im gonna make it 1% stronger
-			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
+			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(buyingMult)
 			user.mk1.amount = user.mk1.amount.plus(1)
 			user.mk1.base += 1
 			if(user.mk1.base > 30 && user.mk1.base % 10 === 0) {
-				user.mk1.costMult *= 1.01;
+				user.mk1.costMult *= mainScale;
 				if (user.mk1.base%50 === 0 && user.mk1.base >= 300) user.mk1.costMult *= w
 			}
 			giveAch(10)
@@ -169,12 +171,12 @@ function buyMK(tier, quick) {
 		user.gravicles = user.gravicles.minus(gravCost)
 		user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 		//what should the multiplier formula be? rn im gonna make it 1% stronger
-		user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
+		user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(buyingMult)
 		user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 		user["mk"+tier].amount = user["mk"+tier].amount.plus(1)
 		user["mk"+tier].base += 1
 		if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
-			user["mk"+tier].costMult *= 1.01;
+			user["mk"+tier].costMult *= mainScale;
 			if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300) user["mk"+tier].costMult *= w
 		}
 		giveAch(9+tier)
@@ -183,12 +185,12 @@ function buyMK(tier, quick) {
 			user.gravicles = user.gravicles.minus(gravCost)
 			user["mk"+tier].cost = user["mk"+tier].cost.times(costMult)
 			//what should the multiplier formula be? rn im gonna make it 1% stronger
-			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(1.01)
+			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(buyingMult)
 			user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 			user["mk"+tier].amount = user["mk"+tier].amount.plus(1)
 			user["mk"+tier].base += 1
 			if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
-				user["mk"+tier].costMult *= 1.01;
+				user["mk"+tier].costMult *= mainScale;
 				if (user["mk"+tier].base%50 === 0 && user["mk"+tier].base >= 300) user["mk"+tier].costMult *= w
 			}
 			giveAch(10+tier)
@@ -206,7 +208,7 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the user is
 		if (!(user.wells.tiercost == 9)){
 			user.wells.tiercost += 1
 		} else{
-			user.wells.cost += user.wells.costScale//might be changed later by an upgrade
+			user.wells.cost += user.wells.costScale*getEaterReward(2)//might be changed later by an upgrade
 		}
 		//now do the boosts if so
 		user.wells.amount += 1
@@ -219,6 +221,7 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the user is
 function updatePulseCost(){
 	var mult = 2
 	var con = -3
+	mult *= 1/getEaterReward(1)
 	if (user.points.upgrades.includes("GP21")) con += -2
 	user.pulse.cost = user.wells.defaultMults*mult+con
 }
@@ -432,7 +435,7 @@ function resetMK(){
 }
 
 function getEaterReward(number){
-	var k = user.eaters["GE"+number]
+	var k = user.eaters["GE"+number].amount
 	var amt = 0.01
 	if (user.points.upgrades.includes("GP72")) amt = amt * 2
 	var comp = false
@@ -480,6 +483,7 @@ function gravityWellBoost(tier){
 	var d = user.wells.defaultMults
 	var base = 2
 	if (user.points.upgrades.includes("GP51")) base = 2.2
+	base = base*getEaterReward(3)
 	var q = new Decimal(1)
 	if (user.points.upgrades.includes("GP71"))  q = Decimal.pow(2.5,Math.floor(w-tier/5)).max(1)
 	if (w<=d-1+tier) return Decimal.max(1,base**(w-tier+1)).times(q)//fifth is worse
