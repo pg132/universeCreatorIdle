@@ -235,6 +235,12 @@ function buyGE(number,amt=1){
 	
 }
 
+function buyMaxGE(number){
+	while (user.eaters["GE"+number].cost < user.gravicles){
+	buyGE(number)
+	}
+}
+
 function gravityPulse(autobuyer){
 	//first check if we afford
 	if (user.wells.amount >= user.pulse.cost){
