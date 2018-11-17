@@ -735,7 +735,7 @@ function update(){
 		showMK();
 		showGravPoints();
 		for (var i = 1; i<= 4; i++){
-			document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,3,0)
+			document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater<br/>Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,3,0)
 			document.getElementById("eater"+i).className = "buttonlocked"
 			if (buyableGE(i)) document.getElementById("eater"+i).className = "button"
 		}
