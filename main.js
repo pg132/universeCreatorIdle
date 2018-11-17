@@ -101,22 +101,22 @@ function getDefaultSave() {
 		},
 		eaters:{
 			GE1:{
-				cost: new Decimal(1e120),
+				cost: new Decimal(1e100),
 				scale: new Decimal(1e2),
 				amount: 0
 			},
 			GE2:{
-				cost: new Decimal(1e120),
+				cost: new Decimal(1e100),
 				scale: new Decimal(1e2),
 				amount: 0
 			},
 			GE3:{
-				cost: new Decimal(1e120),
+				cost: new Decimal(1e100),
 				scale: new Decimal(1e2),
 				amount: 0
 			},
 			GE4:{
-				cost: new Decimal(1e120),
+				cost: new Decimal(1e100),
 				scale: new Decimal(1e2),
 				amount: 0
 			}
@@ -708,6 +708,10 @@ function buyablePulse() {
 	}
 	return false
 }
+function buyableGE(number){
+	return user.eaters["GE"+number].cost.lte(user.gravicles)
+}
+
 function update(){
 	document.getElementById("gravicle amount").innerHTML = shorten(user.gravicles);
 	if (document.getElementById('generators').style.display != "none") {
@@ -730,6 +734,11 @@ function update(){
 		}
 		showMK();
 		showGravPoints();
+		for (var i = 1; i<= 4; i++){
+			document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater Cost: " + formatValue(user.option.notation,user.eaters["GE"+i].cost,3,0)
+			document.getElementById("eater"+i).className = "buttonlocked"
+			if (buyableGE(i)) document.getElementById("eater"+i).className = "button"
+		}
 		document.getElementById("pointsBuy1").innerHTML = "Sacrifice one galaxy pulse, for one galaxy point";
 		if (buyablePoints()) {
 			document.getElementById("pointsBuy1").className = "button"
