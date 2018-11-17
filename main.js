@@ -226,6 +226,15 @@ function updatePulseCost(){
 	user.pulse.cost = user.wells.defaultMults*mult+con
 }
 
+function buyGE(number,amt=1){
+	var k = user.eaters["GE"+number].cost.times(Decimal.pow(user.eaters["GE"+number].scale,amt-1))
+	if (user.gravicles.gte(k)){
+		user.gravicles = user.gravicles.minus(k)
+		user.eaters["GE"+number].cost = k.times(user.eaters["GE"+number].scale)
+	}
+	
+}
+
 function gravityPulse(autobuyer){
 	//first check if we afford
 	if (user.wells.amount >= user.pulse.cost){
