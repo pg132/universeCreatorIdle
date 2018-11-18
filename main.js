@@ -746,7 +746,7 @@ function update(){
 		} else{
 			document.getElementById("pointsBuy1").className = "buttonlocked";
 		}
-		document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+Math.ceil(user.wells.tiercost)+"s";
+		document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+Math.ceil(user.wells.cost)+" mk"+Math.ceil(user.wells.tiercost)+"s";
 		document.getElementById("pulse").innerHTML = "Lose all of your previous progress, but get an improvement to wells<br/>Requires: "+user.pulse.cost+" wells";
 		if(buyableWell()) {
 			document.getElementById("well").className = "button";
