@@ -1,8 +1,8 @@
-var canvas;
-canvas = document.getElementById("upgradeCanvas");
-var ctx = canvas.getContext("2d");
+
 
 function resizeCanvas() {
+	var canvas = document.getElementById("upgradeCanvas");
+	var ctx = canvas.getContext("2d");
 	canvas.width = 0;
 	canvas.height = 0;
 	canvas.width = document.body.scrollWidth;
