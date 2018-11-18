@@ -223,7 +223,7 @@ function updatePulseCost(){
 	var con = -3
 	var frozenAmt = 1//the amount that eaters cant effect, may be change by upgrades later
 	mult = frozenAmt+(mult-frozenAmt)/getEaterReward(1)
-	if (user.points.upgrades.includes("GP21")) con += -2
+	if (user.points.upgrades.includes("GP21")) con += -3
 	user.pulse.cost = Math.ceil(user.wells.defaultMults*mult+con)
 }
 
