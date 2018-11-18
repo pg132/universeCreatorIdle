@@ -223,7 +223,7 @@ function updatePulseCost(){
 	var frozenAmt = 1//the amount that eaters cant effect, may be change by upgrades later
 	mult = frozenAmt+(mult-frozenAmt)/getEaterReward(1)
 	if (user.points.upgrades.includes("GP21")) con += -2
-	user.pulse.cost = user.wells.defaultMults*mult+con
+	user.pulse.cost = Math.ceil(user.wells.defaultMults*mult+con)
 }
 
 function buyGE(number,amt=1){
@@ -746,7 +746,7 @@ function update(){
 		} else{
 			document.getElementById("pointsBuy1").className = "buttonlocked";
 		}
-		document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+user.wells.tiercost+"s";
+		document.getElementById("well").innerHTML = "Reset the game for a boost<br/>Cost: "+user.wells.cost+" mk"+Math.ceil(user.wells.tiercost)+"s";
 		document.getElementById("pulse").innerHTML = "Lose all of your previous progress, but get an improvement to wells<br/>Requires: "+user.pulse.cost+" wells";
 		if(buyableWell()) {
 			document.getElementById("well").className = "button";
