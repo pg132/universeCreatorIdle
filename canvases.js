@@ -11,6 +11,8 @@ function resizeCanvas() {
 }
 
 function drawTreeBranch(name1, name2) {
+	var canvas = document.getElementById("upgradeCanvas");
+	var ctx = canvas.getContext("2d");
 	var start = document.getElementById(name1).getBoundingClientRect();
 	var end = document.getElementById(name2).getBoundingClientRect();
 	var x1 = start.left + (start.width / 2) + (document.documentElement.scrollLeft || document.body.scrollLeft);
