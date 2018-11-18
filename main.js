@@ -492,7 +492,7 @@ function gravityWellBoost(tier){
        	var w = user.wells.amount
 	var d = user.wells.defaultMults
 	var base = 2
-	if (user.points.upgrades.includes("GP51")) base = 2.2
+	if (user.points.upgrades.includes("GP51")) base = 2.5
 	base = base*getEaterReward(3)
 	var q = new Decimal(1)
 	if (user.points.upgrades.includes("GP71"))  q = Decimal.pow(2.5,Math.floor(w-tier/5)).max(1)
