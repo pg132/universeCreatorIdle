@@ -231,6 +231,7 @@ function buyGE(number,amt=1){
 	if (user.gravicles.gte(k)){
 		user.gravicles = user.gravicles.minus(k)
 		user.eaters["GE"+number].cost = k.times(user.eaters["GE"+number].scale)
+		user.eaters["GE"+number].amount += amt
 	}
 	
 }
