@@ -22,9 +22,9 @@ function drawTreeBranch(name1, name2) {
 	ctx.lineWidth=15;
 	ctx.beginPath();
 	if(user.points.upgrades.includes(name1) && user.points.upgrades.includes(name2)) {
-		ctx.strokeStyle="#B84B5F";
-	} else {
 		ctx.strokeStyle="#5AC467";
+	} else {
+		ctx.strokeStyle="#A3A3A3";
 	}
 	ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
