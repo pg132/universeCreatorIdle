@@ -931,4 +931,5 @@ function startInterval(){
 	load();
 	setInterval(gameLoop,33);
 	setInterval(save,5000);
+	window.addEventListener("resize", resizeCanvas);
 }
