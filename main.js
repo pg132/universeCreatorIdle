@@ -481,7 +481,7 @@ function isGPupgradePossible(id) {
 	if (String(id).length >= 4){
 		if (id.substring(0, 3) == "GPA") return user.points.upgrades.includes("GPA"+(parseInt(id.substring(3))-1))
 	}
-	rowid = parseInt(id.substring(2))
+	rowid = parseInt(String(id).substring(2))
 	rowid = rowid - rowid%10
 	if (rowid < 20) return true
 	return user.points.upgrades.includes("GP"+(rowid-9)) || user.points.upgrades.includes("GP"+(rowid-8))
