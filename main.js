@@ -1,3 +1,4 @@
+var qwertyuiopycasduvdauasyvdu = "zgpqw"
 function getDefaultSave() {
 	return {
 		gravicles: new Decimal(10),
