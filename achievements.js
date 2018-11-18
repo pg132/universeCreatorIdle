@@ -18,7 +18,19 @@ function getAchName(ID){
         if (ID-9 > k || ID<10) return
         return achieveNames[ID-10]
 }
-
+//put in strings that will be execd
+var loreChecks = [false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+function checkForNextLore(){
+        var k = -1//the position we are looking for
+        for (i = 0; i < breakPoints.length; i++){
+                if (breakPoints[i] >= currentLoreVal) k = i
+        }
+        if (k == -1) return false
+        var string = loreChecks[k]
+        var TF = eval(string)
+        if (typeof TF == typeof true) return TF
+        return false
+}
 
 function getNextLoreSet(){
         var k = currentLoreVal
