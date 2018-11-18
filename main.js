@@ -228,10 +228,10 @@ function updatePulseCost(){
 }
 
 function buyGE(number,amt=1){
-	var k = user.eaters["GE"+number].cost.times(Decimal.pow(user.eaters["GE"+number].scale,amt-1))
+	var k = user.eaters["GE"+number].cost.times(Decimal.pow(user.eaters["GE"+number].scale, amt-1))
 	if (user.gravicles.gte(k)){
 		user.gravicles = user.gravicles.minus(k)
-		user.eaters["GE"+number].cost = k.times(user.eaters["GE"+number].scale)
+		user.eaters["GE"+number].cost = k.times(Decimal.pow(user.eaters["GE"+number].scale, amt))
 		user.eaters["GE"+number].amount += amt
 	}
 	
@@ -738,11 +738,6 @@ function update(){
 		}
 		showMK();
 		showGravPoints();
-		for (var i = 1; i<= 4; i++){
-			document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater<br/>Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,1,0)
-			document.getElementById("eater"+i).className = "buttonlocked"
-			if (buyableGE(i)) document.getElementById("eater"+i).className = "button"
-		}
 		document.getElementById("pointsBuy1").innerHTML = "Sacrifice one galaxy pulse, for one galaxy point";
 		if (buyablePoints()) {
 			document.getElementById("pointsBuy1").className = "button"
@@ -780,12 +775,12 @@ function update(){
 		}
 		document.getElementById("GP41 effect").innerHTML = shorten(1e3)
 	}
-	if (document.getElementById('eaters')){
+	if (document.getElementById('eaters').style.display){
 		if (document.getElementById('eaters').style.display != "none") {
 			for (var i = 1; i<= 4; i++){
-				document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,3,0)
-				document.getElementById("eater"+i).className = "buttonlocked"
-				if (buyableGE(i)) document.getElementById("eater"+i).className = "button"
+				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["Pulses are cheaper", "Wells are cheaper", "Wells are stronger", "MK Scalings are decreased"])[i-1] + " by " + shorten(user.eaters["GE" + i].amount) + "%<br>Cost: " + shorten(user.eaters["GE"+i].cost)
+				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
+				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 			}
 		}
 	}
