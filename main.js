@@ -467,17 +467,18 @@ function getEaterReward(number){
 function buyGPupg(ID){//ID is a string
 	var k = "GP"+ID
 	if (!user.points.upgrades.includes(k) && user.points.possibleUpgrade.includes(k)){
-		var w = -1//value of the location of k
-		for(var i = 0; i< user.points.possibleUpgrade.length; i++){
-			if (user.points.possibleUpgrade[i] == k) w = i
-		}//now w is the thing we are looking at 
-		if (w==-1) return
+		var w = user.points.possibleUpgrade.indexOf(k)
+		 
+		if (w==-1) return "not found"
 		var cost = user.points.upgradesCost[w]
 		if (user.points.amount.gte(cost) && isGPupgradePossible(k)){//buy upgrade then
 			user.points.upgrades.push(k)
 			user.points.amount = user.points.amount.minus(cost)
+			return "bought"
 		}
+		return "not bought"
 	}
+	resizeCanvas();
 }
 
 function isGPupgradePossible(id) {
