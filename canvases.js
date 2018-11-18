@@ -1,4 +1,4 @@
-var canvas = document.getElementById("studyTreeCanvas");
+var canvas = document.getElementById("upgradeCanvas");
 
 function resizeCanvas() {
 	canvas.width = 0;
