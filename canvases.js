@@ -1,4 +1,5 @@
-var canvas = document.getElementById("upgradeCanvas");
+var canvas;
+canvas = document.getElementById("upgradeCanvas");
 var ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
