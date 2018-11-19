@@ -783,7 +783,7 @@ function update(){
 	if (document.getElementById('eaters').style.display){
 		if (document.getElementById('eaters').style.display != "none") {
 			for (var i = 1; i<= 4; i++){
-				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["Pulses are cheaper", "Wells are cheaper", "Wells are stronger", "MK Scalings are decreased"])[i-1] + " by " + shorten(getEaterReward(i)*100) + "%<br>Cost: " + shorten(user.eaters["GE"+i].cost)
+				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["Pulses are cheaper", "Wells are cheaper", "Wells are stronger", "MK Scalings are decreased"])[i-1] + " by " + shorten(getEaterReward(i)*100-100) + "%<br>Cost: " + shorten(user.eaters["GE"+i].cost)
 				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 			}
