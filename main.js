@@ -775,8 +775,7 @@ function update(){
 						if (upgid === "GP11") {
 							console.log(upgid);
 							console.log(div);
-							console.log(user.points.upgrades.includes(upgid));
-							console.log(user.points.amount.lt(user.points.upgradesCost[i]) || !isGPupgradePossible(upgid));
+							console.log(i);
 						}
 					} else div.className = "upgradebtn button"
 				}
