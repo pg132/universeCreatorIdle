@@ -456,6 +456,7 @@ function resetMK(){
 
 function getEaterReward(number){
 	var k = user.eaters["GE"+number].amount
+	if (k > 40) k = Math.pow(k*40,.5)
 	var amt = 0.01
 	if (user.points.upgrades.includes("GP72")) amt = amt * 2
 	var comp = false
