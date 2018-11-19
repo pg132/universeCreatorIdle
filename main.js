@@ -469,14 +469,12 @@ function buyGPupg(ID){//ID is a string
 	if (!user.points.upgrades.includes(k) && user.points.possibleUpgrade.includes(k)){
 		var w = user.points.possibleUpgrade.indexOf(k)
 		 
-		if (w==-1) return "not found"
+		if (w==-1) return 
 		var cost = user.points.upgradesCost[w]
 		if (user.points.amount.gte(cost) && isGPupgradePossible(k)){//buy upgrade then
 			user.points.upgrades.push(k)
 			user.points.amount = user.points.amount.minus(cost)
-			return "bought"
 		}
-		return "not bought"
 	}
 	resizeCanvas();
 }
