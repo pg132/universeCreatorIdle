@@ -3,17 +3,13 @@
 	<head>
 		<script src="magna_numerus.js"></script>
 		<script src="format.js"></script>
-		<script src="canvases.js"></script>
-		<script src="main.js"></script>
 		<script src="versions.js"></script>
-		<script src="achievements.js"></script>
+		<script src="main.js"></script>
 		<title>Universe Creator Idle</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body onload="startInterval()">
 		<button onclick="showTab('generators')" class="button">Generators</button>
-		<button onclick="showTab('upgrades')" class="button" id='upgrades button' style="display:none">Upgrades</button>
-		<button onclick="showTab('eaters')" class="button" id='eaters button' style="display:none">Eaters</button>
 		<button onclick="showTab('options')" class="button">Options</button>
 		<button onclick="showTab('achievements')" class="button">Achievements</button>
 		<button onclick="showTab('statistics')" class="button">Statistics</button>
@@ -185,65 +181,7 @@
 							</button>
 						</td>
 					</tr>
-					<tr class = 'large' id = "points display" style = "display: none;">
-						<td colspan=2 id = "point amount">
-							Gravitational Points: 0
-						</td>
-						<td colspan=2 align="right">
-							<button id="pointsBuy1" onclick="sacPulses(1)" class="button">
-								Lose the effect of one Pulse in exchange for one Gravitational Point
-							</button>
-						</td>
-					</tr>
 				</tbody>
-			</table>
-		</div>
-		<div id='upgrades' class='tab'>
-			<div id="point amount upgrades">You have 0 Gravitational Points.</div>
-			<canvas id="upgradeCanvas"></canvas>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP11" onclick="buyGPupg(11)">Pulsing with extra wells gives you more fpw.<br>Cost: 1 GP</button>
-					</td>
-					<td>
-						<button class="upgradebtn button" id="GP12" onclick="buyGPupg(12)">MK 2s are 100x stronger if you have at least one well.<br>Cost: 1 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP21" onclick="buyGPupg(21)">Decrease the price of each pulse by 3.<br>Cost: 2 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP31" onclick="buyGPupg(31)">Increase the gain of FPW for each pulse by 50%.<br>Cost: 5 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP41" onclick="buyGPupg(41)">MK 9s are <span id='GP41 effect'>1.000e3</span>x stronger.<br>Cost: 10 GP</button>
-					</td>
-					<td>
-						<button class="upgradebtn button" id="GP42" onclick="buyGPupg(42)">Start pulses with 1 well.<br>Cost: 10 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP51" onclick="buyGPupg(51)">Increase the well effect to 2.5x.<br>Cost: 15 GP</button>
-					</td>
-					<td>
-						<button class="upgradebtn button" id="GP52" onclick="buyGPupg(52)">Sacrifice gives 2 gravitational points.<br>Cost: 20 GP</button>
-					</td>
-				</tr>
 			</table>
 		</div>
 		<div id='statistics' class='tab'>
@@ -251,27 +189,6 @@
 			<div id='total gravicles'>You made 0 gravicles in total.</div>
 			<div id='wells stat'>You currently have 0 wells.</div>
 			<div id='pulses stat'>You currently have 0 pulses.</div>
-			<div id='sacrifices stat'>You have sacrificed pulses 0 times.</div>
-		</div>
-		<div id='eaters' class='tab'>
-			<table align=center>
-				<tr>
-					<td>
-						<button class ="upgradebtn button" id='eater1' onclick = "buyGE(1)">Upgrade Gravity Eater Cost: 1.0e100</button>
-					</td>
-					<td>
-						<button class ="upgradebtn button" id='eater2' onclick = "buyGE(2)">Upgrade Gravity Eater Cost: 1.0e100</button>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button class ="upgradebtn button" id='eater3' onclick = "buyGE(3)">Upgrade Gravity Eater Cost: 1.0e100</button>
-					</td>
-					<td>
-						<button class ="upgradebtn button" id='eater4' onclick = "buyGE(4)">Upgrade Gravity Eater Cost: 1.0e100</button>
-					</td>
-				</tr>
-			</table>
 		</div>
 	</body>
 </html>
