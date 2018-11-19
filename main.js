@@ -122,14 +122,14 @@ function getDefaultSave() {
 				amount: 0
 			},
 			GE5:{
-				cost: new Decimal(1e100),
-				scale: new Decimal(1e2),
+				cost: new Decimal(1e400),
+				scale: new Decimal(1e5),
 				amount: 0,
 				unlocked: false
 			},
 			GE6:{
-				cost: new Decimal(1e100),
-				scale: new Decimal(1e2),
+				cost: new Decimal(1e400),
+				scale: new Decimal(1e5),
 				amount: 0,
 				unlocked: false
 			}
@@ -164,6 +164,7 @@ function buyMK(tier, quick) {
 	var costMult = user["mk"+tier].costMult
 	var mainScale = 1+.01/getEaterReward(4)
 	var buyingMult = 1.01
+	var costDelay = getEaterReward(6)
 	var w = 1+.1/getEaterReward(4)
 	if (user.points.upgrades.includes("GP61")) w = (w-1)*.75+1
 	if (tier == 1){
@@ -174,10 +175,10 @@ function buyMK(tier, quick) {
 			user["mk"+tier].multiplier = user["mk"+tier].multiplier.times(buyingMult)
 			user.mk1.amount = user.mk1.amount.plus(1)
 			user.mk1.base += 1
-			if(user.mk1.base > 30 && user.mk1.base % 10 === 0) {
+			if(user.mk1.base > 30 + costDelay && user.mk1.base % 10 === 0) {
 				user.mk1.costMult *= mainScale;
-				if (user.mk1.base%50 === 0 && user.mk1.base >= 300) user.mk1.costMult *= w
-				if (user.mk1.base%100 == 0 && user.mk1.base > 400) user.mk1.costMult *= 1.25+1.75/getEaterReward(4)
+				if (user.mk1.base%50 === 0 && user.mk1.base >= 300 + costDelay) user.mk1.costMult *= w
+				if (user.mk1.base%100 == 0 && user.mk1.base > 400 + costDelay) user.mk1.costMult *= 1.25+1.75/getEaterReward(4)
 			}
 			giveAch(10)
 		}
@@ -189,10 +190,10 @@ function buyMK(tier, quick) {
 		user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 		user["mk"+tier].amount = user["mk"+tier].amount.plus(1)
 		user["mk"+tier].base += 1
-		if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
+		if(user["mk"+tier].base > 30 + costDelay && user["mk"+tier].base % 10 === 0) {
 			user["mk"+tier].costMult *= mainScale;
-			if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300) user["mk"+tier].costMult *= w
-			if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400) user["mk"+tier].costMult *= 1.25+1.75/getEaterReward(4)
+			if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300 + costDelay) user["mk"+tier].costMult *= w
+			if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult *= 1.25+1.75/getEaterReward(4)
 		}
 		giveAch(9+tier)
 	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier>=6){
@@ -204,10 +205,10 @@ function buyMK(tier, quick) {
 			user["mk"+(tier-1)].amount = user["mk"+(tier-1)].amount.minus(tierCost)
 			user["mk"+tier].amount = user["mk"+tier].amount.plus(1)
 			user["mk"+tier].base += 1
-			if(user["mk"+tier].base > 30 && user["mk"+tier].base % 10 === 0) {
+			if(user["mk"+tier].base > 30 + costDelay && user["mk"+tier].base % 10 === 0) {
 				user["mk"+tier].costMult *= mainScale;
-				if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300) user["mk"+tier].costMult *= w
-				if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400) user["mk"+tier].costMult *= 1.25+1.75/getEaterReward(4)
+				if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300 + costDelay) user["mk"+tier].costMult *= w
+				if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult *= 1.25+1.75/getEaterReward(4)
 			}
 			giveAch(10+tier)
 		}
@@ -249,6 +250,9 @@ function updatePulseCost(){
 }
 
 function buyGE(number,amt=1){
+	if (number >= 5){
+		if (!user.eaters["GE"+number].unlocked) return 
+	}
 	var k = user.eaters["GE"+number].cost.times(Decimal.pow(user.eaters["GE"+number].scale, amt-1))
 	if (user.gravicles.gte(k)){
 		user.gravicles = user.gravicles.minus(k)
@@ -258,8 +262,13 @@ function buyGE(number,amt=1){
 	
 }
 
+function updateGEunlocks(){
+	user.eaters.GE5.unlocked = user.points.upgrades.includes("GP61")
+	user.eaters.GE6.unlocked = user.points.upgrades.includes("GP61")
+}
+
 function buyMaxGE(number){
-	while (user.eaters["GE"+number].cost < user.gravicles){
+	while (user.eaters["GE"+number].cost.lt(user.gravicles)){
 		buyGE(number)
 	}
 }
@@ -481,9 +490,10 @@ function solveQuad(a,b,c){
 
 function getEaterReward(number){
 	var k = user.eaters["GE"+number].amount
-	if (k > 40) k = Math.pow(k*40,.5)
 	var amt = 0.01
 	if (user.points.upgrades.includes("GP72")) amt = amt * 2
+	if (number == 6) return amt*100*k
+	if (k > 40) k = Math.pow(k*40,.5) //GE6 doesnt get softcapped, might need to change later
 	var comp = false
 	if (user.points.upgrades.includes("GP81")) comp = true
 	if (comp) return Decimal.pow(1+amt,k)
@@ -651,6 +661,31 @@ function checkAchUnlocks(){
 	if (thirty6fails <= 1) giveAch(36)
 }
 
+
+
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+// BELOW IS ALL OF THE DISPLAY AND PRODUCTION FUNCTIONS
+
+
+
 var showPoints = user.pulse.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
 function updateShowPoints(){
 	showPoints = showPoints || user.pulse.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
@@ -695,7 +730,9 @@ function baseMKproduction(tier){
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 2 && user.wells.amount >= 1 && user.points.upgrades.includes("GP12")) mult = mult.times(100)
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(1000)
-	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
+	var fpwMult = 1.5
+	if (user.GE5.unlocked) fpwMult *= getEaterReward(5)
+	mult = mult.times(Decimal.pow(1+fpwMult/tier,user.wells.defaultMults-4))
 	//put additional mults here
 	if (user.points.upgrades.includes("GP92")) {
 		if (user["mk"+tier].amount == 0) return new Decimal (0)
@@ -709,7 +746,9 @@ function baseMKmult(tier){
 	mult = mult.times(gravityWellBoost(tier))
 	if (tier == 2 && user.wells.amount >= 1 && user.points.upgrades.includes("GP12")) mult = mult.times(100)
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(1000)
-	mult = mult.times(Decimal.pow(1+1.5/tier,user.wells.defaultMults-4))
+	var fpwMult = 1.5
+	if (user.GE5.unlocked) fpwMult *= getEaterReward(5)
+	mult = mult.times(Decimal.pow(1+fpwMult/tier,user.wells.defaultMults-4))
 	//put additional mults here
 	return mult
 }
@@ -939,6 +978,7 @@ function gameLoop(){
 	updateShowPoints();
 	runMKAutobuyers();
 	checkAchUnlocks();
+	updateGEunlocks();
 	update();
 }
 
