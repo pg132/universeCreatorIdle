@@ -11,4 +11,8 @@ function updateSave() {
 			lastTimes: user.points.lastTimes ? user.points.lastTimes : [new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime()]//11 of them
 		}
 	}
+	if (user.version < 0.02) {
+		user.version = 0.02
+		user.points.amount = new Decimal(user.points.amount)
+	}
 }

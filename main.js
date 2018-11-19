@@ -572,12 +572,10 @@ function runMKAutobuyers(){
 	}
 }
 
-
 function sacPulses(amt){
 	if (user.pulse.amount>= amt+2 && amt > 0){
 		user.statistics.sacrificed++
-		user.points.amount = user.points.amount.plus(amt)
-		if (user.points.upgrades.includes("GP52")) user.points.amount = user.points.amount.plus(amt)
+		user.points.amount = user.points.amount.plus(getGPgain()).round()
 		user.pulse.amount -= amt
 		//remove the last amt elems from user.pulse.multipliers this is done by the .pop()
 		for (var i = 0; i<amt;i++){
@@ -588,10 +586,10 @@ function sacPulses(amt){
 		if (user.points.amount >= 10) giveAch(28)
 	}
 }
+
 function sacMaxPulses(){
 	sacPulses(Math.max(0,user.pulse.amount-2))
 }
-
 
 function updateMKUnlocks(){
 	var w = user.wells.amount
@@ -618,6 +616,10 @@ function updateShowPoints(){
 function showGravPoints(){
 	document.getElementById("points display").style.display = "none";
 	if (showPoints) document.getElementById("points display").style.display = "";
+}
+function getGPgain(sac) {
+	if (user.points.upgrades.includes("GP52")) return sac*2
+	return sac
 }
 
 
@@ -879,7 +881,7 @@ function impo(){
 		save = JSON.parse(atob(save));
 		
 		user = convertSave(save,getDefaultSave());
-		
+		updateSave()
 	}
 }
 function gameLoop(){
