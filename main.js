@@ -463,7 +463,7 @@ function resetMK(){
 
 function solveQuad(a,b,c){
 	var descrim = Math.sqrt(b*b-4*a*c)
-	return [(-b+descrim)/2/a,(-b-descrim)/2/a)]
+	return [(-b+descrim)/2/a,(-b-descrim)/2/a]
 }
 
 
