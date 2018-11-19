@@ -454,6 +454,12 @@ function resetMK(){
 	}
 }
 
+function solveQuad(a,b,c){
+	var descrim = Math.sqrt(b*b-4*a*c)
+	return [(-b+descrim)/2/a,(-b-descrim)/2/a)]
+}
+
+
 function getEaterReward(number){
 	var k = user.eaters["GE"+number].amount
 	if (k > 40) k = Math.pow(k*40,.5)
