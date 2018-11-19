@@ -120,6 +120,18 @@ function getDefaultSave() {
 				cost: new Decimal(1e100),
 				scale: new Decimal(1e2),
 				amount: 0
+			},
+			GE5:{
+				cost: new Decimal(1e100),
+				scale: new Decimal(1e2),
+				amount: 0,
+				unlocked: false
+			},
+			GE6:{
+				cost: new Decimal(1e100),
+				scale: new Decimal(1e2),
+				amount: 0,
+				unlocked: false
 			}
 		},
 		statistics: {
@@ -130,7 +142,7 @@ function getDefaultSave() {
 		options: {
 			notation: "Scientific"
 		},
-		version: 0.1,
+		version: 0.101,
 		lastTick: new Date().getTime()
 	};
 }
