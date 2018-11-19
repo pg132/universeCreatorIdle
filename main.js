@@ -584,7 +584,6 @@ function showTab(tabName) {
 		if (tab.id === tabName) tab.style.display = 'block';
 		else tab.style.display = 'none';
 	}
-	resizeCanvas();
 }
 
 function save(){
