@@ -575,7 +575,7 @@ function runMKAutobuyers(){
 function sacPulses(amt){
 	if (user.pulse.amount>= amt+2 && amt > 0){
 		user.statistics.sacrificed++
-		user.points.amount = user.points.amount.plus(getGPgain()).round()
+		user.points.amount = user.points.amount.plus(getGPgain(amt)).round()
 		user.pulse.amount -= amt
 		//remove the last amt elems from user.pulse.multipliers this is done by the .pop()
 		for (var i = 0; i<amt;i++){
