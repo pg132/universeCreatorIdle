@@ -57,4 +57,31 @@ function updateSave() {
 			}
 		} 
 	}
+	if (user.version < 0.101){
+		user.version = 0.101
+		user.eaters = {
+			GE1:user.eaters.GE1,
+			GE2:user.eaters.GE2,
+			GE3:user.eaters.GE3,
+			GE4:user.eaters.GE4,
+			GE5:{
+				cost: new Decimal(1e400),
+				scale: new Decimal(1e5),
+				amount: 0,
+				unlocked: false
+			},
+			GE6:{
+				cost: new Decimal(1e400),
+				scale: new Decimal(1e5),
+				amount: 0,
+				unlocked: false
+			}
+		}//closes user.eaters
+	}
 }
+
+
+
+
+
+
