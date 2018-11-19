@@ -10,7 +10,7 @@ function updateSave() {
 		}
 		if (user.version < 0.02 || user.version === undefined || j){ 
 			// only reset when user.version is less then 0.02 or its undefined or possibleUpgrade is wrong
-			if (user.version >= 0.1){ // if the version is high enough we also wanna leave it be
+			if (user.version < 0.1 || user.version === undefined){ // if the version is high enough we also wanna leave it be
 				user.version = 0.02
 				delete user.points
 				delete user.eaters
