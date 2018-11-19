@@ -130,7 +130,7 @@ function getDefaultSave() {
 		options: {
 			notation: "Scientific"
 		},
-		version: 0.01,
+		version: 0.1,
 		lastTick: new Date().getTime()
 	};
 }
@@ -822,11 +822,11 @@ function showTab(tabName) {
 }
 
 function save(){
-	localStorage.setItem("save",JSON.stringify(user));
+	localStorage.setItem("save test",JSON.stringify(user));
 }
 function load(){
-	var save = JSON.parse(localStorage.getItem("save"));
-	if(localStorage.getItem("save") !== null) {
+	var save = JSON.parse(localStorage.getItem("save test"));
+	if(localStorage.getItem("save test") !== null) {
 		user = convertSave(save,getDefaultSave());
 		updateSave()
 	}
@@ -911,7 +911,7 @@ function hardReset() {
 	}
 }
 function clear(){
-	localStorage.removeItem("save");
+	localStorage.removeItem("save test");
 	user = getDefaultSave()
 }
 
