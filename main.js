@@ -825,29 +825,18 @@ function save(){
 function load(){
 	var save = JSON.parse(localStorage.getItem("save"));
 	if(localStorage.getItem("save") !== null) {
-		convertDecimals(save);
-		for(var i in save) {
-			user[i] = save[i];
-		}
+		convertSave(save,getDefaultSave());
 		updateSave()
 	}
 	document.getElementById("notation").innerHTML = "Notation: " + user.options.notation
 	return user;
 }
-function convertDecimals(obj) {
-	if(typeof obj === "object" && obj !== null) {
+function convertSave(obj,obj2) {
+	if(typeof obj === "object" && obj !== null && typeof obj2 === "object" && obj2 !== null) {
 		for(var i in obj) {
-			obj[i] = convertDecimals(obj[i]);
+			obj2[i] = convertSave(obj[i],obj2[i]);
 		}
-		if(obj._class === "Decimal") {
-			if(obj.logarithm === null) {
-				return new Decimal(0);
-			}
-			return Decimal.pow(10,obj.logarithm);
-		} else {
-			return obj;
-		}
-		
+		return obj2;
 	} else {
 		return obj;
 	}
@@ -889,10 +878,8 @@ function impo(){
 	} else {
 		save = JSON.parse(atob(save));
 		
-		convertDecimals(save);
-		for(var i in save) {
-			user[i] = save[i];
-		}
+		convertSave(save);
+		
 	}
 }
 function gameLoop(){
