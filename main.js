@@ -825,7 +825,7 @@ function save(){
 function load(){
 	var save = JSON.parse(localStorage.getItem("save"));
 	if(localStorage.getItem("save") !== null) {
-		convertSave(save,getDefaultSave());
+		user = convertSave(save,getDefaultSave());
 		updateSave()
 	}
 	document.getElementById("notation").innerHTML = "Notation: " + user.options.notation
@@ -878,7 +878,7 @@ function impo(){
 	} else {
 		save = JSON.parse(atob(save));
 		
-		convertSave(save);
+		user = convertSave(save,getDefaultSave());
 		
 	}
 }
