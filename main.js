@@ -207,7 +207,13 @@ function buyMK(tier, quick) {
 function gravityWell(autobuyer){//autobuyer helps us later to see if the user is doing it
 	//first check is if we can afford it
 	if (user["mk"+user.wells.tiercost].amount.gte(new Decimal(user.wells.cost-.0001))){//otherwise kick us out of this function
-		resetMK() //we need this function DONE
+		var maxT = user.wells.tiercost
+		var canGet30 = true
+		for (var i = 1; i < maxT; i++){
+			if (user["mk"+i].amount.gt(10)) canGet30 = false
+		}
+		if (canGet30 && !user["mk"+user.wells.tiercost].amount.gt(20)) giveAch(30)
+		resetMK() 
 		if (!(user.wells.tiercost == 9)){
 			user.wells.tiercost += 1
 		} else{
@@ -250,6 +256,7 @@ function gravityPulse(autobuyer){
 	//first check if we afford
 	if (user.wells.amount >= user.pulse.cost){
 		giveAch(21)
+		if (user.wells.amount-10 >= user.pulse.cost) giveAch(32)
 		//clear mk and then give boosts
 		user.pulse.multipliers.push(getPulseReward(user.wells.amount))//add the thing to the end
 		user = {//update user
@@ -589,8 +596,14 @@ function sacPulses(amt){
 			user.pulse.multipliers.pop()
 		}
 		giveAch(24)
-		if (user.pulse.amount == 2) giveAch(25)
+		if (user.pulse.amount == 2) giveAch(33)
 		if (user.points.amount >= 10) giveAch(28)
+		fullPowerWellsUpdate()
+		updatePulseCost()
+		if (user.wells.amount >= user.pulse.cost) {
+			giveAch(34)
+			user.points.amount = user.points.amount.plus(1)
+		}
 	}
 }
 
@@ -612,8 +625,18 @@ function updateMKUnlocks(){
 
 function checkAchUnlocks(){
 	if (user.pulse.amount == 9 && user.wells.amount == 9 && user.mk9.amount == new Decimal(99)) giveAch(27)
-	
-	
+	var canget31 = true
+	for (var i = 1; i<=8; i++){
+		if (user["mk"+i].multiplier.gte(user["mk"+(i+1)].multiplier)) canget31 = false
+	}
+	if (canget31) giveAch(31)
+	if (user.points.autobuyerTimes[0] < 100 && user.points.autobuyerTimes[1] >= 10000) giveAch(35)
+	var maxGE = Math.max(Math.max(user.eaters.GE1.amount,user.eaters.GE2.amount),Math.max(user.eaters.GE3.amount,user.eaters.GE4.amount))
+	var thirty6fails = 0
+	for (var i = 1; i<=4; i++){
+		if (maxGE-10 < user.eaters["GE"+i].amount) thirty6fails += 1
+	}
+	if (thirty6fails <= 1) giveAch(36)
 }
 
 var showPoints = user.pulse.amount >= 6 || user.points.amount.gte(1) || !(user.points.upgrades.length == 0)
