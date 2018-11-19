@@ -788,6 +788,7 @@ function buyablePulse() {
 	return false
 }
 function buyableGE(number){
+	if (number >= 5) return user.eaters["GE"+number].cost.lte(user.gravicles) && user.eaters["GE"+number].unlocked
 	return user.eaters["GE"+number].cost.lte(user.gravicles)
 }
 
@@ -867,6 +868,12 @@ function update(){
 				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["Pulses are cheaper", "Wells are cheaper", "Wells are stronger", "MK Scalings are decreased"])[i-1] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + "%<br>Cost: " + shorten(user.eaters["GE"+i].cost)
 				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
+			}
+			for (var i = 5; i<= 6; i++){
+				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["FPW mult is stronger", "MK Scalings start later"])[i-5] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + (["%<br>","<br>"])[i-5]+"Cost: " + shorten(user.eaters["GE"+i].cost)
+				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
+				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
+				if (!user.eaters["GE"+i].unlocked) document.getElementById("eater"+i).style.display = "none"
 			}
 		}
 	}
