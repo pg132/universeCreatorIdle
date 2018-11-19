@@ -1,6 +1,11 @@
 function updateSave() {
 	if (user.version === undefined || user.points !== undefined) {
-		if (user.version < 0.02 || user.version === undefined || user.points.possibleUpgrade != ["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA","GP61","GP71","GP72","GPA10","GPA11","GP81","GP91","GP92"]){ 
+		var l = ["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA","GP61","GP71","GP72","GPA10","GPA11","GP81","GP91","GP92"]
+		var j = false
+		for (var i = 0; i< l.length; i++){
+			if (l[i] != user.points.possibleUpgrade[i]) j = true
+		}
+		if (user.version < 0.02 || user.version === undefined || j){ 
 			// only reset when user.version is less then 0.02 or its undefined or possibleUpgrade is wrong
 			user.version = 0.02
 			delete user.points
