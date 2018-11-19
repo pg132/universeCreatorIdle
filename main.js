@@ -772,7 +772,12 @@ function update(){
 				else {
 					if (user.points.amount.lt(user.points.upgradesCost[i]) || !isGPupgradePossible(upgid)) {
 						div.className = "upgradebtn buttonlocked"
-						console.log("AAAA");
+						if (i === 0) {
+							console.log(upgid);
+							console.log(div);
+							console.log(user.points.upgrades.includes(upgid));
+							console.log(user.points.amount.lt(user.points.upgradesCost[i]) || !isGPupgradePossible(upgid));
+						}
 					} else div.className = "upgradebtn button"
 				}
 			}
