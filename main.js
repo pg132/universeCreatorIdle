@@ -772,7 +772,7 @@ function update(){
 				else {
 					if (user.points.amount.lt(user.points.upgradesCost[i]) || !isGPupgradePossible(upgid)) {
 						div.className = "upgradebtn buttonlocked"
-						if (i === 0) {
+						if (upgid === "GP11") {
 							console.log(upgid);
 							console.log(div);
 							console.log(user.points.upgrades.includes(upgid));
