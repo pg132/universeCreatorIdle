@@ -770,8 +770,10 @@ function update(){
 			if (div !== null) {
 				if (user.points.upgrades.includes(upgid)) div.className = "upgradebtn buttonbought"
 				else {
-					if (user.points.amount.lt(user.points.upgradesCost[i]) || !isGPupgradePossible(upgid)) div.className = "upgradebtn buttonlocked"
-					else div.className = "upgradebtn button"
+					if (user.points.amount.lt(user.points.upgradesCost[i]) || !isGPupgradePossible(upgid)) {
+						div.className = "upgradebtn buttonlocked"
+						console.log("AAAA");
+					} else div.className = "upgradebtn button"
 				}
 			}
 		}
