@@ -848,7 +848,7 @@ function update(){
 		for(var i = 1; i <=9; i++) {
 			var str = "mk"+i+"Amount";
 			document.getElementById(str).innerHTML = shorten(user["mk"+i].amount);
-			if (i == 9) document.getElementById(str).innerHTML = getMKAmount(9)
+			if (i == 9) document.getElementById(str).innerHTML = getMkAmount(9)
 			if(i === 1) {
 				document.getElementById("buy"+i).innerHTML = "Cost: "+shorten(user["mk"+i].cost);
 			} else {
