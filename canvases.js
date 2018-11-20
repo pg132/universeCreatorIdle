@@ -40,6 +40,8 @@ function drawUpgradeTree() {
 	drawTreeBranch("GP42", "GP52");
 	drawTreeBranch("GP51", "GP61");
 	drawTreeBranch("GP52", "GP61");
+	drawTreeBranch("GP61", "GP71");
+	drawTreeBranch("GP61", "GP72");
 }
 
 
