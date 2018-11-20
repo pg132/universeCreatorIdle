@@ -914,6 +914,7 @@ function update(){
 				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 				if (!user.eaters["GE"+i].unlocked) document.getElementById("eater"+i).style.display = "none"
+				else document.getElementById("eater"+i).style.display = ""
 			}
 		}
 	}
