@@ -166,6 +166,9 @@ function buyMK(tier, quick) {
 	var buyingMult = 1.01
 	var costDelay = getEaterReward(6)
 	var w = 1+.1/getEaterReward(4)
+	var constScale = Math.max(1,(user["mk"+tier].base-900)/100)
+	w *= constScale
+	mainScale *= constScale
 	if (tier == 1){
 		if (gravCost.lte(user.gravicles)){
 			user.gravicles = user.gravicles.minus(gravCost)
@@ -177,7 +180,7 @@ function buyMK(tier, quick) {
 			if(user.mk1.base > 30 + costDelay && user.mk1.base % 10 === 0) {
 				user.mk1.costMult *= mainScale;
 				if (user.mk1.base%50 === 0 && user.mk1.base >= 300 + costDelay) user.mk1.costMult *= w
-				if (user.mk1.base%100 == 0 && user.mk1.base > 400 + costDelay) user.mk1.costMult *= 1.25+1.75/getEaterReward(4)
+				if (user.mk1.base%100 == 0 && user.mk1.base > 400 + costDelay) user.mk1.costMult *= 1.25+1.75/getEaterReward(4)*constScale
 			}
 			giveAch(10)
 		}
@@ -192,7 +195,7 @@ function buyMK(tier, quick) {
 		if(user["mk"+tier].base > 30 + costDelay && user["mk"+tier].base % 10 === 0) {
 			user["mk"+tier].costMult *= mainScale;
 			if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300 + costDelay) user["mk"+tier].costMult *= w
-			if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult *= 1.25+1.75/getEaterReward(4)
+			if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult *= 1.25+1.75/getEaterReward(4)*constScale
 		}
 		giveAch(9+tier)
 	} else if (gravCost.lte(user.gravicles) && user["mk"+(tier-1)].amount.gte(tierCost)&&tier>=6){
@@ -207,7 +210,7 @@ function buyMK(tier, quick) {
 			if(user["mk"+tier].base > 30 + costDelay && user["mk"+tier].base % 10 === 0) {
 				user["mk"+tier].costMult *= mainScale;
 				if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300 + costDelay) user["mk"+tier].costMult *= w
-				if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult *= 1.25+1.75/getEaterReward(4)
+				if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult *= 1.25+1.75/getEaterReward(4)*constScale
 			}
 			giveAch(10+tier)
 		}
