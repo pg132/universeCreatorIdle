@@ -532,7 +532,7 @@ function gravityWellBoost(tier){
 	if (user.points.upgrades.includes("GP51")) base = 2.5
 	base = base*getEaterReward(3)
 	var q = new Decimal(1)
-	if (user.points.upgrades.includes("GP71"))  q = Decimal.pow(2.5,Math.floor(w-tier/5)).max(1)
+	if (user.points.upgrades.includes("GP71"))  q = Decimal.pow(2,Math.floor(w-tier/5)).max(1)
 	if (w<=d-1+tier) return Decimal.max(1,base**(w-tier+1)).times(q)//fifth is worse
 	return Decimal.pow(base,(d-1)).times(w-d-tier+3).times(q)//just try it, it should work
 }
