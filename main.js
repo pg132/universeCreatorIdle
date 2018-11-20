@@ -256,7 +256,7 @@ function buyGE(number,amt=1){
 	var k = user.eaters["GE"+number].cost.times(Decimal.pow(user.eaters["GE"+number].scale, amt-1))
 	if (user.gravicles.gte(k)){
 		user.gravicles = user.gravicles.minus(k)
-		user.eaters["GE"+number].cost = k.times(Decimal.pow(user.eaters["GE"+number].scale, amt))
+		user.eaters["GE"+number].cost = user.eaters["GE"+number].cost.times(Decimal.pow(user.eaters["GE"+number].scale, amt))
 		user.eaters["GE"+number].amount += amt
 	}
 	
@@ -902,15 +902,15 @@ function update(){
 		}
 		document.getElementById("GP41 effect").innerHTML = shorten(1e3)
 	}
-	if (document.getElementById('eaters').style.display){
-		if (document.getElementById('eaters').style.display != "none") {
+	if (document.getElementById('eaters').style.display){// 																																							i did this bc something is wrong with my github
+		if (document.getElementById('eaters').style.display != "none") {                                                                                                                                                   																
 			for (var i = 1; i<= 4; i++){
-				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["Pulses are cheaper", "Wells are cheaper", "Wells are stronger", "MK Scalings are decreased"])[i-1] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + "%<br>Cost: " + shorten(user.eaters["GE"+i].cost)
+				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["Pulses are cheaper", "Wells are cheaper", "Wells are stronger", "MK Scalings are decreased"])[i-1] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + "%<br>Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
 				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 			}
 			for (var i = 5; i<= 6; i++){
-				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["FPW mult is stronger", "MK Scalings start later"])[i-5] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + (["%<br>","<br>"])[i-5]+"Cost: " + shorten(user.eaters["GE"+i].cost)
+				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["FPW mult is stronger", "MK Scalings start later"])[i-5] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + (["%<br>","<br>"])[i-5]+"Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
 				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 				if (!user.eaters["GE"+i].unlocked) document.getElementById("eater"+i).style.display = "none"
