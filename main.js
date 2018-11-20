@@ -761,7 +761,7 @@ function showMK(){
 }
 
 function getMkAmount(tier) {
-	if (tier > 8) return user.mk9.amount.round()
+	if (tier > 8) return user.mk9.base
 	if (user["mk"+(tier+1)].amount.eq(0)) return user["mk"+tier].amount.round()
 	return user["mk"+tier].amount
 }
