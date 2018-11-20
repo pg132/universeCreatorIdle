@@ -490,9 +490,13 @@ function solveQuad(a,b,c){
 function getEaterReward(number){
 	var k = user.eaters["GE"+number].amount
 	var amt = 0.01
-	if (user.points.upgrades.includes("GP72")) amt = amt * 2
+	if (user.points.upgrades.includes("GP72")) {
+		amt = amt * 2
+	}
+	if (k > 70 && amt == 0.02) k = Math.pow(k*4900,1/3)
+	else if (k > 70) k = Math.pow(k*Math.pow(70,1.5),2/5)
+	if (k > 40) k = Math.pow(k*40,.5)
 	if (number == 6) return amt*100*k
-	if (k > 40) k = Math.pow(k*40,.5) //GE6 doesnt get softcapped, might need to change later
 	var comp = false
 	if (user.points.upgrades.includes("GP81")) comp = true
 	if (comp) return Decimal.pow(1+amt,k)
