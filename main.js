@@ -166,7 +166,6 @@ function buyMK(tier, quick) {
 	var buyingMult = 1.01
 	var costDelay = getEaterReward(6)
 	var w = 1+.1/getEaterReward(4)
-	if (user.points.upgrades.includes("GP61")) w = (w-1)*.75+1
 	if (tier == 1){
 		if (gravCost.lte(user.gravicles)){
 			user.gravicles = user.gravicles.minus(gravCost)
