@@ -910,7 +910,8 @@ function update(){
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 			}
 			for (var i = 5; i<= 6; i++){
-				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["FPW mult is stronger", "MK Scalings start later"])[i-5] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + (["%<br>","<br>"])[i-5]+"Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
+				if (i != 6) document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["FPW mult is stronger", "MK Scalings start later"])[i-5] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + (["%<br>","<br>"])[i-5]+"Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
+				else document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #6<br>MK Scalings start later by " + (getEaterReward(6)) + "<br>Cost: " + formatValue(user.options.notation,user.eaters.GE6.cost,0,0)
 				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 				if (!user.eaters["GE"+i].unlocked) document.getElementById("eater"+i).style.display = "none"
