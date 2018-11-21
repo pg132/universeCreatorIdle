@@ -814,11 +814,11 @@ function buyable(tier) {
 	var unlocked = true
 	if (tier > 5) unlocked = user["mk"+tier].unlocked
 	if (tier < 2) return true
-	return gravCost.lte(user.gravicles) && getMkAmount(tier-1).gte(tierCost) && unlocked
+	return gravCost.lte(user.gravicles) && new Decimal(getMkAmount(tier-1)).gte(tierCost) && unlocked
 }
 
 function buyableWell() {
-	if (getMkAmount(user.wells.tiercost).gte(new Decimal(user.wells.cost-0.0001))){
+	if (new Decimal(getMkAmount(user.wells.tiercost)).gte(new Decimal(user.wells.cost-0.0001))){
 		return true
 	}
 	return false
