@@ -523,7 +523,7 @@ function isGPupgradePossible(id) {
 		var w = user.points.possibleUpgrade.indexOf(id)
 		var req = user.points.requirements[w]
 		var reqs = req.split(",")
-		for(var i; i < reqs.length, i++) {
+		for(var i; i < reqs.length; i++) {
 			if (user.points.upgrades.includes(reqs[i])) return true
 		}
 		return false
