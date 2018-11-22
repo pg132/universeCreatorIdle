@@ -90,6 +90,11 @@ function updateSave() {
 			lastTimes:user.points.lastTimes
 		}//closes user.poitnsd	
 	}
+	if (user.version < .103){//make the cost mults Decimals
+		for (var i = 1; i <= 9; i++){
+			user["mk"+i].costMult = new Decimal(user["mk"+i].costMult)
+		}
+	}
 }
 
 
