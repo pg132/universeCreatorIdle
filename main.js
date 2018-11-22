@@ -93,8 +93,9 @@ function getDefaultSave() {
 		},
 		points:{
 			amount:new Decimal(0),
-			upgradesCost:   [     1,     1,     2,     5,    50,    60,    70,    80,    90,   100,   110,   120,   130,    10,    10,    15,    20,   200,    30,    75,   100,    500,    500,   200,    25,    50],//next line GP starts for gravity points and GPA stands for gravity points autobuyer             
-			possibleUpgrade:["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA","GP61","GP71","GP72","GPA10","GPA11","GP81","GP91","GP92"],       
+			upgradesCost:   [     1,     1,          2,     5,    50,    60,    70,    80,    90,   100,   110,   120,   130,    10,    10,    15,    20,   200,         30,    75,   100,   500,        200,    25,    50],//next line GP starts for gravity points and GPA stands for gravity points autobuyer             
+			possibleUpgrade:["GP11","GP12",     "GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA",     "GP61","GP71","GP72","GPPA",     "GP81","GP91","GP92"],       
+			requirements:   [    "",    "","GP11,GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GP31","GP31","GP41","GP42","GPWA","GP51,GP52","GP61","GP61","GPPA","GP71,GP72","GP81","GP81"],       
 			upgrades:[],
 			autobuyers:[],
 			autobuyerTimes:[10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
@@ -518,14 +519,14 @@ function buyGPupg(ID){//ID is a string
 }
 
 function isGPupgradePossible(id) {
-	if (id == "GPA1") return user.points.upgrades.includes("GP31")
-	if (String(id).length >= 4){
-		if (id.substring(0, 3) == "GPA") return user.points.upgrades.includes("GPA"+(parseInt(id.substring(3))-1))
-	}
-	rowid = parseInt(String(id).substring(2))
-	rowid = rowid - rowid%10
-	if (rowid < 20) return true
-	return user.points.upgrades.includes("GP"+(rowid-9)) || user.points.upgrades.includes("GP"+(rowid-8))
+	if(user.points.possibleUpgrade.includes(id)) {
+		var w = user.points.possibleUpgrade.indexOf(id)
+		var req = user.points.requirements[w]
+		var reqs = req.split(",")
+		for(var i; i < reqs.length, i++) {
+			if (user.points.upgrades.includes(reqs[i])) return true
+		}
+		return false
 }
 
 function gravityWellBoost(tier){
