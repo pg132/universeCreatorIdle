@@ -89,11 +89,13 @@ function updateSave() {
 			autobuyerTimes:user.points.autobuyerTimes,
 			lastTimes:user.points.lastTimes
 		}//closes user.poitnsd	
+		user.version = .102
 	}
 	if (user.version < .103){//make the cost mults Decimals
 		for (var i = 1; i <= 9; i++){
 			user["mk"+i].costMult = new Decimal(user["mk"+i].costMult)
 		}
+		user.vesion = .103
 	}
 }
 
