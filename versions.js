@@ -1,6 +1,6 @@
 function updateSave() {
 	if (user.version === undefined || user.points !== undefined) {
-		var l = ["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPWA","GP61","GP71","GP72","GPA10","GPA11","GP81","GP91","GP92"]
+		var l = ["GP11","GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GPA9","GP41","GP42","GP51","GP52","GPA10","GP61","GP71","GP72","GPA10","GPA11","GP81","GP91","GP92"]
 		var j = false
 		if (l.length != user.points.possibleUpgrade.length) j = false
 		else{
