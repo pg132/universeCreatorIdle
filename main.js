@@ -222,7 +222,8 @@ function buyMK(tier, quick) {
 			giveAch(10+tier)
 		}
 	}
-	//abv is init mult scale after e308
+	if (user["mk"+tier].cost.gte(new Decimal("1e4000"))) user["mk"+tier].costMult = user["mk"+tier].costMult.times(2)
+	//abv is mult scale for ripple
 	if (!quick) update();
 }
 
