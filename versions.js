@@ -78,6 +78,18 @@ function updateSave() {
 			}
 		}//closes user.eaters
 	}
+	if (user.version < 0.102){
+		user.points = {
+			amount:user.points.amount,
+			upgradesCost:user.points.upgradesCost,
+			possibleUpgrade:user.points.possibleUpgrade,
+			requirements:   [    "",    "","GP11,GP12","GP21","GP31","GPA1","GPA2","GPA3","GPA4","GPA5","GPA6","GPA7","GPA8","GP31","GP31","GP41","GP42", "GPA9","GP51,GP52","GP61","GP61","GPA10","GP71,GP72","GP81","GP81"],       
+			upgrades:user.points.upgrades,
+			autobuyers:user.points.autobuyers,
+			autobuyerTimes:user.points.autobuyerTimes,
+			lastTimes:user.points.lastTimes
+		}//closes user.poitnsd	
+	}
 }
 
 
