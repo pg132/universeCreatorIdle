@@ -198,7 +198,7 @@ function buyMK(tier, quick) {
 		if(user["mk"+tier].base > 30 + costDelay && user["mk"+tier].base % 10 === 0) {
 			user["mk"+tier].costMult = user["mk"+tier].costMult.times(mainScale);
 			if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300 + costDelay) user["mk"+tier].costMult = user["mk"+tier].costMult.times(w)
-			if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult *= user["mk"+tier].costMult.times((1.25+1.75/getEaterReward(4))*constScale)
+			if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult = user["mk"+tier].costMult.times((1.25+1.75/getEaterReward(4))*constScale)
 		}else{
 		user["mk"+tier].costMult = user["mk"+tier].costMult.times(constScale)
 		}
@@ -215,7 +215,7 @@ function buyMK(tier, quick) {
 			if(user["mk"+tier].base > 30 + costDelay && user["mk"+tier].base % 10 === 0) {
 				user["mk"+tier].costMult = user["mk"+tier].costMult.times(mainScale);
 				if (user["mk"+tier].base %50 === 0 && user["mk"+tier].base >= 300 + costDelay) user["mk"+tier].costMult = user["mk"+tier].costMult.times(w)
-				if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult *= user["mk"+tier].costMult.times((1.25+1.75/getEaterReward(4))*constScale)
+				if (user["mk"+tier].base %100 == 0 && user["mk"+tier].base > 400 + costDelay) user["mk"+tier].costMult = user["mk"+tier].costMult.times((1.25+1.75/getEaterReward(4))*constScale)
 			}else{
 			user["mk"+tier].costMult = user["mk"+tier].costMult.times(constScale)
 			}
