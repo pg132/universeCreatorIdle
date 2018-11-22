@@ -143,7 +143,7 @@ function getDefaultSave() {
 		options: {
 			notation: "Scientific"
 		},
-		version: 0.101,
+		version: 0.102,
 		lastTick: new Date().getTime()
 	};
 }
