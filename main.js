@@ -508,6 +508,7 @@ function getEaterReward(number){
 	if (k > 80) k =  Math.pow(k*80,.5)
 	if (k > 120) k = Math.pow(k*120,.5)
 	if (k > 160) k = Math.pow(k*160,.5)
+	if (k > 200) k = Math.pow(k*200,.5)
 	var comp = false
 	if (user.points.upgrades.includes("GP81")) comp = true
 	if (comp) return Decimal.pow(1+amt,k)
