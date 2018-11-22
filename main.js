@@ -297,7 +297,7 @@ function gravityPulse(autobuyer){
 				multiplier:new Decimal(1),
 				base:0,
 				previousTierCost:0,
-				costMult:1.15
+				costMult:new Decimal(1.15)
 			},
 			mk2:{
 				cost:new Decimal(100),
@@ -305,7 +305,7 @@ function gravityPulse(autobuyer){
 				multiplier:new Decimal(1),
 				base:0,
 				previousTierCost:10,
-				costMult:1.165
+				costMult:new Decimal(1.165)
 			},
 			mk3:{
 				cost:new Decimal(1000),
@@ -313,7 +313,7 @@ function gravityPulse(autobuyer){
 				multiplier:new Decimal(1),	
 				base:0,
 				previousTierCost:10,
-				costMult:1.18
+				costMult:new Decimal(1.18)
 			},
 			mk4:{
 				cost:new Decimal(1e4),
@@ -321,7 +321,7 @@ function gravityPulse(autobuyer){
 				multiplier:new Decimal(1),
 				base:0,
 				previousTierCost:10,
-				costMult:1.2
+				costMult:new Decimal(1.2)
 			},
 			mk5:{
 				cost:new Decimal(1e6),
@@ -329,7 +329,7 @@ function gravityPulse(autobuyer){
 				multiplier:new Decimal(1),
 				base:0,
 				previousTierCost:10,
-				costMult:1.22
+				costMult:new Decimal(1.22)
 			},
 			mk6:{
 				cost:new Decimal(1e9),
@@ -338,7 +338,7 @@ function gravityPulse(autobuyer){
 				base:0,
 				unlocked:false,
 				previousTierCost:10,
-				costMult:1.24
+				costMult:new Decimal(1.24)
 			},
 			mk7:{
 				cost:new Decimal(1e13),
@@ -347,7 +347,7 @@ function gravityPulse(autobuyer){
 				base:0,
 				unlocked:false,
 				previousTierCost:10,
-				costMult:1.265
+				costMult:new Decimal(1.265)
 			},
 			mk8:{
 				cost:new Decimal(1e18),
@@ -356,7 +356,7 @@ function gravityPulse(autobuyer){
 				base:0,
 				unlocked:false,
 				previousTierCost:10,
-				costMult:1.28
+				costMult:new Decimal(1.28)
 			},
 			mk9:{
 				cost:new Decimal(1e25),
@@ -365,7 +365,7 @@ function gravityPulse(autobuyer){
 				base:0,
 				unlocked:false,
 				previousTierCost:10,
-				costMult:1.3
+				costMult:new Decimal(1.3)
 			},
 			wells: {
 				cost:20,
@@ -406,7 +406,7 @@ function resetMK(){
 			multiplier:new Decimal(1),
 			base:0,
 			previousTierCost:0,
-			costMult:1.15
+			costMult:new Decimal(1.15)
 		},
 		mk2:{
 			cost:new Decimal(100),
@@ -414,7 +414,7 @@ function resetMK(){
 			multiplier:new Decimal(1),
 			base:0,
 			previousTierCost:10,
-			costMult:1.165
+			costMult:new Decimal(1.165)
 		},
 		mk3:{
 			cost:new Decimal(1000),
@@ -422,7 +422,7 @@ function resetMK(){
 			multiplier:new Decimal(1),	
 			base:0,
 			previousTierCost:10,
-			costMult:1.18
+			costMult:new Decimal(1.18)
 		},
 		mk4:{
 			cost:new Decimal(1e4),
@@ -430,7 +430,7 @@ function resetMK(){
 			multiplier:new Decimal(1),
 			base:0,
 			previousTierCost:10,
-			costMult:1.2
+			costMult:new Decimal(1.2)
 		},
 		mk5:{
 			cost:new Decimal(1e6),
@@ -438,7 +438,7 @@ function resetMK(){
 			multiplier:new Decimal(1),
 			base:0,
 			previousTierCost:10,
-			costMult:1.22
+			costMult:new Decimal(1.22)
 		},
 		mk6:{
 			cost:new Decimal(1e9),
@@ -447,7 +447,7 @@ function resetMK(){
 			base:0,
 			unlocked:false,
 			previousTierCost:10,
-			costMult:1.24
+			costMult:new Decimal(1.24)
 		},
 		mk7:{
 			cost:new Decimal(1e13),
@@ -456,7 +456,7 @@ function resetMK(){
 			base:0,
 			unlocked:false,
 			previousTierCost:10,
-			costMult:1.265
+			costMult:new Decimal(1.265)
 		},
 		mk8:{
 			cost:new Decimal(1e18),
@@ -465,7 +465,7 @@ function resetMK(){
 			base:0,
 			unlocked:false,
 			previousTierCost:10,
-			costMult:1.28
+			costMult:new Decimal(1.28)
 		},
 		mk9:{
 			cost:new Decimal(1e25),
@@ -474,7 +474,7 @@ function resetMK(){
 			base:0,
 			unlocked:false,
 			previousTierCost:10,
-			costMult:1.3
+			costMult:new Decimal(1.3)
 		},
 		wells:user.wells,
 		pulse:user.pulse,
