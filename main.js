@@ -527,6 +527,7 @@ function isGPupgradePossible(id) {
 			if (user.points.upgrades.includes(reqs[i])) return true
 		}
 		return false
+	}
 }
 
 function gravityWellBoost(tier){
