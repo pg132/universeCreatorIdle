@@ -381,6 +381,7 @@ function gravityPulse(autobuyer){
 			statistics:user.statistics,
 			eaters:user.eaters,
 			options:user.options,
+			achievements:user.achievements,
 			version:user.version,
 			lastTick:user.lastTick
 		}
@@ -484,6 +485,7 @@ function resetMK(){
 		eaters:user.eaters,
 		statistics:user.statistics,
 		options:user.options,
+		achievements:user.achievements,
 		version:user.version,
 		lastTick:user.lastTick
 	}
