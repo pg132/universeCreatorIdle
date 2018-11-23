@@ -73,6 +73,10 @@
 	border-color: #5AC467;
 }
 .upgradebtn {
-    width: 170px;
-    height: 80px;
+	width: 170px;
+        height: 80px;
+}
+.achbtn{
+	width: 120px;
+	height: 80px;
 }
