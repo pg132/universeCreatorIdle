@@ -18,36 +18,32 @@ function getAchName(ID){
         return achieveNames[ID-10]
 }
 //put in strings that will be execd
-var loreChecks = [false,false,false,false,false,false,false,false,false,false,false,false,false,false]
-function checkForNextLore(){
-        var k = -1//the position we are looking for
-        for (i = 0; i < breakPoints.length; i++){
-                if (breakPoints[i] >= currentLoreVal) k = i
-        }
-        if (k == -1) return false
-        var string = loreChecks[k]
-        var TF = eval(string)
-        if (typeof TF == typeof true) return TF
-        return false
-}
+var loreChecks = ["true",
+                  "user.mk1.base >= 1 || user.wells.amount >= 1 || user.pulse.amount >= 1",
+                  "user.mk2.base >= 1 || user.wells.amount >= 1 || user.pulse.amount >= 1",
+                  "user.mk5.base >= 20 || user.wells.amount >= 1 || user.pulse.amount >= 1",
+                  "user.wells.amount >= 1 || user.pulse.amount >= 1",
+                  "user.mk6.base >= 1 || user.wells.amount >= 2 || user.pulse.amount >= 1",
+                  "user.mk9.base >= 1 || user.wells.amount >= 2 || user.pulse.amount >= 1",
+                  "user.wells.amount >= 5 || user.pulse.amount >= 1",
+                  "user.pulse.amount >= 1",
+                  "user.pulse.amount >= 6",
+                  "user.statistics.sacrificed >= 1",
+                  "user.statistics.totalGravicles.gte(new Decimal(1e80))",
+                  "user.eaters.GE1.amount >= 1",
+                  "user.points.upgrades.includes('GPA1')"]
 
-function getNextLoreSet(){
-        var k = currentLoreVal
-        var goal = 0
-        for (var i = 0; i < breakPoints.length; i++){
-                if (breakPoints[i]> k){
-                        goal = breakPoints[i]
+function unlockedLore(number){
+        for (var i = 0; i<breakPoints.length;i++){
+                if (number >= breakPoints[i]){
+                        if (eval(loreChecks[i]) == false) return false
                 }
         }
-        var l = []
-        for (var i = k; i<goal; i++){
-                l.push(lore[i])       
-        }
-        return l
+        return true     
 }
 var currentLoreVal = -1
 //note next line, its 0 stored, and the numbers are the last one that should be outputted. 
-var breakPoints = [7,8,9,12,14,15,16,18,21,23,25,30,34,36]
+var breakPoints = [7,8,9,12,14,15,16,18,21,23,25,29,34,36]//allow 7, allow 8, allow 9 etc
 var lore = [
         "Computer, make a note",
         "Subject #364 has died of a malfunction in the system causing every atom of his body to be ripped apart across all of space time",
@@ -85,17 +81,17 @@ var lore = [
         //after sacing
         "Buy something with it! Don’t be shy you only have 2 options right now.",
         "You can sacrifice a pulse and get points whenever you want, as long as you don't go under 2 pulses",
+        //e80 grav
+        "you have A LOT of gravicles right now, but to let you appreciate the size here’s an example",
+        "there are e80 ATOMS in the UNIVERSE",
+        "WOOOWWEEE thats a lot",
+        "not enough though, carry on",
         //after eaters
         "you would have never guessed that there are little living things at a scale this low",
         "hehehe theyre kinda cute",
         "anyway, you can hire those 4 by feeding them gravicles so that they stomp on space time for you",
         "each one does it in a different way, but we aren't telling how...",
         "they’re kinda expensive but its worth it",
-        //e80 grav
-        "you have A LOT of gravicles right now, but to let you appreciate the size here’s an example",
-        "there are e80 ATOMS in the UNIVERSE",
-        "WOOOWWEEE thats a lot",
-        "not enough though, carry on",
         //after autobuyer
         "oooh, autobuyers, they’re great!",
         "doing less work is always a plus!"
