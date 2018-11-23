@@ -955,6 +955,14 @@ function update(){
 			document.getElementById("wells stat").innerHTML = "You currently have " + user.wells.amount + " well" + (user.wells.amount == 1 ? "." : "s.")
 		} else document.getElementById("wells stat").style.display = "none"
 	}
+	if (document.getElementById('achievements').style.display != "none"){
+		for (var i = 0; i <possAchieve.lengthl; i++){
+			var thing = possAchieve[i]
+			document.getElementById("A"+thing).innerHTML = achieveNames[i]
+			if (hasAch(thing)) document.getElementById("A"+thing).className = "buttonbought"
+			else document.getElementById("A"+thing).className = "buttonlocked"
+		}
+	}
 }
 
 function showTab(tabName) {
