@@ -966,6 +966,13 @@ function update(){
 			else document.getElementById("A"+thing).className = "buttonlocked"
 		}
 	}
+	if (document.getElementById("lore").style.display != "none"){
+		for (var i = 0; i <= 35; i++){
+			document.getElementById("lore"+i).innerHTML = lore[i]
+			document.getElementById("lore"+i).style.display = "block"
+			if (!unlockedLore(i)) document.getElementById("lore"+i).style.display = "none"
+		}
+	}
 }
 
 function showTab(tabName) {
