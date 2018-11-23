@@ -613,16 +613,23 @@ function runMKAutobuyers(){
 	for(var i = 0; i < k.length; i++){
 		giveAch(29)
 		var p = k[i]
-		var number = parseInt(p.substring(2),10)
-		var lastTime = user.points.lastTimes[number]
-		var time = new Date().getTime()
+		var number = parseInt(p.substring(3)) //get its number
+		var lastTime = user.points.lastTimes[number] // the last time it did it
+		var time = new Date().getTime() // current time
 		var interval = user.points.autobuyerTimes[number]
-		if (interval+lastTime <= time && p<= 9){
+		if (interval+lastTime <= time && p<= 9){ //first part is the cooldown check
 			buyMK(p,true)
-			user.points.lastTimes[number] = time
+			user.points.lastTimes[number] = time 
+			//update the last time we bought,
+			//this doesnt act like AD buyers where the cooldown doesnt reset unless it buys
 		}
 		if (interval+lastTime <= time && !p<= 9){
-			var hi = 0//do other stuff that i will not think abt
+			if (p == 10){//well
+				gravityWell(true)
+			}
+			if (p == 11){//pulse
+				gravityPulse(true)
+			}
 			user.points.lastTimes[number] = time
 		}
 	}
@@ -821,6 +828,17 @@ function MKproduction(diff){
 	update();
 }
 
+//helper functions for upate()
+//helper functions for upate()
+//helper functions for upate()
+//helper functions for upate()
+//helper functions for upate()
+//helper functions for upate()
+//helper functions for upate()
+//helper functions for upate()
+//helper functions for upate()
+
+
 function buyablePoints(amt=1){
 	return user.pulse.amount-2>=amt && amt > 0	
 }
@@ -986,6 +1004,16 @@ function showTab(tabName) {
 	}
 	resizeCanvas();
 }
+
+//saving and main loop stuff
+//saving and main loop stuff
+//saving and main loop stuff
+//saving and main loop stuff
+//saving and main loop stuff
+//saving and main loop stuff
+//saving and main loop stuff
+//saving and main loop stuff
+//saving and main loop stuff
 
 function save(){
 	localStorage.setItem("save test",JSON.stringify(user));
