@@ -143,6 +143,7 @@ function getDefaultSave() {
 		options: {
 			notation: "Scientific"
 		},
+		achievements:[],
 		version: 0.103,
 		lastTick: new Date().getTime()
 	};
