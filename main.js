@@ -980,8 +980,9 @@ function update(){
 		for (var i = 0; i <possAchieve.length; i++){
 			var thing = possAchieve[i]
 			document.getElementById("A"+thing).innerHTML = achieveNames[i]
-			if (hasAch(thing)) document.getElementById("A"+thing).className = "buttonbought"
-			else document.getElementById("A"+thing).className = "buttonlocked"
+			if (hasAch(thing)) document.getElementById("A"+thing).className = "achbtn buttonbought"
+			else document.getElementById("A"+thing).className = "achbtn buttonlocked"
+			
 		}
 	}
 	if (document.getElementById("lore").style.display != "none"){
