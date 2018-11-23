@@ -956,7 +956,7 @@ function update(){
 		} else document.getElementById("wells stat").style.display = "none"
 	}
 	if (document.getElementById('achievements').style.display != "none"){
-		for (var i = 0; i <possAchieve.lengthl; i++){
+		for (var i = 0; i <possAchieve.length; i++){
 			var thing = possAchieve[i]
 			document.getElementById("A"+thing).innerHTML = achieveNames[i]
 			if (hasAch(thing)) document.getElementById("A"+thing).className = "buttonbought"
