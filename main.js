@@ -234,9 +234,9 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the user is
 		var maxT = user.wells.tiercost
 		var canGet30 = true
 		for (var i = 1; i < maxT; i++){
-			if (user["mk"+i].amount.gt(10)) canGet30 = false
+			if (user["mk"+i].base > 10) canGet30 = false
 		}
-		if (canGet30 && !user["mk"+user.wells.tiercost].amount.gt(20)) giveAch(30)
+		if (canGet30 && !user["mk"+user.wells.tiercost].base > 20) giveAch(30)
 		resetMK() 
 		if (!(user.wells.tiercost == 9)){
 			user.wells.tiercost += 1
@@ -276,6 +276,7 @@ function buyGE(number,amt=1){
 function updateGEunlocks(){
 	user.eaters.GE5.unlocked = user.points.upgrades.includes("GP61")
 	user.eaters.GE6.unlocked = user.points.upgrades.includes("GP61")
+	if (user.points.upgrades.includes("GP61")) giveAch(29)
 }
 
 function buyMaxGE(number){
@@ -393,7 +394,6 @@ function gravityPulse(autobuyer){
 		}
 		if (user.wells.defaultMults>= 10) giveAch(23)
 		updatePulseCost()
-		if (user.wells.amount >= user.pulse.cost) giveAch(26)
 	}
 }
 
@@ -611,7 +611,7 @@ function maxAll(){
 function runMKAutobuyers(){
 	var k = user.points.autobuyers
 	for(var i = 0; i < k.length; i++){
-		giveAch(29)
+		giveAch(27)
 		var p = k[i]
 		var number = parseInt(p.substring(3)) //get its number
 		var lastTime = user.points.lastTimes[number] // the last time it did it
@@ -646,7 +646,6 @@ function sacPulses(amt){
 		}
 		giveAch(24)
 		if (user.pulse.amount == 2) giveAch(33)
-		if (user.points.amount >= 10) giveAch(28)
 		fullPowerWellsUpdate()
 		updatePulseCost()
 		if (user.wells.amount >= user.pulse.cost) {
@@ -673,9 +672,9 @@ function updateMKUnlocks(){
 }
 
 function checkAchUnlocks(){
-	if (user.pulse.amount == 9 && user.wells.amount == 9 && user.mk9.amount == new Decimal(99)) giveAch(27)
+	if (user.pulse.amount == 9 && user.wells.amount == 9 && user.mk9.amount == new Decimal(99)) giveAch(25)
 	var canget31 = true
-	for (var i = 1; i<=8; i++){
+	for (var i = 1; i<=8; i++){//8 bc mk10 isnt a thing
 		if (user["mk"+i].multiplier.gte(user["mk"+(i+1)].multiplier)) canget31 = false
 	}
 	if (canget31) giveAch(31)
@@ -686,6 +685,14 @@ function checkAchUnlocks(){
 		if (maxGE-10 < user.eaters["GE"+i].amount) thirty6fails += 1
 	}
 	if (thirty6fails <= 1) giveAch(36)
+	if (user.points.amount.gte(10)) giveAch(26)
+	if (user.gravicles.amount.gte(1e100)) giveAch(28)
+	if (user.points.upgrades.includes("GPA11") && user.eaters.GE5.amount == 0 && user.eaters.GE6.amount == 0) giveAch(37)
+	var achChallR1 = true
+	for (i = 0 ; i<= 9; i++){
+		if (!hasAch(30+i)) achChallR1 = false
+	}
+	if (achChallR1) giveAch(39)
 }
 
 
