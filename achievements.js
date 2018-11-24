@@ -35,7 +35,7 @@ var loreChecks = ["true",
 
 function unlockedLore(number){
         for (var i = 0; i<breakPoints.length;i++){
-                if (number >= breakPoints[i]){
+                if (number > breakPoints[i]){
                         if (eval(loreChecks[i]) == false) return false
                 }
         }
