@@ -166,7 +166,7 @@ function buyMK(tier, quick) {
 	var costMult = user["mk"+tier].costMult
 	var mainScale = 1+.01/getEaterReward(4)
 	var buyingMult = 1.01
-	if (hasAch(31)) buyingMult = 1.030301//1.01**3
+	if (hasAch(30)) buyingMult = 1.030301//1.01**3
 	var costDelay = getEaterReward(6)
 	var w = 1+.1/getEaterReward(4)
 	var constScale = Math.max(1,(user["mk"+tier].base-900)/100)
@@ -803,6 +803,7 @@ function baseMKproduction(tier){
 	var amt = user["mk"+tier].amount
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
+	if (hasAch(31)) mult = mult.times(2)
 	if (tier == 2 && user.wells.amount >= 1 && user.points.upgrades.includes("GP12")) mult = mult.times(100)
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(1000)
 	var fpwMult = 1.5
@@ -819,6 +820,7 @@ function baseMKproduction(tier){
 function baseMKmult(tier){
 	var mult = user["mk"+tier].multiplier
 	mult = mult.times(gravityWellBoost(tier))
+	if (hasAch(31)) mult = mult.times(2)
 	if (tier == 2 && user.wells.amount >= 1 && user.points.upgrades.includes("GP12")) mult = mult.times(100)
 	if (tier == 9 && (user.points.upgrades.includes("GP41"))) mult = mult.times(1000)
 	var fpwMult = 1.5
