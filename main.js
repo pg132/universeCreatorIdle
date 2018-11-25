@@ -1184,7 +1184,7 @@ function startInterval(){
 
 function zeroAmountBugFix(){
 	for (var i = 1; i <= 9; i++){
-		if (user["mk"+i].amount.lt(user["mk"+i].base)) user["mk"+i].amount = new Decimal(user["mk"+i].base)
+		if (user["mk"+i].amount.lte(0) && user["mk"+i].base != 0) user["mk"+i].amount = new Decimal(user["mk"+i].base)
 	}
 }
 function infinityAmountBugFix(){
