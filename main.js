@@ -504,6 +504,8 @@ function solveQuad(a,b,c){
 
 function getEaterReward(number){
 	var k = user.eaters["GE"+number].amount
+	if (hasAch(36)) k *= 1.02
+	if (hasAch(37) && (number == 5 || number == 6)) k *= 1.05
 	var amt = 0.01
 	if (user.points.upgrades.includes("GP72")) amt = amt * 1.1
 	if (number == 6 && k < 400) return Math.floor(amt*100*k)
