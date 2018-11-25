@@ -166,7 +166,7 @@ function buyMK(tier, quick) {
 	var costMult = user["mk"+tier].costMult
 	var mainScale = 1+.01/getEaterReward(4)
 	var buyingMult = 1.01
-	if (hasAch(30)) buyingMult = 1.030301//1.01**3
+	if (hasAch(30) && user["mk"+tier].base < 10) buyingMult = 1.030301//1.01**3
 	var costDelay = getEaterReward(6)
 	var w = 1+.1/getEaterReward(4)
 	var constScale = Math.max(1,(user["mk"+tier].base-900)/100)
