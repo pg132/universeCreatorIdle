@@ -814,6 +814,7 @@ function baseMKproduction(tier){
 		if (user["mk"+tier].amount == 0) return new Decimal (0)
 		return amt.plus(10).times(mult)
 	}
+	if (hasAch(39) && mult.gte(1e100)) mult = mult.times(1e10)
 	return amt.times(mult)
 }
 
@@ -827,6 +828,7 @@ function baseMKmult(tier){
 	if (user.eaters.GE5.unlocked) fpwMult *= getEaterReward(5)
 	mult = mult.times(Decimal.pow(1+fpwMult/tier,user.wells.defaultMults-4))
 	//put additional mults here
+	if (hasAch(39) && mult.gte(1e100)) mult = mult.times(1e10)
 	return mult
 }
 
