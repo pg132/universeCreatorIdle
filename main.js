@@ -237,7 +237,7 @@ function gravityWell(autobuyer){//autobuyer helps us later to see if the user is
 		for (var i = 1; i < maxT; i++){
 			if (user["mk"+i].base > 10) canGet30 = false
 		}
-		if (canGet30 && !user["mk"+user.wells.tiercost].base > 20) giveAch(30)
+		if (canGet30 && !(user["mk"+user.wells.tiercost].base > 20)) giveAch(30)
 		resetMK() 
 		if (!(user.wells.tiercost == 9)){
 			user.wells.tiercost += 1
