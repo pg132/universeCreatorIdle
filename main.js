@@ -685,9 +685,9 @@ function checkAchUnlocks(){
 	var maxGE = Math.max(Math.max(user.eaters.GE1.amount,user.eaters.GE2.amount),Math.max(user.eaters.GE3.amount,user.eaters.GE4.amount))
 	var thirty6fails = 0
 	for (var i = 1; i<=4; i++){
-		if (maxGE-10 < user.eaters["GE"+i].amount) thirty6fails += 1
+		if (maxGE/10 >= user.eaters["GE"+i].amount) thirty6fails += 1
 	}
-	if (thirty6fails <= 1) giveAch(36)
+	if (thirty6fails == 1 && maxGE > 10) giveAch(36)
 	if (user.points.amount.gte(10)) giveAch(26)
 	if (user.gravicles.gte(1e100)) giveAch(28)
 	if (user.points.upgrades.includes("GPA11") && user.eaters.GE5.amount == 0 && user.eaters.GE6.amount == 0) giveAch(37)
