@@ -691,6 +691,8 @@ function checkAchUnlocks(){
 	if (user.points.amount.gte(10)) giveAch(26)
 	if (user.gravicles.gte(1e100)) giveAch(28)
 	if (user.points.upgrades.includes("GPA11") && user.eaters.GE5.amount == 0 && user.eaters.GE6.amount == 0) giveAch(37)
+	if ((!user.points.upgrades.includes("GPA11")) && user.points.upgrades.length == user.points.possibleUpgrade.length-1) giveAch(38)
+	
 	var achChallR1 = true
 	for (i = 0 ; i<= 9; i++){
 		if (!hasAch(30+i)) achChallR1 = false
