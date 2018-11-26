@@ -1,6 +1,6 @@
 var achieveNames = ["Just Starting","Baby’s first tier upgrade","That’s a lot of gravicles already!","4 score and 4 years ago, subject number 4 was admitted to ","To what? Good question.","This better be worth it","Wow! Extra generators!","Lucky number 6… no that's not right","Last mk achieved!","There’s NINE?",
                    "Stupid well, WORK","This really better be worth it","Going above and beyond","Now they’re working better","Sacrifice SACRIFICE SACRIFICE","See? It is real","That’s a lot of killing","Look ma, no hands!","Chomp Chomp, yummy","More critters!",
-                   "Wells on a budget","Contrary escalation","Going really above and really beyond","Not the best idea","Ya see, I pulled a sneaky on ya","GOTTA GO FAST","WOOOOW… favoritism much?","Nobody likes the new guys","PLACEHOLDER","Challenge Row 1"]
+                   "Wells on a budget","Contrary escalation","Going really above and really beyond","Not the best idea","Ya see, I pulled a sneaky on ya","GOTTA GO FAST","WOOOOW… favoritism much?","Nobody likes the new guys","There’s no use prolonging it","Challenge Row 1"]
 var possAchieve = [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]
 //checkAchUnlocks() function is for everytick check achivements
 function hasAch(ID){
