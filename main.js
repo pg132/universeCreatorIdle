@@ -706,8 +706,8 @@ function checkAchUnlocks(){
 	if ((!user.points.upgrades.includes("GPA11")) && user.points.upgrades.length == user.points.possibleUpgrade.length-1) giveAch(38)
 	
 	var achChallR1 = true
-	for (i = 0 ; i<= 9; i++){
-		if (!hasAch(30+i)) achChallR1 = false
+	for (i = 1 ; i<= 9; i++){
+		if (!hasAch(29+i)) achChallR1 = false
 	}
 	if (achChallR1) giveAch(39)
 }
