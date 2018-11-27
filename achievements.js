@@ -17,6 +17,9 @@ function getAchName(ID){
         if (ID-9 > k || ID<10) return
         return achieveNames[ID-10]
 }
+function numOfAch(){
+        return user.achievements.length
+}
 //put in strings that will be execd
 var loreChecks = ["true",
                   "user.mk1.base >= 1 || user.wells.amount >= 1 || user.pulse.amount >= 1",
