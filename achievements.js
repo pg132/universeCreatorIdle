@@ -34,12 +34,11 @@ var loreChecks = ["true",
                   "user.points.upgrades.includes('GPA1')"]
 
 function unlockedLore(number){
-        for (var i = 0; i<breakPoints.length;i++){
-                if (number >= breakPoints[i]){
-                        if (eval(loreChecks[i]) == false) return false
-                }
+        var highest = -1
+        for (var i=0;i<breakPoints.length; i++){
+                if (eval(loreChecks[i])) highest = breakPoints[i]
         }
-        return true     
+        return number <= highest
 }
 var currentLoreVal = -1
 //note next line, its 0 stored, and the numbers are the last one that should be outputted. 
