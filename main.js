@@ -612,6 +612,17 @@ function maxAll(){
 	}
 }
 
+function buyAutobuyerSpeed(number){
+	if (user.points.amount.gte(user.points.autobuyerUpgCosts[number-1]) && user.points.autobuyerTimes[number-1] != 100){
+		user.points.amount = user.points.amount.minus(user.points.autobuyerUpgCosts[number-1])
+		user.points.autobuyerUpgCosts[number-1] *= 1.5
+		user.points.autobuyerTimes *= 0.9
+		if (user.points.autobuyerTimes[number-1] < 100) user.points.autobuyerTimes[number-1] = 100
+	}
+}
+
+
+
 function runMKAutobuyers(){
 	var k = user.points.autobuyers
 	for(var i = 0; i < k.length; i++){
@@ -886,6 +897,10 @@ function buyableGE(number){
 	if (number >= 5) return user.eaters["GE"+number].cost.lte(user.gravicles) && user.eaters["GE"+number].unlocked
 	return user.eaters["GE"+number].cost.lte(user.gravicles)
 }
+function buyableSpeedUpg(number){
+	return user.points.amount.gte(user.points.autobuyerUpgCosts[number-1]) && user.points.autobuyerTimes[number-1] != 100
+}
+
 
 function update(){
 	document.getElementById("gravicle amount").innerHTML = shorten(user.gravicles);
