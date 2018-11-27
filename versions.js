@@ -97,6 +97,21 @@ function updateSave() {
 		}
 		user.vesion = .103
 	}
+	if (user.version < .104){
+		user.version = .014
+		user.points = {
+			amount:user.points.amount,
+			upgradesCost:user.points.upgradesCost,
+			possibleUpgrade:user.points.possibleUpgrade,
+			requirements:user.points.requirements,       
+			upgrades:user.points.upgrades,
+			autobuyers:user.points.autobuyers,
+			autobuyerTimes:user.points.autobuyerTimes,
+			lastTimes:user.points.lastTimes,
+			autobuyerUpgCosts:[20,20,20,20,20,20,20,20,20,20,20]
+		}
+	}
+	
 }
 
 
