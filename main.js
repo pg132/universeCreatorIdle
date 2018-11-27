@@ -99,6 +99,7 @@ function getDefaultSave() {
 			upgrades:[],
 			autobuyers:[],
 			autobuyerTimes:[10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000],
+			autobuyerUpgCosts:[20,20,20,20,20,20,20,20,20,20,20],//11 of them
 			lastTimes:[new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime(),new Date().getTime()]//11 of them
 		},
 		eaters:{
@@ -144,7 +145,7 @@ function getDefaultSave() {
 			notation: "Scientific"
 		},
 		achievements:[],
-		version: 0.103,
+		version: 0.104,
 		lastTick: new Date().getTime()
 	};
 }
