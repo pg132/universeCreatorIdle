@@ -146,7 +146,11 @@ function getDefaultSave() {
 		},
 		achievements:[],
 		version: 0.104,
-		lastTick: new Date().getTime()
+		lastTick: new Date().getTime(),
+		notifications:{
+			achLen: 0,
+			loreLen: 0
+		}
 	};
 }
 
@@ -1024,6 +1028,22 @@ function update(){
 			if (!unlockedLore(i)) document.getElementById("lore"+i).style.display = "none"
 		}
 	}
+	
+	//stuff for changing tab colors
+	//tabNotification is the thing
+	//achLen and loreLen
+	var loreNot = false
+	if (user.notification.loreLen != 0){
+		if (!(unlockedLore(user.notification.lorLen) && !unlockedLore(user.notification.lorLen+1))) loreNot = true
+	} else loreNot = true
+	if (loreNot){
+		document.getElementById("lore").className = "tabNotification"
+	}else{
+		document.getElementById("lore").className = "button"
+	}
+	//ach below
+	if (user.notification.achLen != numOfAch()) document.getElementById("achievements").className = "tabNotification"
+	else document.getElementById("achievements").className = "button"
 }
 
 function showTab(tabName) {
