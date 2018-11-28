@@ -1038,12 +1038,12 @@ function update(){
 		if (!(unlockedLore(user.notification.lorLen) && !unlockedLore(user.notification.lorLen+1))) loreNot = true
 	} else loreNot = true
 	if (loreNot){
-		document.getElementById("lore").className = "tabNotification"
+		document.getElementById("lore").className = "tabNotification button"
 	}else{
 		document.getElementById("lore").className = "button"
 	}
 	//ach below
-	if (user.notification.achLen != numOfAch()) document.getElementById("achievements").className = "tabNotification"
+	if (user.notification.achLen != numOfAch()) document.getElementById("achievements").className = "tabNotification button"
 	else document.getElementById("achievements").className = "button"
 	*/
 }
@@ -1056,8 +1056,8 @@ function showTab(tabName) {
 	for (var i =0; i<lore.length;i++){
 		if (unlockedLore(i)) highestLore = i
 	}
-	if (tabName == "lore") user.notfication.loreLen = highestLore
-	if (tabName == "achievements") user.notfication.achLen = numOfAch()
+	if (tabName == "lore") user.notification.loreLen = highestLore
+	if (tabName == "achievements") user.notification.achLen = numOfAch()
 	for (var i = 0; i < tabs.length; i++) {
 		tab = tabs.item(i);
 		if (tab.id === tabName) tab.style.display = 'block';
