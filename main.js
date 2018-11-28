@@ -1032,6 +1032,7 @@ function update(){
 	//stuff for changing tab colors
 	//tabNotification is the thing
 	//achLen and loreLen
+	/*
 	var loreNot = false
 	if (user.notification.loreLen != 0){
 		if (!(unlockedLore(user.notification.lorLen) && !unlockedLore(user.notification.lorLen+1))) loreNot = true
@@ -1044,12 +1045,19 @@ function update(){
 	//ach below
 	if (user.notification.achLen != numOfAch()) document.getElementById("achievements").className = "tabNotification"
 	else document.getElementById("achievements").className = "button"
+	*/
 }
 
 function showTab(tabName) {
 	//iterate over all elements in div_tab class. Hide everything that's not tabName and show tabName
 	var tabs = document.getElementsByClassName('tab');
 	var tab;
+	var highestLore = 0
+	for (var i =0; i<lore.length;i++){
+		if (unlockedLore(i)) highestLore = i
+	}
+	if (tabName == "lore") user.notfication.loreLen = highestLore
+	if (tabName == "achievements") user.notfication.achLen = numOfAch()
 	for (var i = 0; i < tabs.length; i++) {
 		tab = tabs.item(i);
 		if (tab.id === tabName) tab.style.display = 'block';
