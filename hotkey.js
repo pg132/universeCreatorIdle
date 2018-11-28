@@ -1,15 +1,15 @@
 function startHotkeys() {
-    Mousetrap.bind("M",maxAll)
-    Mousetrap.bind("W",function() { gravityWell(false) })
-    Mousetrap.bind("P",function() { gravityPulse(false) })
-    Mousetrap.bind("G",function() {
+    Mousetrap.bind("m",maxAll)
+    Mousetrap.bind("w",function() { gravityWell(false) })
+    Mousetrap.bind("p",function() { gravityPulse(false) })
+    Mousetrap.bind("g",function() {
         // Future buy max GE script here
     })
     for (i=1;i<10;i++) {
         eval("Mousetrap.bind('"+i.toString()+"'"+",function() { buyMaxMK("+i.toString()+", false) } )")
     }
-    Mousetrap.bind("S",function() { sacPulses(1) })
-    Mousetrap.bind("R",function() {
+    Mousetrap.bind("s",function() { sacPulses(1) })
+    Mousetrap.bind("r",function() {
         // Future buy ripple script here
     })
     Mousetrap.prototype.stopCallback = function (e, element, combo, sequence) {
