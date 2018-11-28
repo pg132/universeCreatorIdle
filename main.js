@@ -1,4 +1,5 @@
-var qwertyuiopycasduvdauasyvdu = "zgpqw"
+var diffMultiplier = 1
+var test = true
 function getDefaultSave() {
 	return {
 		gravicles: new Decimal(10),
@@ -1145,6 +1146,7 @@ function impo(){
 function gameLoop(){
 	var newTime = new Date().getTime()
 	var diff = (newTime - user.lastTick) / 1000
+    if (test) diff *= diffMultiplier
 	user.lastTick = newTime
 	user.statistics.playtime += diff
 	MKproduction(diff);
