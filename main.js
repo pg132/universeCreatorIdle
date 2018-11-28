@@ -993,6 +993,9 @@ function update(){
 			}
 		}
 	}
+    if (document.getElementById('options').style.display != "none") {
+        document.getElementById("hotkey").innerHTML = "Hotkeys: " + (user.options.hotkeys?"On":"Off")
+    }
 	if (document.getElementById('statistics').style.display != "none") {
 		document.getElementById("playtime").innerHTML = "You have played this game for " + timeDisplay(user.statistics.playtime) + "."
 		document.getElementById("total gravicles").innerHTML = "You made " + shorten(user.statistics.totalGravicles) + " gravicles in total."
@@ -1176,6 +1179,7 @@ function startInterval(){
 	load();
 	setInterval(gameLoop,33);
 	setInterval(save,5000);
+    startHotkeys();
 	window.addEventListener("resize", resizeCanvas);
 }
 

@@ -9,7 +9,7 @@ function updateSave() {
 			}
 		}
 		if (user.version < 0.02 || user.version === undefined || j){ 
-			// only reset when user.version is less then 0.02 or its undefined or possibleUpgrade is wrong
+			// only reset when user.version is less than 0.02 or its undefined or possibleUpgrade is wrong
 			if (user.version < 0.1 || user.version === undefined){ // if the version is high enough we also wanna leave it be
 				user.version = 0.02
 				delete user.points
@@ -18,7 +18,6 @@ function updateSave() {
 		}
 	}
 	if (user.version < 0.1) {
-		user.version = 0.1
 		if (user.points === undefined) {
 			var k = user.points
 			if (k) k = user.points.amount // if user.points is a thing
@@ -58,7 +57,6 @@ function updateSave() {
 		} 
 	}
 	if (user.version < 0.101){
-		user.version = 0.101
 		user.eaters = {
 			GE1:user.eaters.GE1,
 			GE2:user.eaters.GE2,
@@ -89,16 +87,13 @@ function updateSave() {
 			autobuyerTimes:user.points.autobuyerTimes,
 			lastTimes:user.points.lastTimes
 		}//closes user.poitnsd	
-		user.version = .102
 	}
 	if (user.version < .103){//make the cost mults Decimals
 		for (var i = 1; i <= 9; i++){
 			user["mk"+i].costMult = new Decimal(user["mk"+i].costMult)
 		}
-		user.vesion = .103
 	}
 	if (user.version < .104){
-		user.version = .014
 		user.points = {
 			amount:user.points.amount,
 			upgradesCost:user.points.upgradesCost,
@@ -111,7 +106,10 @@ function updateSave() {
 			autobuyerUpgCosts:[20,20,20,20,20,20,20,20,20,20,20]
 		}
 	}
-	
+    if (user.version < .105) {
+        user.options.hotkeys = true
+    }
+	user.version = .105
 }
 
 

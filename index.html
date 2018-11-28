@@ -2,12 +2,14 @@
 <html>
 	<head>
         <meta charset="utf-8"/>
+        <script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js?a4098"></script>
 		<script src="magna_numerus.js"></script>
 		<script src="format.js"></script>
 		<script src="canvases.js"></script>
 		<script src="main.js"></script>
 		<script src="versions.js"></script>
 		<script src="achievements.js"></script>
+        <script src="hotkey.js"></script>
 		<title>Universe Creator Idle</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
@@ -31,6 +33,7 @@
 			<p id="export status" style="display:none">Exported to clipboard</p>
 			<button onclick="impo()" class="button">Import</button>
 			<button id='notation' onclick="switchNotation()" class="button"></button>
+            <button id='hotkey' onclick="user.options.hotkeys = !user.options.hotkeys" class="button">Hotkeys: ?</button>
 			<button onclick="hardReset()" class="button">HARD RESET</button>
 		</div>
 		<div id='generators' class='tab' style='display:block'>
@@ -172,7 +175,7 @@
 							Gravity wells: 0
 						</td>
 						<td colspan=2 align="right">
-							<button id="well" onclick="gravityWell(true)" class="button">
+							<button id="well" onclick="gravityWell(false)" class="button">
 								Reset the game for a boost<br/>Cost: 20 mk5s
 							</button>
 						</td>
@@ -182,7 +185,7 @@
 							Gravitational pulses: 0 (5 wells at full power)
 						</td>
 						<td colspan=2 align="right">
-							<button id="pulse" onclick="gravityPulse(true)" class="button">
+							<button id="pulse" onclick="gravityPulse(false)" class="button">
 								Lose all of your previous progress, but get an improvement to wells<br/>Requires: 5 wells
 							</button>
 						</td>
