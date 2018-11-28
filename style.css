@@ -58,15 +58,6 @@
 }
 .tabNotification{
 	background: #20B2AA;
-	height: auto;
-	line-height: 21px;
-	text-align: center;
-	width: auto;
-	border: 1px solid #127A20;
-	border-radius: 4px;
-	padding: 5px;
-	color: #000000;
-	transition-duration: 0.2s;
 }
 .buttonbought {
 	color: #FFF;
