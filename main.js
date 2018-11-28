@@ -147,7 +147,7 @@ function getDefaultSave() {
 		achievements:[],
 		version: 0.104,
 		lastTick: new Date().getTime(),
-		notifications:{
+		notification:{
 			achLen: 0,
 			loreLen: 0
 		}
