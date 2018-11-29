@@ -405,7 +405,8 @@ function gravityPulse(autobuyer){
 			options:user.options,
 			achievements:user.achievements,
 			version:user.version,
-			lastTick:user.lastTick
+			lastTick:user.lastTick,
+            notification:user.notification
 		}
 		if (user.points.upgrades.includes("GP42")) user.wells.amount += 1
 		if (user.points.upgrades.includes("GP91")) {
@@ -506,7 +507,8 @@ function resetMK(){
 		options:user.options,
 		achievements:user.achievements,
 		version:user.version,
-		lastTick:user.lastTick
+		lastTick:user.lastTick,
+        notification:user.notification
 	}
 	if (user.points.upgrades.includes("GP91")) {
 		user.gravicles = user.gravicles.plus(1e5)
