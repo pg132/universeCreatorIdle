@@ -274,10 +274,16 @@ function buyGE(number,amt=1){
 	var k = user.eaters["GE"+number].cost.times(Decimal.pow(user.eaters["GE"+number].scale, amt-1))
 	if (user.gravicles.gte(k)){
 		user.gravicles = user.gravicles.minus(k)
-		user.eaters["GE"+number].cost = user.eaters["GE"+number].cost.times(Decimal.pow(user.eaters["GE"+number].scale, amt))
 		user.eaters["GE"+number].amount += amt
+        updateGECosts()
 	}
 	
+}
+
+function updateGECosts() {
+    for (n=1;n<7;n++) {
+        user.eaters["GE"+n].cost = new Decimal(n<5?"1e100":"1e400").times(Decimal.pow(user.eaters["GE"+n].scale, user.eaters["GE"+n].amount))
+    }
 }
 
 function updateGEunlocks(){
@@ -991,8 +997,8 @@ function update(){
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 			}
 			for (var i = 5; i<= 6; i++){
-				if (i != 6) document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater #" + i + "<br>" + (["FPW mult is stronger", "MK Scalings start later"])[i-5] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + (["%<br>","<br>"])[i-5]+"Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
-				else document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #6<br>MK Scalings start later by " + (getEaterReward(6)) + "<br>Cost: " + formatValue(user.options.notation,user.eaters.GE6.cost,0,0)
+				if (i != 6) document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater #" + i + "<br>" + (["FPW mult is", null])[i-5] + " " + (shorten(getEaterReward(i)*1000-1000)/10) + (["% stronger",null])[i-5] + "<br>Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
+				else document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater #6<br>MK Scalings starts " + getEaterReward(6) + " buys later.<br>Cost: " + formatValue(user.options.notation,user.eaters.GE6.cost,0,0)
 				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 				if (!user.eaters["GE"+i].unlocked) {
@@ -1169,6 +1175,7 @@ function gameLoop(){
 	runMKAutobuyers();
 	checkAchUnlocks();
 	updateGEunlocks();
+    updateGECosts();
 	update();
 }
 
