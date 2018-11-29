@@ -292,6 +292,12 @@ function buyMaxGE(number){
 	}
 }
 
+function buyMaxAllGE() { // Seems OP, but if we wanna have a hotkey for buying eaters this is the best thing i can come up with
+    for (i=1;i<7;i++) {
+        if (i < 5 || user.eaters["GE"+i].unlocked) buyMaxGE(i)
+    }
+}
+
 function gravityPulse(autobuyer){
 	//first check if we afford
 	if (user.wells.amount >= user.pulse.cost){
@@ -980,17 +986,23 @@ function update(){
 	if (document.getElementById('eaters').style.display){// 																																							i did this bc something is wrong with my github
 		if (document.getElementById('eaters').style.display != "none") {                                                                                                                                                   																
 			for (var i = 1; i<= 4; i++){
-				document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["Pulses are cheaper", "Wells are cheaper", "Wells are stronger", "MK Scalings are decreased"])[i-1] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + "%<br>Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
+				document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater #" + i + "<br>" + (["Pulses", "Wells", "Wells", "MK Scalings"])[i-1] + " are " + (shorten(getEaterReward(i)*1000-1000)/10) + "% " + (["cheaper", "cheaper", "stronger", "less"])[i-1] + "<br>Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
 				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
 			}
 			for (var i = 5; i<= 6; i++){
-				if (i != 6) document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #" + i + "<br>" + (["FPW mult is stronger", "MK Scalings start later"])[i-5] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + (["%<br>","<br>"])[i-5]+"Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
+				if (i != 6) document.getElementById("eater"+i).innerHTML = "Upgrade Gravity Eater #" + i + "<br>" + (["FPW mult is stronger", "MK Scalings start later"])[i-5] + " by " + (shorten(getEaterReward(i)*1000-1000)/10) + (["%<br>","<br>"])[i-5]+"Cost: " + formatValue(user.options.notation,user.eaters["GE"+i].cost,0,0)
 				else document.getElementById("eater"+i).innerHTML = "Upgrade  Gravity Eater #6<br>MK Scalings start later by " + (getEaterReward(6)) + "<br>Cost: " + formatValue(user.options.notation,user.eaters.GE6.cost,0,0)
 				if (buyableGE(i)) document.getElementById("eater"+i).className = "upgradebtn button"
 				else document.getElementById("eater"+i).className = "upgradebtn buttonlocked"
-				if (!user.eaters["GE"+i].unlocked) document.getElementById("eater"+i).style.display = "none"
-				else document.getElementById("eater"+i).style.display = ""
+				if (!user.eaters["GE"+i].unlocked) {
+                    document.getElementById("eater"+i).style.display = "none"
+                    document.getElementById("eaterMax"+i).style.display = "none"
+                }
+				else {
+                    document.getElementById("eater"+i).style.display = ""
+                    document.getElementById("eaterMax"+i).style.display = ""
+                }
 			}
 		}
 	}

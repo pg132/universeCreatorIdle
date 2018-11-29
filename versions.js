@@ -86,7 +86,7 @@ function updateSave() {
 			autobuyers:user.points.autobuyers,
 			autobuyerTimes:user.points.autobuyerTimes,
 			lastTimes:user.points.lastTimes
-		}//closes user.poitnsd	
+		}//closes user.points	
 	}
 	if (user.version < .103){//make the cost mults Decimals
 		for (var i = 1; i <= 9; i++){
@@ -106,10 +106,16 @@ function updateSave() {
 			autobuyerUpgCosts:[20,20,20,20,20,20,20,20,20,20,20]
 		}
 	}
-    if (user.version < .105) {
+    if (user.version < .105 && user.options.hotkeys == null) {
         user.options.hotkeys = true
     }
-	user.version = .105
+    if (user.version < .106 && user.notification == null) { // Trust me, it works
+        user.notification = {
+			achLen: 0,
+			loreLen: 0
+		}
+    }
+	user.version = .106
 }
 
 

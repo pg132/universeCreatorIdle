@@ -209,7 +209,7 @@
 			<table align=center>
 				<tr>
 					<td>
-						<button class="upgradebtn button" id="GP11" onclick="buyGPupg(11)">Pulsing with extra wells gives you more fpw.<br>Cost: 1 GP</button>
+						<button class="upgradebtn button" id="GP11" onclick="buyGPupg(11)">Pulsing with extra wells gives you higher multiplier on MKs.<br>Cost: 1 GP</button>
 					</td>
 					<td>
 						<button class="upgradebtn button" id="GP12" onclick="buyGPupg(12)">MK 2s are 100x stronger if you have at least one well.<br>Cost: 1 GP</button>
@@ -226,7 +226,7 @@
 			<table align=center>
 				<tr>
 					<td>
-						<button class="upgradebtn button" id="GP31" onclick="buyGPupg(31)">Increase the gain of FPW for each pulse by 50%.<br>Cost: 5 GP</button>
+						<button class="upgradebtn button" id="GP31" onclick="buyGPupg(31)">Increase the power of pulses by 50%.<br>Cost: 5 GP</button>
 					</td>
 				</tr>
 			</table>
@@ -298,28 +298,41 @@
 				<tr>
 					<td>
 						<button class ="upgradebtn button" id='eater1' onclick = "buyGE(1)">Upgrade Gravity Eater Cost: 1.0e100</button>
+                        <br>
+                        <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(1)">Buy max</button>
 					</td>
 					<td>
 						<button class ="upgradebtn button" id='eater2' onclick = "buyGE(2)">Upgrade Gravity Eater Cost: 1.0e100</button>
+                        <br>
+                        <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(2)">Buy max</button>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<button class ="upgradebtn button" id='eater3' onclick = "buyGE(3)">Upgrade Gravity Eater Cost: 1.0e100</button>
+                        <br>
+                        <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(3)">Buy max</button>
 					</td>
 					<td>
 						<button class ="upgradebtn button" id='eater4' onclick = "buyGE(4)">Upgrade Gravity Eater Cost: 1.0e100</button>
+                        <br>
+                        <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(4)">Buy max</button>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<button class ="upgradebtn button" id='eater5' onclick = "buyGE(5)">Upgrade Gravity Eater Cost: 1.0e400</button>
+                        <br>
+                        <button class ="button" style="float: left;position: relative;left: 32.5%;" id='eaterMax5' onclick = "buyMaxGE(5)">Buy max</button>
 					</td>
 					<td>
 						<button class ="upgradebtn button" id='eater6' onclick = "buyGE(6)">Upgrade Gravity Eater Cost: 1.0e400</button>
+                        <br>
+                        <button class ="button" style="float: left;position: relative;left: 32.5%;" id='eaterMax6' onclick = "buyMaxGE(6)">Buy max</button>
 					</td>
 				</tr>
 			</table>
+            <button class = "button" style="margin:auto;display:block;" onclick="buyMaxAllGE()">Max all</button>
 		</div>
 		<div id="lore" class = "tab">
 			<div id = "lore0"> </div>

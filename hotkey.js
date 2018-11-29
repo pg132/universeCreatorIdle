@@ -2,9 +2,7 @@ function startHotkeys() {
     Mousetrap.bind("m",maxAll)
     Mousetrap.bind("w",function() { gravityWell(false) })
     Mousetrap.bind("p",function() { gravityPulse(false) })
-    Mousetrap.bind("g",function() {
-        // Future buy max GE script here
-    })
+    Mousetrap.bind("g",buyMaxAllGE)
     for (i=1;i<10;i++) {
         eval("Mousetrap.bind('"+i.toString()+"'"+",function() { buyMaxMK("+i.toString()+", false) } )")
     }
