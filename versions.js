@@ -106,10 +106,10 @@ function updateSave() {
 			autobuyerUpgCosts:[20,20,20,20,20,20,20,20,20,20,20]
 		}
 	}
-    if (user.version < .105 && user.options.hotkeys == null) {
+    if (user.version < .105 || user.options.hotkeys == null) {
         user.options.hotkeys = true
     }
-    if (user.version < .106 && user.notification == null) { // Trust me, it works
+    if (user.version < .106 || user.notification == null) { // Trust me, it works
         user.notification = {
 			achLen: 0,
 			loreLen: 0

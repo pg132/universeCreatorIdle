@@ -665,6 +665,10 @@ function sacPulses(amt){
 	if (user.pulse.amount>= amt+2 && amt > 0){
 		user.statistics.sacrificed++
 		user.points.amount = user.points.amount.plus(getGPgain(amt)).round()
+        if (user.wells.amount >= user.pulse.cost) {
+			giveAch(34)
+			user.points.amount = user.points.amount.plus(1)
+		}
 		user.pulse.amount -= amt
 		//remove the last amt elems from user.pulse.multipliers this is done by the .pop()
 		for (var i = 0; i<amt;i++){
@@ -674,10 +678,6 @@ function sacPulses(amt){
 		if (user.pulse.amount == 2) giveAch(33)
 		fullPowerWellsUpdate()
 		updatePulseCost()
-		if (user.wells.amount >= user.pulse.cost) {
-			giveAch(34)
-			user.points.amount = user.points.amount.plus(1)
-		}
 	}
 }
 
@@ -867,15 +867,15 @@ function MKproduction(diff){
 	update();
 }
 
-//helper functions for upate()
-//helper functions for upate()
-//helper functions for upate()
-//helper functions for upate()
-//helper functions for upate()
-//helper functions for upate()
-//helper functions for upate()
-//helper functions for upate()
-//helper functions for upate()
+//helper functions for update()
+//helper functions for update()
+//helper functions for update()
+//helper functions for update()
+//helper functions for update()
+//helper functions for update()
+//helper functions for update()
+//helper functions for update()
+//helper functions for update()
 
 
 function buyablePoints(amt=1){
