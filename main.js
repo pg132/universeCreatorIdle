@@ -301,6 +301,8 @@ function buyMaxAllGE() { // Seems OP, but if we wanna have a hotkey for buying e
 function gravityPulse(autobuyer){
 	//first check if we afford
 	if (user.wells.amount >= user.pulse.cost){
+        user.pulse.amount += 1 //give another pulse
+        updatePulseCost()
 		giveAch(21)
 		if (user.wells.amount-10 >= user.pulse.cost) giveAch(32)
 		//clear mk and then give boosts
@@ -399,14 +401,12 @@ function gravityPulse(autobuyer){
 			version:user.version,
 			lastTick:user.lastTick
 		}
-		user.pulse.amount += 1 //give another pulse
 		if (user.points.upgrades.includes("GP42")) user.wells.amount += 1
 		if (user.points.upgrades.includes("GP91")) {
 			user.gravicles = user.gravicles.plus(1e5)
 			user.mk1.amount = user.mk1.amount.plus(200)
 		}
 		if (user.wells.defaultMults>= 10) giveAch(23)
-		updatePulseCost()
 	}
 }
 
