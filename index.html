@@ -1,482 +1,483 @@
 <!DOCTYPE html>
 <html>
-	<head>
-        <meta charset="utf-8"/>
-        <script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js?a4098"></script>
-		<script src="magna_numerus.js"></script>
-		<script src="format.js"></script>
-		<script src="canvases.js"></script>
-		<script src="main.js"></script>
-		<script src="versions.js"></script>
-		<script src="achievements.js"></script>
-        <script src="hotkey.js"></script>
-		<title>Universe Creator Idle</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
-	<body onload="startInterval()">
-		<button onclick="showTab('generators')" class="button">Generators</button>
-		<button onclick="showTab('upgrades')" class="button" id='upgrades button' style="display:none">Upgrades</button>
-		<button onclick="showTab('eaters')" class="button" id='eaters button' style="display:none">Eaters</button>
-		<button onclick="showTab('options')" class="button">Options</button>
-		<button onclick="showTab('achievements')" class="button">Achievements</button>
-		<button onclick="showTab('statistics')" class="button">Statistics</button>
-		<button onclick="showTab('lore')" class="button">Lore</button>
-		<p>You have <span id="gravicle amount">10</span> gravicles</p>
-		<div id="achievements" class = "tab">
-			
-		</div>
-		<div id='options' class='tab'>
-			<div style="display:none;position:fixed;left:0;top:0"><textarea id="export thing" style="color:black; width: 200px; height: 55px;"></textarea></div>
-			<button onclick="save()" class="button">Save</button>
-			<button onclick="load()" class="button">Load</button>
-			<button onclick="expo()" id="export" class="button">Export</button>
-			<p id="export status" style="display:none">Exported to clipboard</p>
-			<button onclick="impo()" class="button">Import</button>
-			<button id='notation' onclick="switchNotation()" class="button"></button>
-            <button id='hotkey' onclick="user.options.hotkeys = !user.options.hotkeys" class="button">Hotkeys: ?</button>
-			<button onclick="hardReset()" class="button">HARD RESET</button>
-		</div>
-		<div id='generators' class='tab' style='display:block'>
-			<table style="width:100%">
-				<tbody id="parent">
-					<tr class='verylarge'>
-						<td colspan=4 align="right">
-							<button onclick="maxAll()" class="button">Max All</button>
-						</td>
-					</tr>
-					<tr id="row1">
-						<td>
-							Generator MK 1 <span id="mult1">x1</span>
-						</td>
-						<td>
-							<div id="mk1Amount">0</div>
-						</td>
-						<td>
-							<button id="buy1" onclick="buyMK(1)" align="right" class="button">Cost: 10</button>
-						</td>
-						<td align="right">
-							<button id="buy1Max" onclick="buyMaxMK(1)" align="right" class="button">Buy Max</button>
-						</td>
-					</tr>
-					<tr id="row2" style="display: none;">
-						<td>
-							Generator MK 2 <span id="mult2">x1</span>
-						</td>
-						<td>
-							<div id="mk2Amount">0</div>
-						</td>
-						<td>
-							<button id="buy2" onclick="buyMK(2)" align="right" class="button">Cost: 10</button>
-						</td>
-						<td align="right">
-							<button id="buy2Max" onclick="buyMaxMK(2)" align="right" class="button">Buy Max</button>
-						</td>
-					</tr>
-					<tr id="row3" style="display: none;">
-						<td>
-							Generator MK 3 <span id="mult3">x1</span>
-						</td>
-						<td>
-							<div id="mk3Amount">0</div>
-						</td>
-						<td>
-							<button id="buy3" onclick="buyMK(3)" align="right" class="button">Cost: 10</button>
-						</td>
-						<td align="right">
-							<button id="buy3Max" onclick="buyMaxMK(3)" align="right" class="button">Buy Max</button>
-						</td>
-					</tr>
-					<tr id="row4" style="display: none;">
-						<td>
-							Generator MK 4 <span id="mult4">x1</span>
-						</td>
-						<td>
-							<div id="mk4Amount">0</div>
-						</td>
-						<td>
-							<button id="buy4" onclick="buyMK(4)" align="right" class="button">Cost: 10</button>
-						</td>
-						<td align="right">
-							<button id="buy4Max" onclick="buyMaxMK(4)" align="right" class="button">Buy Max</button>
-						</td>
-					</tr>
-					<tr id="row5" style="display: none;">
-						<td>
-							Generator MK 5 <span id="mult5">x1</span>
-						</td>
-						<td>
-							<div id="mk5Amount">0</div>
-						</td>
-						<td>
-							<button id="buy5" onclick="buyMK(5)" align="right" class="button">Cost: 10</button>
-						</td>
-						<td align="right">
-							<button id="buy5Max" onclick="buyMaxMK(5)" align="right" class="button">Buy Max</button>
-						</td>
-					</tr>
-					<tr id="row6" style="display: none;">
-						<td>
-							Generator MK 6 <span id="mult6">x1</span>
-						</td>
-						<td>
-							<div id="mk6Amount">0</div>
-						</td>
-						<td>
-							<button id="buy6" onclick="buyMK(6)" align="right" class="button">Cost: 10</button>
-						</td>
-						<td align="right">
-							<button id="buy6Max" onclick="buyMaxMK(6)" align="right" class="button">Buy Max</button>
-						</td>
-					</tr>
-					<tr id="row7" style="display: none;">
-						<td>
-							Generator MK 7 <span id="mult7">x1</span>
-						</td>
-						<td>
-							<div id="mk7Amount">0</div>
-						</td>
-						<td>
-							<button id="buy7" onclick="buyMK(7)" align="right" class="button">Cost: 10</button>
-						</td>
-						<td align="right">
-							<button id="buy7Max" onclick="buyMaxMK(7)" align="right" class="button">Buy Max</button>
-						</td>
-					</tr>
-					<tr id="row8" style="display: none;">
-						<td>
-							Generator MK 8 <span id="mult8">x1</span>
-						</td>
-						<td>
-							<div id="mk8Amount">0</div>
-						</td>
-						<td>
-							<button id="buy8" onclick="buyMK(8)" align="right" class="button">Cost: 10</button>
-						</td>
-						<td align="right">
-							<button id="buy8Max" onclick="buyMaxMK(8)" align="right" class="button">Buy Max</button>
-						</td>
-					</tr>
-					<tr id="row9" style="display: none;">
-						<td>
-							Generator MK 9 <span id="mult9">x1</span>
-						</td>
-						<td>
-							<div id="mk9Amount">0</div>
-						</td>
-						<td>
-							<button id="buy9" onclick="buyMK(9)" align="right" class="button">Cost: 10</button>
-						</td>
-						<td align="right">
-							<button id="buy9Max" onclick="buyMaxMK(9)" align="right" class="button">Buy Max</button>
-						</td>
-					</tr>
-					<tr class='large'>
-						<td colspan=2 id="well number">
-							Gravity wells: 0
-						</td>
-						<td colspan=2 align="right">
-							<button id="well" onclick="gravityWell(false)" class="button">
-								Reset the game for a boost<br/>Cost: 20 mk5s
-							</button>
-						</td>
-					</tr>
-					<tr class='large'>
-						<td colspan=2 id="pulse number">
-							Gravitational pulses: 0 (5 wells at full power)
-						</td>
-						<td colspan=2 align="right">
-							<button id="pulse" onclick="gravityPulse(false)" class="button">
-								Lose all of your previous progress, but get an improvement to wells<br/>Requires: 5 wells
-							</button>
-						</td>
-					</tr>
-					<tr class = 'large' id = "points display" style = "display: none;">
-						<td colspan=2 id = "point amount">
-							Gravitational Points: 0
-						</td>
-						<td colspan=2 align="right">
-							<button id="pointsBuy1" onclick="sacPulses(1)" class="button">
-								Lose the effect of one Pulse in exchange for one Gravitational Point
-							</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div id='upgrades' class='tab'>
-			<div id="point amount upgrades">You have 0 Gravitational Points.</div>
-			<canvas id="upgradeCanvas"></canvas>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP11" onclick="buyGPupg(11)">Pulsing with extra wells gives you more MK boost.<br>Cost: 1 GP</button>
-					</td>
-					<td>
-						<button class="upgradebtn button" id="GP12" onclick="buyGPupg(12)">MK 2s are 100x stronger if you have at least one well.<br>Cost: 1 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP21" onclick="buyGPupg(21)">Decrease the price of each pulse by 3.<br>Cost: 2 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP31" onclick="buyGPupg(31)">Increase the power of pulses by 50%.<br>Cost: 5 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP41" onclick="buyGPupg(41)">MK 9s are <span id='GP41 effect'>1.000e3</span>x stronger.<br>Cost: 10 GP</button>
-					</td>
-					<td>
-						<button class="upgradebtn button" id="GP42" onclick="buyGPupg(42)">Start pulses with 1 well.<br>Cost: 10 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP51" onclick="buyGPupg(51)">Wells are 2.5x stronger.<br>Cost: 15 GP</button>
-					</td>
-					<td>
-						<button class="upgradebtn button" id="GP52" onclick="buyGPupg(52)">Sacrifice gives twice as much GPs.<br>Cost: 20 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align=center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP61" onclick="buyGPupg(61)">Unlocks two new eaters.<br>Cost: 30 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align = center>
-				<tr>
-					<td>
-						<button class="upgradebtn button" id="GP71" onclick="buyGPupg(71)">One in every 5 gravity wells gives an additional x2.<br>Cost: 75 GP</button>
-					</td>
-					<td>
-						<button class="upgradebtn button" id="GP72" onclick="buyGPupg(72)">Eaters are 1.1x stronger<br>Cost: 100 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align =center>
-				<tr>
-					<td>
-						<button class ="upgradebtn button" id = "GP81" onclick="buyGPupg(81)">Make the effect of GE compounding<br>Cost: 200 GP</button>
-					</td>
-				</tr>
-			</table>
-			<table align = center>
-				<tr>
-					<td> 
-						<button class ="upgradebtn button" id = "GP91" onclick="buyGPupg(91)">Start wells with 1e5 gravicles and 200 mk1s<br>Cost: 25 GP</button>
-					</td>
-					<td>
-						<button class ="upgradebtn button" id = "GP92" onclick="buyGPupg(92)">Each mk gets a +10 production if you have at least one<br>Cost: 50 GP</button>
-					</td>
-				</tr>
-			</table>
-
-		</div>
-		<div id='statistics' class='tab'>
-			<div id='playtime'>You have played this game for 0 seconds.</div>
-			<div id='total gravicles'>You made 0 gravicles in total.</div>
-			<div id='wells stat'>You currently have 0 wells.</div>
-			<div id='pulses stat'>You currently have 0 pulses.</div>
-			<div id='sacrifices stat'>You have sacrificed pulses 0 times.</div>
-		</div>
-		<div id='eaters' class='tab'>
-			<table align=center>
-				<tr>
-					<td>
-						<button class ="upgradebtn button" id='eater1' onclick = "buyGE(1)">Upgrade Gravity Eater Cost: 1.0e100</button>
-                        <br>
-                        <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(1)">Buy max</button>
-					</td>
-					<td>
-						<button class ="upgradebtn button" id='eater2' onclick = "buyGE(2)">Upgrade Gravity Eater Cost: 1.0e100</button>
-                        <br>
-                        <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(2)">Buy max</button>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button class ="upgradebtn button" id='eater3' onclick = "buyGE(3)">Upgrade Gravity Eater Cost: 1.0e100</button>
-                        <br>
-                        <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(3)">Buy max</button>
-					</td>
-					<td>
-						<button class ="upgradebtn button" id='eater4' onclick = "buyGE(4)">Upgrade Gravity Eater Cost: 1.0e100</button>
-                        <br>
-                        <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(4)">Buy max</button>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button class ="upgradebtn button" id='eater5' onclick = "buyGE(5)">Upgrade Gravity Eater Cost: 1.0e400</button>
-                        <br>
-                        <button class ="button" style="float: left;position: relative;left: 32.5%;" id='eaterMax5' onclick = "buyMaxGE(5)">Buy max</button>
-					</td>
-					<td>
-						<button class ="upgradebtn button" id='eater6' onclick = "buyGE(6)">Upgrade Gravity Eater Cost: 1.0e400</button>
-                        <br>
-                        <button class ="button" style="float: left;position: relative;left: 32.5%;" id='eaterMax6' onclick = "buyMaxGE(6)">Buy max</button>
-					</td>
-				</tr>
-			</table>
-            <button class = "button" style="margin:auto;display:block;" onclick="buyMaxAllGE()">Max all</button>
-		</div>
-		<div id="lore" class = "tab">
-			<div id = "lore0"> </div>
-			<div id = "lore1"> </div>
-			<div id = "lore2"> </div>
-			<div id = "lore3"> </div>
-			<div id = "lore4"> </div>
-			<div id = "lore5"> </div>
-			<div id = "lore6"> </div>
-			<div id = "lore7"> </div>
-			<div id = "lore8"> </div>
-			<div id = "lore9"> </div>
-			<div id = "lore10"> </div>
-			<div id = "lore11"> </div>
-			<div id = "lore12"> </div>
-			<div id = "lore13"> </div>
-			<div id = "lore14"> </div>
-			<div id = "lore15"> </div>
-			<div id = "lore16"> </div>
-			<div id = "lore17"> </div>
-			<div id = "lore18"> </div>
-			<div id = "lore19"> </div>
-			<div id = "lore20"> </div>
-			<div id = "lore21"> </div>
-			<div id = "lore22"> </div>
-			<div id = "lore23"> </div>
-			<div id = "lore24"> </div>
-			<div id = "lore25"> </div>
-			<div id = "lore26"> </div>
-			<div id = "lore27"> </div>
-			<div id = "lore28"> </div>
-			<div id = "lore29"> </div>
-			<div id = "lore30"> </div>
-			<div id = "lore31"> </div>
-			<div id = "lore32"> </div>
-			<div id = "lore33"> </div>
-			<div id = "lore34"> </div>
-			<div id = "lore35"> </div>
-		</div>
-		<div id="achievements" class = "tab">
-			<table align = center>
-				<tr>
-					<td class = "large">
-						<div id = "A10" ach-tooltip="Get 1 mk1"></div>
-					</td>
-					<td>
-						<div id = "A11" ach-tooltip="Get 1 mk2"></div>
-					</td>
-					<td>
-						<div id = "A12" ach-tooltip="Get 1 mk3"></div>
-					</td>
-					<td>
-						<div id = "A13" ach-tooltip="Get 1 mk4"></div>
-					</td>
-					<td>
-						<div id = "A14" ach-tooltip="Get 1 mk5"></div>
-					</td>
-					<td>
-						<div id = "A15" ach-tooltip="Get 1 well"></div>
-					</td>
-					<td>
-						<div id = "A16" ach-tooltip="Get 1 mk6"></div>
-					</td>
-					<td>
-						<div id = "A17" ach-tooltip="Get 1 mk7"></div>
-					</td>
-					<td>
-						<div id = "A18" ach-tooltip="Get 1 mk8"></div>
-					</td>
-					<td>
-						<div id = "A19" ach-tooltip="Get 1 mk9"></div>
-					</td>
-				</tr>		
-				<tr>
-					<td>
-						<div id = "A20" ach-tooltip="Get a well that’s not full powered (5th well)"></div>
-					</td>
-					<td>
-						<div id = "A21" ach-tooltip="Get a pulse"></div>
-					</td>
-					<td>
-						<div id = "A22" ach-tooltip="Get an amount of wells higher than the next pulse price"></div>
-					</td>
-					<td>
-						<div id = "A23" ach-tooltip="Get 10 full powered wells"></div>
-					</td>
-					<td>
-						<div id = "A24" ach-tooltip="Sacrifice a pulse"></div>
-					</td>
-					<td>
-						<div id = "A25" ach-tooltip="Have 9 pulses, 9 wells, and 99 mk9s"></div>
-					</td>
-					<td>
-						<div id = "A26" ach-tooltip="Have 10 gravitational points"></div>
-					</td>
-					<td>
-						<div id = "A27" ach-tooltip="Buy an autobuyer"></div>
-					</td>
-					<td>
-						<div id = "A28" ach-tooltip="Unlock gravity eaters"></div>
-					</td>
-					<td>
-						<div id = "A29" ach-tooltip="Unlock ge5 and 6"></div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div id = "A30" ach-tooltip="Get a well by buying the bare minimum amount of mks (Ten of each plus the price of the well). Reward: First 10 purchases of each mk give 3x the boost"></div>
-					</td>
-					<td>
-						<div id = "A31" ach-tooltip="Make your mk2 multiplier greater than your mk1, your mk3 greater than your mk2, etc. and the mk9 should have the highest multiplier. Reward: 2x boost to all mks"></div>
-					</td>
-					<td>
-						<div id = "A32" ach-tooltip="Get 10 more wells than needed to buy the next pulse. Reward: Get +1 fpw"></div>
-					</td>
-					<td>
-						<div id = "A33" ach-tooltip="Sacrifice all but two of your pulses. Reward: Get 1 extra gravity point whenever you sacrifice more than 4 pulses at once"></div>
-					</td>
-					<td>
-						<div id = "A34" ach-tooltip="Sacrifice a pulse while you have enough wells to get it back. Reward: 1 extra gravity point"></div>
-					</td>
-					<td>
-						<div id = "A35" ach-tooltip="Get 10/s on your mk1 autobuyer before getting an mk2 autobuyer. Reward: The mk2 base will be 1/5s rather than 1/10s"></div>
-					</td>
-					<td>
-						<div id = "A36" ach-tooltip="Have 1 gravity eater be leveled up 10x more than the others Reward: All ge get a 2% bost"></div>
-					</td>
-					<td>
-						<div id = "A37" ach-tooltip="Do not buy any GE5 or GE6 until you have all of the mk autobuyers. Reward: 1.05x boost to ge5 and ge6"></div>
-					</td>
-					<td>
-						<div id = "A38" ach-tooltip="Have every point upgrade except pulse autobuyer and 1000 gp Reward: the pulse autobuyer costs 450 GP"></div>
-					</td>
-					<td>
-						<div id = "A39" ach-tooltip="Complete Challnge Row 1. Reward: Get a e10 boost to each mk if their multiplier is above e100"></div>
-					</td>
-				</tr>	
-			</table>
-		</div>
-	</body>
+  <head>
+    <meta charset="utf-8"/>
+    <script src="https://craig.global.ssl.fastly.net/js/mousetrap/mousetrap.min.js?a4098"></script>
+    <script src="magna_numerus.js"></script>
+    <script src="format.js"></script>
+    <script src="canvases.js"></script>
+    <script src="main.js"></script>
+    <script src="versions.js"></script>
+    <script src="achievements.js"></script>
+    <script src="hotkey.js"></script>
+    <title>Universe Creator Idle</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body onload="startInterval()">
+    <button onclick="showTab('generators')" class="button">Generators</button>
+    <button onclick="showTab('points')" class="button" id="points button" style="display:none">Points</button>
+    <button onclick="showTab('eaters')" class="button" id='eaters button' style="display:none">Eaters</button>
+    <button onclick="showTab('options')" class="button">Options</button>
+    <button onclick="showTab('achievements')" class="button">Achievements</button>
+    <button onclick="showTab('statistics')" class="button">Statistics</button>
+    <button onclick="showTab('lore')" class="button">Lore</button>
+    <div>
+      <button onclick="changeSubTab('points','upgrades')" class="button" id='upgrades button' style="display:none">Upgrades</button>
+      <button onclick="changeSubTab('points','autobuyers')" class="button" id='autobuyers button' style="display:none">Autobuyers</button>
+    </div>
+    <p>You have <span id="gravicle amount">10</span> gravicles</p>
+    <div id="achievements" class = "tab">
+    </div>
+    <div id='options' class='tab'>
+      <div style="display:none;position:fixed;left:0;top:0"><textarea id="export thing" style="color:black; width: 200px; height: 55px;"></textarea></div>
+      <button onclick="save()" class="button">Save</button>
+      <button onclick="load()" class="button">Load</button>
+      <button onclick="expo()" id="export" class="button">Export</button>
+      <p id="export status" style="display:none">Exported to clipboard</p>
+      <button onclick="impo()" class="button">Import</button>
+      <button id='notation' onclick="switchNotation()" class="button"></button>
+      <button id='hotkey' onclick="user.options.hotkeys = !user.options.hotkeys" class="button">Hotkeys: ?</button>
+      <button onclick="hardReset()" class="button">HARD RESET</button>
+    </div>
+    <div id='generators' class='tab' style='display:block'>
+      <table style="width:100%">
+        <tbody id="parent">
+          <tr class='verylarge'>
+            <td colspan=4 align="right">
+              <button onclick="maxAll()" class="button">Max All</button>
+            </td>
+          </tr>
+          <tr id="row1">
+            <td>
+              Generator MK 1 <span id="mult1">x1</span>
+            </td>
+            <td>
+              <div id="mk1Amount">0</div>
+            </td>
+            <td>
+              <button id="buy1" onclick="buyMK(1)" align="right" class="button">Cost: 10</button>
+            </td>
+            <td align="right">
+              <button id="buy1Max" onclick="buyMaxMK(1)" align="right" class="button">Buy Max</button>
+            </td>
+          </tr>
+          <tr id="row2" style="display: none;">
+            <td>
+              Generator MK 2 <span id="mult2">x1</span>
+            </td>
+            <td>
+              <div id="mk2Amount">0</div>
+            </td>
+            <td>
+              <button id="buy2" onclick="buyMK(2)" align="right" class="button">Cost: 10</button>
+            </td>
+            <td align="right">
+              <button id="buy2Max" onclick="buyMaxMK(2)" align="right" class="button">Buy Max</button>
+            </td>
+          </tr>
+          <tr id="row3" style="display: none;">
+            <td>
+              Generator MK 3 <span id="mult3">x1</span>
+            </td>
+            <td>
+              <div id="mk3Amount">0</div>
+            </td>
+            <td>
+              <button id="buy3" onclick="buyMK(3)" align="right" class="button">Cost: 10</button>
+            </td>
+            <td align="right">
+              <button id="buy3Max" onclick="buyMaxMK(3)" align="right" class="button">Buy Max</button>
+            </td>
+          </tr>
+          <tr id="row4" style="display: none;">
+            <td>
+              Generator MK 4 <span id="mult4">x1</span>
+            </td>
+            <td>
+              <div id="mk4Amount">0</div>
+            </td>
+            <td>
+              <button id="buy4" onclick="buyMK(4)" align="right" class="button">Cost: 10</button>
+            </td>
+            <td align="right">
+              <button id="buy4Max" onclick="buyMaxMK(4)" align="right" class="button">Buy Max</button>
+            </td>
+          </tr>
+          <tr id="row5" style="display: none;">
+            <td>
+              Generator MK 5 <span id="mult5">x1</span>
+            </td>
+            <td>
+              <div id="mk5Amount">0</div>
+            </td>
+            <td>
+              <button id="buy5" onclick="buyMK(5)" align="right" class="button">Cost: 10</button>
+            </td>
+            <td align="right">
+              <button id="buy5Max" onclick="buyMaxMK(5)" align="right" class="button">Buy Max</button>
+            </td>
+          </tr>
+          <tr id="row6" style="display: none;">
+            <td>
+              Generator MK 6 <span id="mult6">x1</span>
+            </td>
+            <td>
+              <div id="mk6Amount">0</div>
+            </td>
+            <td>
+              <button id="buy6" onclick="buyMK(6)" align="right" class="button">Cost: 10</button>
+            </td>
+            <td align="right">
+              <button id="buy6Max" onclick="buyMaxMK(6)" align="right" class="button">Buy Max</button>
+            </td>
+          </tr>
+          <tr id="row7" style="display: none;">
+            <td>
+              Generator MK 7 <span id="mult7">x1</span>
+            </td>
+            <td>
+              <div id="mk7Amount">0</div>
+            </td>
+            <td>
+              <button id="buy7" onclick="buyMK(7)" align="right" class="button">Cost: 10</button>
+            </td>
+            <td align="right">
+              <button id="buy7Max" onclick="buyMaxMK(7)" align="right" class="button">Buy Max</button>
+            </td>
+          </tr>
+          <tr id="row8" style="display: none;">
+            <td>
+              Generator MK 8 <span id="mult8">x1</span>
+            </td>
+            <td>
+              <div id="mk8Amount">0</div>
+            </td>
+            <td>
+              <button id="buy8" onclick="buyMK(8)" align="right" class="button">Cost: 10</button>
+            </td>
+            <td align="right">
+              <button id="buy8Max" onclick="buyMaxMK(8)" align="right" class="button">Buy Max</button>
+            </td>
+          </tr>
+          <tr id="row9" style="display: none;">
+            <td>
+              Generator MK 9 <span id="mult9">x1</span>
+            </td>
+            <td>
+              <div id="mk9Amount">0</div>
+            </td>
+            <td>
+              <button id="buy9" onclick="buyMK(9)" align="right" class="button">Cost: 10</button>
+            </td>
+            <td align="right">
+              <button id="buy9Max" onclick="buyMaxMK(9)" align="right" class="button">Buy Max</button>
+            </td>
+          </tr>
+          <tr class='large'>
+            <td colspan=2 id="well number">
+              Gravity wells: 0
+            </td>
+            <td colspan=2 align="right">
+              <button id="well" onclick="gravityWell(false)" class="button">
+              Reset the game for a boost<br/>Cost: 20 mk5s
+              </button>
+            </td>
+          </tr>
+          <tr class='large'>
+            <td colspan=2 id="pulse number">
+              Gravitational pulses: 0 (5 wells at full power)
+            </td>
+            <td colspan=2 align="right">
+              <button id="pulse" onclick="gravityPulse(false)" class="button">
+              Lose all of your previous progress, but get an improvement to wells<br/>Requires: 5 wells
+              </button>
+            </td>
+          </tr>
+          <tr class = 'large' id = "points display" style = "display: none;">
+            <td colspan=2 id = "point amount">
+              Gravitational Points: 0
+            </td>
+            <td colspan=2 align="right">
+              <button id="pointsBuy1" onclick="sacPulses(1)" class="button">
+              Lose the effect of one Pulse in exchange for one Gravitational Point
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id='points' class='tab' style="display:none">
+      <div id="point amount upgrades">You have 0 Gravitational Points.</div>
+      <div id="upgrades">
+        <canvas id="upgradeCanvas"></canvas>
+        <table align=center>
+          <tr>
+            <td>
+              <button class="upgradebtn button" id="GP11" onclick="buyGPupg(11)">Pulsing with extra wells gives you more MK boost.<br>Cost: 1 GP</button>
+            </td>
+            <td>
+              <button class="upgradebtn button" id="GP12" onclick="buyGPupg(12)">MK 2s are 100x stronger if you have at least one well.<br>Cost: 1 GP</button>
+            </td>
+          </tr>
+        </table>
+        <table align=center>
+          <tr>
+            <td>
+              <button class="upgradebtn button" id="GP21" onclick="buyGPupg(21)">Decrease the price of each pulse by 3.<br>Cost: 2 GP</button>
+            </td>
+          </tr>
+        </table>
+        <table align=center>
+          <tr>
+            <td>
+              <button class="upgradebtn button" id="GP31" onclick="buyGPupg(31)">Increase the power of pulses by 50%.<br>Cost: 5 GP</button>
+            </td>
+          </tr>
+        </table>
+        <table align=center>
+          <tr>
+            <td>
+              <button class="upgradebtn button" id="GP41" onclick="buyGPupg(41)">MK 9s are <span id='GP41 effect'>1.000e3</span>x stronger.<br>Cost: 10 GP</button>
+            </td>
+            <td>
+              <button class="upgradebtn button" id="GP42" onclick="buyGPupg(42)">Start pulses with 1 well.<br>Cost: 10 GP</button>
+            </td>
+          </tr>
+        </table>
+        <table align=center>
+          <tr>
+            <td>
+              <button class="upgradebtn button" id="GP51" onclick="buyGPupg(51)">Wells are 2.5x stronger.<br>Cost: 15 GP</button>
+            </td>
+            <td>
+              <button class="upgradebtn button" id="GP52" onclick="buyGPupg(52)">Sacrifice gives twice as much GPs.<br>Cost: 20 GP</button>
+            </td>
+          </tr>
+        </table>
+        <table align=center>
+          <tr>
+            <td>
+              <button class="upgradebtn button" id="GP61" onclick="buyGPupg(61)">Unlocks two new eaters.<br>Cost: 30 GP</button>
+            </td>
+          </tr>
+        </table>
+        <table align = center>
+          <tr>
+            <td>
+              <button class="upgradebtn button" id="GP71" onclick="buyGPupg(71)">One in every 5 gravity wells gives an additional x2.<br>Cost: 75 GP</button>
+            </td>
+            <td>
+              <button class="upgradebtn button" id="GP72" onclick="buyGPupg(72)">Eaters are 1.1x stronger<br>Cost: 100 GP</button>
+            </td>
+          </tr>
+        </table>
+        <table align =center>
+          <tr>
+            <td>
+              <button class ="upgradebtn button" id = "GP81" onclick="buyGPupg(81)">Make the effect of GE compounding<br>Cost: 200 GP</button>
+            </td>
+          </tr>
+        </table>
+        <table align = center>
+          <tr>
+            <td> 
+              <button class ="upgradebtn button" id = "GP91" onclick="buyGPupg(91)">Start wells with 1e5 gravicles and 200 mk1s<br>Cost: 25 GP</button>
+            </td>
+            <td>
+              <button class ="upgradebtn button" id = "GP92" onclick="buyGPupg(92)">Each mk gets a +10 production if you have at least one<br>Cost: 50 GP</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="autobuyers" style="display:none">
+      <div>Insert Autobuyers here</div>
+      </div>
+    </div>
+    <div id='statistics' class='tab'>
+      <div id='playtime'>You have played this game for 0 seconds.</div>
+      <div id='total gravicles'>You made 0 gravicles in total.</div>
+      <div id='wells stat'>You currently have 0 wells.</div>
+      <div id='pulses stat'>You currently have 0 pulses.</div>
+      <div id='sacrifices stat'>You have sacrificed pulses 0 times.</div>
+    </div>
+    <div id='eaters' class='tab'>
+      <table align=center>
+        <tr>
+          <td>
+            <button class ="upgradebtn button" id='eater1' onclick = "buyGE(1)">Upgrade Gravity Eater Cost: 1.0e100</button>
+            <br>
+            <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(1)">Buy max</button>
+          </td>
+          <td>
+            <button class ="upgradebtn button" id='eater2' onclick = "buyGE(2)">Upgrade Gravity Eater Cost: 1.0e100</button>
+            <br>
+            <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(2)">Buy max</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class ="upgradebtn button" id='eater3' onclick = "buyGE(3)">Upgrade Gravity Eater Cost: 1.0e100</button>
+            <br>
+            <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(3)">Buy max</button>
+          </td>
+          <td>
+            <button class ="upgradebtn button" id='eater4' onclick = "buyGE(4)">Upgrade Gravity Eater Cost: 1.0e100</button>
+            <br>
+            <button class ="button" style="float: left;position: relative;left: 32.5%;" onclick = "buyMaxGE(4)">Buy max</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class ="upgradebtn button" id='eater5' onclick = "buyGE(5)">Upgrade Gravity Eater Cost: 1.0e400</button>
+            <br>
+            <button class ="button" style="float: left;position: relative;left: 32.5%;" id='eaterMax5' onclick = "buyMaxGE(5)">Buy max</button>
+          </td>
+          <td>
+            <button class ="upgradebtn button" id='eater6' onclick = "buyGE(6)">Upgrade Gravity Eater Cost: 1.0e400</button>
+            <br>
+            <button class ="button" style="float: left;position: relative;left: 32.5%;" id='eaterMax6' onclick = "buyMaxGE(6)">Buy max</button>
+          </td>
+        </tr>
+      </table>
+      <button class = "button" style="margin:auto;display:block;" onclick="buyMaxAllGE()">Max all</button>
+    </div>
+    <div id="lore" class = "tab">
+      <div id = "lore0"> </div>
+      <div id = "lore1"> </div>
+      <div id = "lore2"> </div>
+      <div id = "lore3"> </div>
+      <div id = "lore4"> </div>
+      <div id = "lore5"> </div>
+      <div id = "lore6"> </div>
+      <div id = "lore7"> </div>
+      <div id = "lore8"> </div>
+      <div id = "lore9"> </div>
+      <div id = "lore10"> </div>
+      <div id = "lore11"> </div>
+      <div id = "lore12"> </div>
+      <div id = "lore13"> </div>
+      <div id = "lore14"> </div>
+      <div id = "lore15"> </div>
+      <div id = "lore16"> </div>
+      <div id = "lore17"> </div>
+      <div id = "lore18"> </div>
+      <div id = "lore19"> </div>
+      <div id = "lore20"> </div>
+      <div id = "lore21"> </div>
+      <div id = "lore22"> </div>
+      <div id = "lore23"> </div>
+      <div id = "lore24"> </div>
+      <div id = "lore25"> </div>
+      <div id = "lore26"> </div>
+      <div id = "lore27"> </div>
+      <div id = "lore28"> </div>
+      <div id = "lore29"> </div>
+      <div id = "lore30"> </div>
+      <div id = "lore31"> </div>
+      <div id = "lore32"> </div>
+      <div id = "lore33"> </div>
+      <div id = "lore34"> </div>
+      <div id = "lore35"> </div>
+    </div>
+    <div id="achievements" class = "tab">
+      <table align = center>
+        <tr>
+          <td class = "large">
+            <div id = "A10" ach-tooltip="Get 1 mk1"></div>
+          </td>
+          <td>
+            <div id = "A11" ach-tooltip="Get 1 mk2"></div>
+          </td>
+          <td>
+            <div id = "A12" ach-tooltip="Get 1 mk3"></div>
+          </td>
+          <td>
+            <div id = "A13" ach-tooltip="Get 1 mk4"></div>
+          </td>
+          <td>
+            <div id = "A14" ach-tooltip="Get 1 mk5"></div>
+          </td>
+          <td>
+            <div id = "A15" ach-tooltip="Get 1 well"></div>
+          </td>
+          <td>
+            <div id = "A16" ach-tooltip="Get 1 mk6"></div>
+          </td>
+          <td>
+            <div id = "A17" ach-tooltip="Get 1 mk7"></div>
+          </td>
+          <td>
+            <div id = "A18" ach-tooltip="Get 1 mk8"></div>
+          </td>
+          <td>
+            <div id = "A19" ach-tooltip="Get 1 mk9"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id = "A20" ach-tooltip="Get a well that’s not full powered (5th well)"></div>
+          </td>
+          <td>
+            <div id = "A21" ach-tooltip="Get a pulse"></div>
+          </td>
+          <td>
+            <div id = "A22" ach-tooltip="Get an amount of wells higher than the next pulse price"></div>
+          </td>
+          <td>
+            <div id = "A23" ach-tooltip="Get 10 full powered wells"></div>
+          </td>
+          <td>
+            <div id = "A24" ach-tooltip="Sacrifice a pulse"></div>
+          </td>
+          <td>
+            <div id = "A25" ach-tooltip="Have 9 pulses, 9 wells, and 99 mk9s"></div>
+          </td>
+          <td>
+            <div id = "A26" ach-tooltip="Have 10 gravitational points"></div>
+          </td>
+          <td>
+            <div id = "A27" ach-tooltip="Buy an autobuyer"></div>
+          </td>
+          <td>
+            <div id = "A28" ach-tooltip="Unlock gravity eaters"></div>
+          </td>
+          <td>
+            <div id = "A29" ach-tooltip="Unlock ge5 and 6"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id = "A30" ach-tooltip="Get a well by buying the bare minimum amount of mks (Ten of each plus the price of the well). Reward: First 10 purchases of each mk give 3x the boost"></div>
+          </td>
+          <td>
+            <div id = "A31" ach-tooltip="Make your mk2 multiplier greater than your mk1, your mk3 greater than your mk2, etc. and the mk9 should have the highest multiplier. Reward: 2x boost to all mks"></div>
+          </td>
+          <td>
+            <div id = "A32" ach-tooltip="Get 10 more wells than needed to buy the next pulse. Reward: Get +1 fpw"></div>
+          </td>
+          <td>
+            <div id = "A33" ach-tooltip="Sacrifice all but two of your pulses. Reward: Get 1 extra gravity point whenever you sacrifice more than 4 pulses at once"></div>
+          </td>
+          <td>
+            <div id = "A34" ach-tooltip="Sacrifice a pulse while you have enough wells to get it back. Reward: 1 extra gravity point"></div>
+          </td>
+          <td>
+            <div id = "A35" ach-tooltip="Get 10/s on your mk1 autobuyer before getting an mk2 autobuyer. Reward: The mk2 base will be 1/5s rather than 1/10s"></div>
+          </td>
+          <td>
+            <div id = "A36" ach-tooltip="Have 1 gravity eater be leveled up 10x more than the others Reward: All ge get a 2% bost"></div>
+          </td>
+          <td>
+            <div id = "A37" ach-tooltip="Do not buy any GE5 or GE6 until you have all of the mk autobuyers. Reward: 1.05x boost to ge5 and ge6"></div>
+          </td>
+          <td>
+            <div id = "A38" ach-tooltip="Have every point upgrade except pulse autobuyer and 1000 gp Reward: the pulse autobuyer costs 450 GP"></div>
+          </td>
+          <td>
+            <div id = "A39" ach-tooltip="Complete Challnge Row 1. Reward: Get a e10 boost to each mk if their multiplier is above e100"></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
 </html>
-
-		
-		
-		
-		
-		
