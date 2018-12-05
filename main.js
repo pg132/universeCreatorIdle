@@ -546,7 +546,11 @@ function getEaterReward(number) {
 }
 
 function buyGPupg(ID) { //ID is a string
-  if (ID.substring(0,3) == "GPA") ID = ID.substring(2)
+  var auto = false
+  if (ID.substring(0,3) == "GPA") {
+    ID = ID.substring(2)
+    auto = true
+  }
   var k = "GP" + ID
   if (!user.points.upgrades.includes(k) && user.points.possibleUpgrade.includes(k)) {
     var w = user.points.possibleUpgrade.indexOf(k)
@@ -556,6 +560,7 @@ function buyGPupg(ID) { //ID is a string
     if (user.points.amount.gte(cost) && isGPupgradePossible(k)) { //buy upgrade then
       user.points.upgrades.push(k)
       user.points.amount = user.points.amount.minus(cost)
+      if (auto) user.points.autobuyers.push("GP"+ID)
     }
   }
   resizeCanvas();
@@ -653,16 +658,16 @@ function runMKAutobuyers() {
     giveAch(27)
     var p = k[i]
     var number = parseInt(p.substring(3)) //get its number
-    var lastTime = user.points.lastTimes[number] // the last time it did it
+    var lastTime = user.points.lastTimes[number-1] // the last time it did it
     var time = new Date().getTime() // current time
-    var interval = user.points.autobuyerTimes[number]
+    var interval = user.points.autobuyerTimes[number-1]
     if (interval + lastTime <= time && p <= 9) { //first part is the cooldown check
       buyMK(p, true)
       user.points.lastTimes[number] = time
       //update the last time we bought,
       //this doesnt act like AD buyers where the cooldown doesnt reset unless it buys
     }
-    if (interval + lastTime <= time && !p <= 9) {
+    if (interval + lastTime <= time && !(p <= 9)) {
       if (p == 10) { //well
         gravityWell(true)
       }
