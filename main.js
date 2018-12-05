@@ -1029,7 +1029,7 @@ function update() {
         if (i == 9) autoCost = 200   //well
         if (i == 10) autoCost = 500    //pulse
         var thing = ["1st MK autobuyer","2nd MK autobuyer","3rd MK autobuyer","4th MK autobuyer","5th MK autobuyer","6th MK autobuyer","7th MK autobuyer","8th MK autobuyer","9th MK autobuyer","Well autobuyer","Pulse autobuyer"][i]
-        document.getElementById("autobuyer"+(i+1)+"unlock").innerHTML = "Unlock the " + thing + "<br>Cost:" + autoCost + " GP"
+        document.getElementById("autobuyer"+(i+1)+"unlock").innerHTML = "Unlock the " + thing + "<br>Cost: " + autoCost + " GP"
         document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonlocked"
         if (isGPupgradePossible("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn button"
         if (user.points.possibleUpgrade.includes("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonbought"
