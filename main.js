@@ -567,9 +567,9 @@ function isGPupgradePossible(id) {
     var reqs = req.split(",")
     if (req === "") return true
     for (var i = 0; i < reqs.length; i++) {
-      if (user.points.upgrades.includes(reqs[i])) return true
+      if (!(user.points.upgrades.includes(reqs[i]))) return false
     }
-    return false
+    return true
   }
 }
 
@@ -1031,7 +1031,9 @@ function update() {
         var thing = ["1st MK autobuyer","2nd MK autobuyer","3rd MK autobuyer","4th MK autobuyer","5th MK autobuyer","6th MK autobuyer","7th MK autobuyer","8th MK autobuyer","9th MK autobuyer","Well autobuyer","Pulse autobuyer"][i]
         document.getElementById("autobuyer"+(i+1)+"unlock").innerHTML = "Unlock the " + thing + "<br>Cost: " + autoCost + " GP"
         document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonlocked"
-        if (isGPupgradePossible("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn button"
+        var upgCost = user.points.possibleUpgrade.indexOf("GPA"+(i+1))//the value that we want to extrac
+        upgCost = user.points.upgradesCost[upgCost]//extracing it
+        if (isGPupgradePossible("GPA"+(i+1)) && user.points.amount.gte(upgCost-0.0001)) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn button"
         if (user.points.upgrades.includes("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonbought"
       }
     } else {
