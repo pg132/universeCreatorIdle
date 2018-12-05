@@ -671,7 +671,7 @@ function runMKAutobuyers() {
     var interval = user.points.autobuyerTimes[number-1]
     if (interval + lastTime <= time && number <= 9) { //first part is the cooldown check
       buyMK(number, true)
-      user.points.lastTimes[number] = time
+      user.points.lastTimes[number-1] = time
       //update the last time we bought,
       //this doesnt act like AD buyers where the cooldown doesnt reset unless it buys
     }
@@ -682,7 +682,7 @@ function runMKAutobuyers() {
       if (number == 11) { //pulse
         gravityPulse(true)
       }
-      user.points.lastTimes[number] = time
+      user.points.lastTimes[number-1] = time
     }
   }
 }
