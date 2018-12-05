@@ -546,6 +546,7 @@ function getEaterReward(number) {
 }
 
 function buyGPupg(ID) { //ID is a string
+  if (ID.substring(0,3) == "GPA") ID = ID.substring(2)
   var k = "GP" + ID
   if (!user.points.upgrades.includes(k) && user.points.possibleUpgrade.includes(k)) {
     var w = user.points.possibleUpgrade.indexOf(k)
