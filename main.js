@@ -566,6 +566,14 @@ function buyGPupg(ID) { //ID is a string
   resizeCanvas();
 }
 
+function updateHasAutobuyers(){
+  for (var i =0; i<user.points.upgrades.length;i++){
+    if (user.points.upgrades[i].substring(2,3) == "A")
+      //add it
+      if (!(user.points.autobuyers.includes(user.points.upgrades[i]))) user.points.autobuyers.push(user.points.upgrades[i])
+  }
+}
+
 function isGPupgradePossible(id) {
   if (user.points.possibleUpgrade.includes(id)) {
     var w = user.points.possibleUpgrade.indexOf(id)
