@@ -638,8 +638,8 @@ function maxAll() {
 function buyAutobuyerSpeed(number) {
   if (user.points.amount.gte(user.points.autobuyerUpgCosts[number - 1]) && user.points.autobuyerTimes[number - 1] != 100) {
     user.points.amount = user.points.amount.minus(user.points.autobuyerUpgCosts[number - 1])
-    user.points.autobuyerUpgCosts[number - 1] *= 1.5
-    user.points.autobuyerTimes[number-1] *= 0.9
+    user.points.autobuyerUpgCosts[number - 1] = Math.ceil(1.5*user.points.autobuyerUpgCosts[number - 1])
+    user.points.autobuyerTimes[number-1] = Math.ceil(0.9*user.points.autobuyerTimes[number-1])
     if (user.points.autobuyerTimes[number - 1] < 100) user.points.autobuyerTimes[number - 1] = 100
   }
 }
