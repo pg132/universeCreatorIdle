@@ -927,6 +927,7 @@ function buyableGE(number) {
 }
 
 function buyableSpeedUpg(number) {
+  //return true if the time isnt 100 and if we have enough pts
   return user.points.amount.gte(user.points.autobuyerUpgCosts[number - 1]) && user.points.autobuyerTimes[number - 1] != 100
 }
 
@@ -990,11 +991,12 @@ function update() {
     document.getElementById("pulse number").innerHTML = "Gravitational Pulses: " + user.pulse.amount + " (" + user.wells.defaultMults + " wells at full power)";
     document.getElementById("point amount").innerHTML = "Gravitational Points: " + shorten(user.points.amount);
   }
+  //points
   if (document.getElementById('points').style.display != "none") {
     document.getElementById("upgrades button").style.display = ""
     document.getElementById("autobuyers button").style.display = ""
     document.getElementById("point amount upgrades").innerHTML = "You have " + shorten(user.points.amount) + " Gravitational Points."
-    if (subTab["points"] == "upgrades") {
+    if (subTab["points"] == "upgrades") {//for upgs subtab
       document.getElementById('upgrades').style.display = ""
       for (var i = 0; i < user.points.possibleUpgrade.length; i++) {
         var upgid = user.points.possibleUpgrade[i]
@@ -1013,6 +1015,22 @@ function update() {
     }
     if (subTab["points"] == "autobuyers") {
       document.getElementById('autobuyers').style.display = ""
+      for (var i = 0; i<user.points.autobuyerUpgCosts.length; i++){
+        document.getElementById("autobuyer"+(i+1)+"upg").innerHTML = "Current Speed: "+user.points.autobuyerTimes[i] + "ms<br> Cost: " + user.points.autobuyerUpgCosts[i] + " GP"
+        document.getElementById("autobuyer"+(i+1)+"upg").className = "upgradebtn buttonbought"
+        if (buyableSpeedUpg(i+1)) document.getElementById("autobuyer"+(i+1)+"upg").className = "upgradebtn button"
+        if ((!buyableSpeedUpg(i+1)) && user.points.autobuyerTimes[number - 1] != 100){//if we cant buy it bc and its not bc we have maxed it
+          document.getElementById("autobuyer"+(i+1)+"upg").className = "upgradebtn buttonlocked"
+        }
+        var autoCost = (5+i)*10
+        if (i == 9) autoCost = 200   //well
+        if (i == 10) autoCost = 500    //pulse
+        var thing = ["1st MK autobuyer","2nd MK autobuyer","3rd MK autobuyer","4th MK autobuyer","5th MK autobuyer","6th MK autobuyer","7th MK autobuyer","8th MK autobuyer","9th MK autobuyer","Well autobuyer","Pulse autobuyer"][i]
+        document.getElementById("autobuyer"+(i+1)+"unlock").innerHTML = "Unlock the " + thing + "<br>Cost:" + autoCost + " GP"
+        document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonlocked"
+        if (isGPupgradePossible("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn button"
+        if (user.points.possibleUpgrade.includes("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonbought"
+      }
     } else {
       document.getElementById('autobuyers').style.display = "none"
     }
@@ -1022,6 +1040,7 @@ function update() {
     document.getElementById("upgrades button").style.display = "none"
     document.getElementById("autobuyers button").style.display = "none"
   }
+  //eaters
   if (document.getElementById('eaters').style.display) { // 																																							i did this bc something is wrong with my github
     if (document.getElementById('eaters').style.display != "none") {
       for (var i = 1; i <= 4; i++) {
