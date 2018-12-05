@@ -1019,7 +1019,7 @@ function update() {
         document.getElementById("autobuyer"+(i+1)+"upg").innerHTML = "Current Speed: "+user.points.autobuyerTimes[i] + "ms<br> Cost: " + user.points.autobuyerUpgCosts[i] + " GP"
         document.getElementById("autobuyer"+(i+1)+"upg").className = "upgradebtn buttonbought"
         if (buyableSpeedUpg(i+1)) document.getElementById("autobuyer"+(i+1)+"upg").className = "upgradebtn button"
-        if ((!buyableSpeedUpg(i+1)) && user.points.autobuyerTimes[number - 1] != 100){//if we cant buy it bc and its not bc we have maxed it
+        if ((!buyableSpeedUpg(i+1)) && user.points.autobuyerTimes[i] != 100){//if we cant buy it bc and its not bc we have maxed it
           document.getElementById("autobuyer"+(i+1)+"upg").className = "upgradebtn buttonlocked"
         }
         
