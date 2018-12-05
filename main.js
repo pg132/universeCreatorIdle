@@ -1032,7 +1032,7 @@ function update() {
         document.getElementById("autobuyer"+(i+1)+"unlock").innerHTML = "Unlock the " + thing + "<br>Cost: " + autoCost + " GP"
         document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonlocked"
         if (isGPupgradePossible("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn button"
-        if (user.points.possibleUpgrade.includes("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonbought"
+        if (user.points.upgrades.includes("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonbought"
       }
     } else {
       document.getElementById('autobuyers').style.display = "none"
