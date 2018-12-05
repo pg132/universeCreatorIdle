@@ -1022,6 +1022,9 @@ function update() {
         if ((!buyableSpeedUpg(i+1)) && user.points.autobuyerTimes[number - 1] != 100){//if we cant buy it bc and its not bc we have maxed it
           document.getElementById("autobuyer"+(i+1)+"upg").className = "upgradebtn buttonlocked"
         }
+        
+        document.getElementById("autorow" + (i+1)).style.display = "table-row"
+        
         var autoCost = (5+i)*10
         if (i == 9) autoCost = 200   //well
         if (i == 10) autoCost = 500    //pulse
