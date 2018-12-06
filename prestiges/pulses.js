@@ -247,4 +247,23 @@ function buyableSpeedUpg(number) {
   return user.points.amount.gte(user.points.autobuyerUpgCosts[number - 1]) && user.points.autobuyerTimes[number - 1] != 100
 }
 
+function sacPulses(amt) {
+  if (user.pulse.amount >= amt + 2 && amt > 0) {
+    user.statistics.sacrificed++
+    user.points.amount = user.points.amount.plus(getGPgain(amt)).round()
+    if (user.wells.amount >= user.pulse.cost) {
+      giveAch(34)
+      user.points.amount = user.points.amount.plus(1)
+    }
+    user.pulse.amount -= amt
+    //remove the last amt elems from user.pulse.multipliers this is done by the .pop()
+    for (var i = 0; i < amt; i++) {
+      user.pulse.multipliers.pop()
+    }
+    giveAch(24)
+    if (user.pulse.amount == 2) giveAch(33)
+    fullPowerWellsUpdate()
+    updatePulseCost()
+  }
+}
 
