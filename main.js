@@ -1349,4 +1349,8 @@ function infinityAmountBugFix() {
   for (var i = 1; i <= 9; i++) {
     if (!user["mk" + i].amount) user["mk" + i].amount = new Decimal(user["mk" + i].base)
   }
+}
+
+
+
 
