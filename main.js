@@ -438,7 +438,8 @@ function buyMK(tier, quick) {
   var costMult = user["mk" + tier].costMult
   var mainScale = 1 + .01 / getEaterReward(4)
   var buyingMult = 1.01
-  if (hasAch(30) && user["mk" + tier].base < 10) buyingMult = 1.030301 //1.01**3
+  if (user.ripple.upgrades.includes("R11")) buyingMult = 1.05
+  if (hasAch(30) && user["mk" + tier].base < 10) buyingMult = buyingMult**3 //1.01**3
   var costDelay = getEaterReward(6)
   var w = 1 + .1 / getEaterReward(4)
   var constScale = Math.max(1, (user["mk" + tier].base - 900) / 100)
@@ -502,7 +503,7 @@ function buyMK(tier, quick) {
 
 function gravityWell(autobuyer) { //autobuyer helps us later to see if the user is doing it
   //first check is if we can afford it
-  if (user["mk" + user.wells.tiercost].amount.gte(new Decimal(user.wells.cost - .0001))) { //otherwise kick us out of this function
+  if (user["mk" + user.wells.tiercost].amount.gte(new Decimal(user.wells.cost - .00001))) { //otherwise kick us out of this function
     var maxT = user.wells.tiercost
     var canGet30 = true
     for (var i = 1; i < maxT; i++) {
@@ -515,6 +516,7 @@ function gravityWell(autobuyer) { //autobuyer helps us later to see if the user 
     } else {
       user.wells.cost = 20 + (user.wells.amount - 3) * user.wells.costScale / getEaterReward(2) //might be changed later by an upgrade
     }
+    if (user.ripple.upgrades.includes("R22")) user.wells.cost = Math.max(0,user.wells.cost-20)
     //now do the boosts if so
     user.wells.amount += 1
     giveAch(15)
@@ -671,9 +673,16 @@ function gravityPulse(autobuyer) {
       achievements: user.achievements,
       version: user.version,
       lastTick: user.lastTick,
-      notification: user.notification
+      notification: user.notification,
+      multiplierGen: user.multiplierGen,
+      ripple: user.ripple
     }
     if (user.points.upgrades.includes("GP42")) user.wells.amount += 1
+    if (user.ripple.upgrades.includes("R22")){
+      user.wells.amount = 4
+      user.wells.tiercost = 9
+      user.wells.cost = 0
+    }
     if (user.points.upgrades.includes("GP91")) {
       user.gravicles = user.gravicles.plus(1e5)
       user.mk1.amount = user.mk1.amount.plus(200)
@@ -773,7 +782,9 @@ function resetMK() {
     achievements: user.achievements,
     version: user.version,
     lastTick: user.lastTick,
-    notification: user.notification
+    notification: user.notification,
+    multiplierGen: user.multiplierGen,
+    ripple: user.ripple
   }
   if (user.points.upgrades.includes("GP91")) {
     user.gravicles = user.gravicles.plus(1e5)
@@ -795,7 +806,12 @@ function getEaterReward(number) {
   if (user.points.upgrades.includes("GP72")) amt = amt * 1.1
   if (number == 6 && k < 400) return Math.floor(amt * 100 * k)
   if (number == 6) return Math.floor(amt * 100 * ((k * 400) ** .5))
-  if (k > 40) k = Math.pow(k * 40, .5)
+  if (user.ripple.upgrades.includes("R21")){
+    if (k > 40) k = Math.pow(k * 40**.5, 2/3)
+  }
+  else {
+    if (k > 40) k = Math.pow(k * 40, .5)
+  }
   if (k > 80) k = Math.pow(k * 80, .5)
   if (k > 120) k = Math.pow(k * 120, .5)
   if (k > 160) k = Math.pow(k * 160, .5)
@@ -971,6 +987,13 @@ function sacMaxPulses() {
   sacPulses(Math.max(0, user.pulse.amount - 2))
 }
 
+function getRippletsToGive(){
+  var divider = 4000
+  if (user.ripple.upgrades.includes("R32")) divider = 3900
+  var main = Decimal.pow(10,(user.gravicles.plus(1).log10()/divider)-2.21)
+  return main.times(user.pulse.amount).floor()
+}
+
 function updateMKUnlocks() {
   var w = user.wells.amount
   user.mk6.unlocked = false
@@ -1126,12 +1149,14 @@ function baseMKproduction(tier) {
   var fpwMult = 1.5
   if (user.eaters.GE5.unlocked) fpwMult *= getEaterReward(5)
   mult = mult.times(Decimal.pow(1 + fpwMult / tier, user.wells.defaultMults - 4))
+  if (user.ripple.times >= 1) mult = mult.times(10)
+  if (user.ripple.upgrades.includes("R31")) mult = mult.times(Decimal.pow(1.1,Math.min(user.ripple.times,50)).plus(20))
   //put additional mults here
+  if (hasAch(39) && mult.gte(1e100)) mult = mult.times(1e10)
   if (user.points.upgrades.includes("GP92")) {
     if (user["mk" + tier].amount == 0) return new Decimal(0)
     return amt.plus(10).times(mult)
   }
-  if (hasAch(39) && mult.gte(1e100)) mult = mult.times(1e10)
   return amt.times(mult)
 }
 
@@ -1144,6 +1169,8 @@ function baseMKmult(tier) {
   var fpwMult = 1.5
   if (user.eaters.GE5.unlocked) fpwMult *= getEaterReward(5)
   mult = mult.times(Decimal.pow(1 + fpwMult / tier, user.wells.defaultMults - 4))
+  if (user.ripple.times >= 1) mult = mult.times(10)
+  if (user.ripple.upgrades.includes("R31")) mult = mult.times(Decimal.pow(1.1,Math.min(user.ripple.times,50)).plus(20))
   //put additional mults here
   if (hasAch(39) && mult.gte(1e100)) mult = mult.times(1e10)
   return mult
