@@ -155,7 +155,268 @@ function getDefaultSave() {
     notification: {
       achLen: 0,
       loreLen: 0
-    }
+    },
+    ripple:{
+      times: 0,
+      ripplets: new Decimal(0),
+      upgrades: [],
+      unlocked: 3,//number of rows
+      challenges:{
+        unlocked: false,
+        current: "",
+        completed: [],
+        harderUnlocked: false,
+        HC1record: new Decimal(0),
+        HC2record: new Decimal(0),
+      }
+    },
+    multiplierGen:{
+      unlocked: false,
+      set1:{
+        mk1: {
+          amount: new Deicmal(0),
+          cost: new Decimal(10),
+          costMult: 2,
+        },
+        mk2: {
+          amount: new Deicmal(0),
+          cost: new Decimal(100),
+          costMult: 2,
+        },
+        mk3: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e3),
+          costMult: 2,
+        },
+        mk4: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e4),
+          costMult: 2,
+        },
+        mk5: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e5),
+          costMult: 2,
+        }
+      },
+      set2:{
+        mk1: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e2),
+          costMult: 2,
+        },
+        mk2: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e3),
+          costMult: 2,
+        },
+        mk3: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e4),
+          costMult: 2,
+        },
+        mk4: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e5),
+          costMult: 2,
+        },
+        mk5: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e6),
+          costMult: 2,
+        }
+      },
+      set3:{
+        mk1: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e3),
+          costMult: 2,
+        },
+        mk2: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e4),
+          costMult: 2,
+        },
+        mk3: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e5),
+          costMult: 2,
+        },
+        mk4: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e6),
+          costMult: 2,
+        },
+        mk5: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e7),
+          costMult: 2,
+        }
+      },
+      set4:{
+        mk1: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e4),
+          costMult: 2,
+        },
+        mk2: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e5),
+          costMult: 2,
+        },
+        mk3: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e6),
+          costMult: 2,
+        },
+        mk4: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e7),
+          costMult: 2,
+        },
+        mk5: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e8),
+          costMult: 2,
+        }
+      },
+      set5:{
+        mk1: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e5),
+          costMult: 2,
+        },
+        mk2: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e6),
+          costMult: 2,
+        },
+        mk3: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e7),
+          costMult: 2,
+        },
+        mk4: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e8),
+          costMult: 2,
+        },
+        mk5: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e9),
+          costMult: 2,
+        }
+      },
+      set6:{
+        mk1: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e6),
+          costMult: 2,
+        },
+        mk2: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e7),
+          costMult: 2,
+        },
+        mk3: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e8),
+          costMult: 2,
+        },
+        mk4: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e9),
+          costMult: 2,
+        },
+        mk5: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e10),
+          costMult: 2,
+        }
+      },
+      set7:{
+        mk1: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e7),
+          costMult: 2,
+        },
+        mk2: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e8),
+          costMult: 2,
+        },
+        mk3: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e9),
+          costMult: 2,
+        },
+        mk4: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e10),
+          costMult: 2,
+        },
+        mk5: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e11),
+          costMult: 2,
+        }
+      },
+      set8:{
+        mk1: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e8),
+          costMult: 2,
+        },
+        mk2: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e9),
+          costMult: 2,
+        },
+        mk3: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e10),
+          costMult: 2,
+        },
+        mk4: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e11),
+          costMult: 2,
+        },
+        mk5: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e12),
+          costMult: 2,
+        }
+      },
+      set9:{
+        mk1: {
+          amount: new Deicmal(0),
+          cost: new Decimal(19),
+          costMult: 2,
+        },
+        mk2: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e10),
+          costMult: 2,
+        },
+        mk3: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e11),
+          costMult: 2,
+        },
+        mk4: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e12),
+          costMult: 2,
+        },
+        mk5: {
+          amount: new Deicmal(0),
+          cost: new Decimal(1e13),
+          costMult: 2,
+        }
+      }//closes set9
+      
+    }//closes multGens
   };
 
 }
