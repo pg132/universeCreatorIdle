@@ -248,7 +248,8 @@ function buyableSpeedUpg(number) {
 }
 
 function sacPulses(amt) {
-  if (user.pulse.amount >= amt + 2 && amt > 0) {
+  var unlocked = user.pulse.amount >= 6 || user.points.amount.gte(1) || user.points.upgrades.length != 0
+  if (user.pulse.amount >= amt + 2 && amt > 0 && unlocked) {
     user.statistics.sacrificed++
     user.points.amount = user.points.amount.plus(getGPgain(amt)).round()
     if (user.wells.amount >= user.pulse.cost) {
