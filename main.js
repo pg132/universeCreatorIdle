@@ -932,10 +932,7 @@ function buyableWell() {
 }
 
 function buyablePulse() {
-  if (user.wells.amount >= user.pulse.cost) {
-    return true
-  }
-  return false
+  return user.wells.amount >= user.pulse.cost
 }
 
 function buyableGE(number) {
