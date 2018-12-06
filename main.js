@@ -237,7 +237,6 @@ function buyMK(tier, quick) {
   }
   if (user["mk" + tier].cost.gte(new Decimal("1e4000"))) user["mk" + tier].costMult = user["mk" + tier].costMult.times(2)
   //abv is mult scale for ripple
-  if (!quick) update();
 }
 
 function gravityWell(autobuyer) { //autobuyer helps us later to see if the user is doing it
@@ -641,7 +640,6 @@ function buyMaxMK(tier, quick) {
       }
     } //closes unlocked if
   } //closes else refering to tier >= 5
-  if (!quick) update();
 }
 
 function maxAll() {
@@ -896,7 +894,6 @@ function MKproduction(diff) {
   user.gravicles = user.gravicles.plus(addGrav)
   user.statistics.totalGravicles = user.statistics.totalGravicles.plus(addGrav)
   for (var i = 2; i <= 9; i++) user["mk" + (i - 1)].amount = user["mk" + (i - 1)].amount.plus(baseMKproduction(i).times(diff))
-  update();
 }
 
 //helper functions for update()
