@@ -157,6 +157,7 @@ function getDefaultSave() {
       loreLen: 0
     }
   };
+
 }
 
 
@@ -847,6 +848,7 @@ function showMK() {
       }
     }
   }
+
 }
 
 function getMkAmount(tier) {
@@ -886,6 +888,7 @@ function baseMKmult(tier) {
   //put additional mults here
   if (hasAch(39) && mult.gte(1e100)) mult = mult.times(1e10)
   return mult
+
 }
 
 function MKproduction(diff) {
@@ -1257,6 +1260,7 @@ function gameLoop() {
   updateGEunlocks();
   updateGECosts();
   update();
+
 }
 
 function switchNotation() {
@@ -1351,4 +1355,4 @@ function infinityAmountBugFix() {
   for (var i = 1; i <= 9; i++) {
     if (!user["mk" + i].amount) user["mk" + i].amount = new Decimal(user["mk" + i].base)
   }
-}
+
