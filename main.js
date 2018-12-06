@@ -168,7 +168,11 @@ function getDefaultSave() {
         harderUnlocked: false,
         HC1record: new Decimal(0),
         HC2record: new Decimal(0),
-      }
+      },
+      rebuyable:{
+        cost: new Decimal(5),
+        costMult: 20,
+        multipler: new Decimal(1),
     },
     multiplierGen:{
       unlocked: false,
@@ -991,7 +995,7 @@ function getRippletsToGive(){
   var divider = 4000
   if (user.ripple.upgrades.includes("R32")) divider = 3900
   var main = Decimal.pow(10,(user.gravicles.plus(1).log10()/divider)-2.21)
-  return main.times(user.pulse.amount).floor()
+  return main.times(user.pulse.amount).times(user.ripple.rebuyable.multipler).floor()
 }
 
 function updateMKUnlocks() {
