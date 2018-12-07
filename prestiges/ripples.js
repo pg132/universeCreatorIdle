@@ -28,7 +28,13 @@ function updateChallenges(){
  user.ripple.challenges.harderUnlocked = user.ripple.upgrades.includes("R15") 
 }
 
+function getHarderReward1(){
+ return Math.pow(10,Math.floor(user.ripple.challenges.HC1record.plus(1).log10()/10))
+}
 
+function getHarderReward2(){
+ return Math.pow(10,Math.floor(user.ripple.challenges.HC2record.plus(1).log10()/20))
+}
 
 
 
