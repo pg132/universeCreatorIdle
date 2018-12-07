@@ -159,7 +159,7 @@ function getDefaultSave() {
     ripple:{
       times: 0,
       ripplets: new Decimal(0),
-      upgrades: [],
+      upgrades: [[1,2,3,30,150],[1,4,10,40,300],[5,8,25,75,500],[30,50,85,125,750],[250,500,800,1250,1500]],
       costs:[],//have it be a list of lists with the costs
       unlocked: 3,//number of rows
       challenges:{
