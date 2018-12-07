@@ -139,9 +139,11 @@ function gravityPulse(autobuyer) {
 
 function buyGPupg(ID) { //ID is a string
   var auto = false
-  if (ID.substring(0,3) == "GPA") {
-    ID = ID.substring(2)
-    auto = true
+  if (ID.length >= 4){
+    if (ID.substring(0,3) == "GPA") {
+     ID = ID.substring(2)
+     auto = true
+    }
   }
   var k = "GP" + ID
   if (!user.points.upgrades.includes(k) && user.points.possibleUpgrade.includes(k)) {
