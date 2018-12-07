@@ -139,8 +139,8 @@ function getDefaultSave() {
         scale: new Decimal(1e5),
         amount: 0,
         unlocked: false
-      }
-    },
+      }//closes GE6
+    },//closes eaters
     statistics: {
       playtime: 0,
       totalGravicles: new Decimal(0),
@@ -201,7 +201,7 @@ function getDefaultSave() {
         mk5: {
           amount: new Deicmal(0),
           cost: new Decimal(1e5),
-          costMult: 2,
+          costMult: 2
         }
       },
       set2:{
@@ -228,7 +228,7 @@ function getDefaultSave() {
         mk5: {
           amount: new Deicmal(0),
           cost: new Decimal(1e6),
-          costMult: 2,
+          costMult: 2
         }
       },
       set3:{
@@ -255,7 +255,7 @@ function getDefaultSave() {
         mk5: {
           amount: new Deicmal(0),
           cost: new Decimal(1e7),
-          costMult: 2,
+          costMult: 2
         }
       },
       set4:{
@@ -282,7 +282,7 @@ function getDefaultSave() {
         mk5: {
           amount: new Deicmal(0),
           cost: new Decimal(1e8),
-          costMult: 2,
+          costMult: 2
         }
       },
       set5:{
@@ -309,7 +309,7 @@ function getDefaultSave() {
         mk5: {
           amount: new Deicmal(0),
           cost: new Decimal(1e9),
-          costMult: 2,
+          costMult: 2
         }
       },
       set6:{
@@ -336,7 +336,7 @@ function getDefaultSave() {
         mk5: {
           amount: new Deicmal(0),
           cost: new Decimal(1e10),
-          costMult: 2,
+          costMult: 2
         }
       },
       set7:{
@@ -363,7 +363,7 @@ function getDefaultSave() {
         mk5: {
           amount: new Deicmal(0),
           cost: new Decimal(1e11),
-          costMult: 2,
+          costMult: 2
         }
       },
       set8:{
@@ -390,7 +390,7 @@ function getDefaultSave() {
         mk5: {
           amount: new Deicmal(0),
           cost: new Decimal(1e12),
-          costMult: 2,
+          costMult: 2
         }
       },
       set9:{
@@ -417,7 +417,7 @@ function getDefaultSave() {
         mk5: {
           amount: new Deicmal(0),
           cost: new Decimal(1e13),
-          costMult: 2,
+          costMult: 2
         }
       }//closes set9
       
@@ -1025,6 +1025,7 @@ function gameLoop() {
   checkAchUnlocks();
   updateGEunlocks();
   updateGECosts();
+  updateChallenges();
   update();
 
 }
