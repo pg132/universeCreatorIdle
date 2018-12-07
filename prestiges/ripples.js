@@ -7,14 +7,15 @@ function canBuyRippleUpg(ID){ // doesnt count for cost
  if (row > user.ripple.unlocked || col > user.ripple.unlocked) return false
  var k = (row == 1)||user.ripple.upgrades.includes("R"+(ID-10))
  var w = (col == 1)||user.ripple.upgrades.includes("R"+(ID-1))
- return k && w
+ return k && w && canBuyRUpgCost(ID)
 }
 
 
 function canBuyRUpgCost(ID){
  var row = Math.floor(ID/10)
  var col = ID%10
- return false //NOT RIGHT FIX
+ var cost = user.ripple.cost[row][col]
+ return user.ripple.ripplets.gte(cost-0.001)
 }
 
 function canBuyRebuyableRipple(){
