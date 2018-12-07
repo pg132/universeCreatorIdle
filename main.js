@@ -173,6 +173,7 @@ function getDefaultSave() {
         cost: new Decimal(5),
         costMult: 20,
         multipler: new Decimal(1),
+      }
     },
     multiplierGen:{
       unlocked: false,
