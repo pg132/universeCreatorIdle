@@ -29,11 +29,11 @@ function updateChallenges(){
 }
 
 function getHarderReward1(){
- return Math.pow(10,Math.floor(user.ripple.challenges.HC1record.plus(1).log10()/10))
+ return Decimal.pow(10,Math.floor(user.ripple.challenges.HC1record.plus(1).log10()/10))
 }
 
 function getHarderReward2(){
- return Math.pow(10,Math.floor(user.ripple.challenges.HC2record.plus(1).log10()/20))
+ return Decimal.pow(10,Math.floor(user.ripple.challenges.HC2record.plus(1).log10()/20))
 }
 
 function updateHarderReward(number,value){
