@@ -41,5 +41,11 @@ function updateHarderReward(number,value){
 }
 
 
+function howManyWells(){
+ if (user.wells.tiercost != 9) return user["mk" + user.wells.tiercost].amount.gte(new Decimal(user.wells.cost - .00001)) ? 1 : 0
+ var diff = user.mk9.base - user.wells.cost
+ return Math.floor(1+diff/user.wells.costScale*getEaterReward(2))
+}
+
 
 
