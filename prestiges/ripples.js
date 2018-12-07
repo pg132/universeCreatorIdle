@@ -36,5 +36,10 @@ function getHarderReward2(){
  return Math.pow(10,Math.floor(user.ripple.challenges.HC2record.plus(1).log10()/20))
 }
 
+function updateHarderReward(number,value){
+ user.ripple.challenges["HC"+number+"record"] = value
+}
+
+
 
 
