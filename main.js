@@ -160,6 +160,7 @@ function getDefaultSave() {
       times: 0,
       ripplets: new Decimal(0),
       upgrades: [],
+      costs:[],//have it be a list of lists with the costs
       unlocked: 3,//number of rows
       challenges:{
         unlocked: false,
