@@ -150,7 +150,7 @@ function getDefaultSave() {
       notation: "Scientific"
     },
     achievements: [],
-    version: 0.104,
+    version: 0.105,
     lastTick: new Date().getTime(),
     notification: {
       achLen: 0,
