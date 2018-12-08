@@ -115,7 +115,7 @@ function updateSave() {
       loreLen: 0
     }
   }
-  if (user.version < .017){
+  if (user.version < .107){
    user.points.requirements = [""       ,     "",  "GP11,GP12"  , "GP21", "GP31", "GPA1", "GPA2", "GPA3", "GPA4", "GPA5", "GPA6", "GPA7", "GPA8", "GP31", "GP31", "GP41", "GP42" , "GPA9", "GP51,GP52", "GP61", "GP61", "GPA10", "GP71,GP72", "GP81", "GP81"]
   }
   user.version = .107
