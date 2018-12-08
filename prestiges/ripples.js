@@ -1,5 +1,5 @@
 
-function canBuyRippleUpg(ID){ // doesnt count for cost
+function canBuyRippleUpg(ID){ 
  var thing = "R" + ID
  if (!(user.ripple.upgrades.includes(thing))) return false
  var row = Math.floor(ID/10)
@@ -10,6 +10,9 @@ function canBuyRippleUpg(ID){ // doesnt count for cost
  return k && w && canBuyRUpgCost(ID)
 }
 
+function canRipple(){
+ return getRippletsToGive() >= 1
+}
 
 function canBuyRUpgCost(ID){
  var row = Math.floor(ID/10)
@@ -65,5 +68,10 @@ function howManyWells(){
  return Math.floor(1+diff/user.wells.costScale*getEaterReward(2))
 }
 
-
+function getRippletsToGive(){
+  var divider = 4000
+  if (user.ripple.upgrades.includes("R32")) divider = 3900
+  var main = Decimal.pow(10,(user.gravicles.plus(1).log10()/divider)-2.21)
+  return main.times(user.pulse.amount).times(user.ripple.rebuyable.multipler).floor()
+}
 
