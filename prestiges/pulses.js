@@ -179,6 +179,7 @@ function isGPupgradePossible(id) {
     }
     return true
   }
+  return false
 }
 
 function runMKAutobuyers() {
