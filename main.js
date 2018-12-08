@@ -542,13 +542,6 @@ function maxAll() {
   }
 }
 
-function getRippletsToGive(){
-  var divider = 4000
-  if (user.ripple.upgrades.includes("R32")) divider = 3900
-  var main = Decimal.pow(10,(user.gravicles.plus(1).log10()/divider)-2.21)
-  return main.times(user.pulse.amount).times(user.ripple.rebuyable.multipler).floor()
-}
-
 function checkAchUnlocks() {
   if (user.pulse.amount == 9 && user.wells.amount == 9 && user.mk9.amount == new Decimal(99)) giveAch(25)
   var canget31 = true
