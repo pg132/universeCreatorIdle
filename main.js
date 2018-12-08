@@ -129,13 +129,13 @@ function getDefaultSave() {
         amount: 0
       },
       GE5: {
-        cost: new Decimal(1e400),
+        cost: new Decimal("1e400"),
         scale: new Decimal(1e5),
         amount: 0,
         unlocked: false
       },
       GE6: {
-        cost: new Decimal(1e400),
+        cost: new Decimal("1e400"),
         scale: new Decimal(1e5),
         amount: 0,
         unlocked: false
@@ -180,243 +180,243 @@ function getDefaultSave() {
       unlocked: false,
       set1:{
         mk1: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(10),
           costMult: 2,
         },
         mk2: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(100),
           costMult: 2,
         },
         mk3: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e3),
           costMult: 2,
         },
         mk4: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e4),
           costMult: 2,
         },
         mk5: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e5),
           costMult: 2
         }
       },
       set2:{
         mk1: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e2),
           costMult: 2,
         },
         mk2: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e3),
           costMult: 2,
         },
         mk3: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e4),
           costMult: 2,
         },
         mk4: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e5),
           costMult: 2,
         },
         mk5: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e6),
           costMult: 2
         }
       },
       set3:{
         mk1: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e3),
           costMult: 2,
         },
         mk2: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e4),
           costMult: 2,
         },
         mk3: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e5),
           costMult: 2,
         },
         mk4: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e6),
           costMult: 2,
         },
         mk5: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e7),
           costMult: 2
         }
       },
       set4:{
         mk1: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e4),
           costMult: 2,
         },
         mk2: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e5),
           costMult: 2,
         },
         mk3: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e6),
           costMult: 2,
         },
         mk4: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e7),
           costMult: 2,
         },
         mk5: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e8),
           costMult: 2
         }
       },
       set5:{
         mk1: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e5),
           costMult: 2,
         },
         mk2: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e6),
           costMult: 2,
         },
         mk3: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e7),
           costMult: 2,
         },
         mk4: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e8),
           costMult: 2,
         },
         mk5: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e9),
           costMult: 2
         }
       },
       set6:{
         mk1: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e6),
           costMult: 2,
         },
         mk2: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e7),
           costMult: 2,
         },
         mk3: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e8),
           costMult: 2,
         },
         mk4: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e9),
           costMult: 2,
         },
         mk5: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e10),
           costMult: 2
         }
       },
       set7:{
         mk1: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e7),
           costMult: 2,
         },
         mk2: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e8),
           costMult: 2,
         },
         mk3: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e9),
           costMult: 2,
         },
         mk4: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e10),
           costMult: 2,
         },
         mk5: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e11),
           costMult: 2
         }
       },
       set8:{
         mk1: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e8),
           costMult: 2,
         },
         mk2: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e9),
           costMult: 2,
         },
         mk3: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e10),
           costMult: 2,
         },
         mk4: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e11),
           costMult: 2,
         },
         mk5: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e12),
           costMult: 2
         }
       },
       set9:{
         mk1: {
-          amount: new Deicmal(0),
-          cost: new Decimal(19),
+          amount: new Decimal(0),
+          cost: new Decimal(1e9),
           costMult: 2,
         },
         mk2: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e10),
           costMult: 2,
         },
         mk3: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e11),
           costMult: 2,
         },
         mk4: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e12),
           costMult: 2,
         },
         mk5: {
-          amount: new Deicmal(0),
+          amount: new Decimal(0),
           cost: new Decimal(1e13),
           costMult: 2
         }
@@ -708,8 +708,18 @@ function buyable(tier) {
   return gravCost.lte(user.gravicles) && new Decimal(getMkAmount(tier - 1)).gte(tierCost) && unlocked
 }
   
-function changeSubTab(mainTab, name) {
-  subTab[mainTab] = name
+function changeSubTab(mainTab, tabName) {
+  //iterate over all elements in div_tab class. Hide everything that's not tabName and show tabName
+  var tabs = document.getElementsByClassName(mainTab + '_tab');
+  var tab;
+  for (var i = 0; i < tabs.length; i++) {
+    tab = tabs.item(i);
+	if (tab.style.display == "block") if (tab.id === tabName) return
+    if (tab.id === tabName) tab.style.display = 'block';
+    else tab.style.display = 'none';
+  }
+  if (mainTab == "points") if (tabName == "upgrades") resizeCanvas();
+  subTab[mainTab] = tabName
 }
 
 
@@ -724,6 +734,11 @@ function update() {
     document.getElementById("eaters button").style.display = "inline"
   } else {
     document.getElementById("eaters button").style.display = "none"
+  }
+  if (user.statistics.totalGravicles.gt("1e4000")) {
+    document.getElementById("ripple button").style.display = "inline"
+  } else {
+    document.getElementById("ripple button").style.display = "none"
   }
   if (document.getElementById('generators').style.display != "none") {
     for (var i = 1; i <= 9; i++) {
@@ -770,8 +785,6 @@ function update() {
   }
   //points
   if (document.getElementById('points').style.display != "none") {
-    document.getElementById("upgrades button").style.display = ""
-    document.getElementById("autobuyers button").style.display = ""
     document.getElementById("point amount upgrades").innerHTML = "You have " + shorten(user.points.amount) + " Gravitational Points."
     if (subTab["points"] == "upgrades") {//for upgs subtab
       document.getElementById('upgrades').style.display = ""
@@ -787,11 +800,7 @@ function update() {
         }
       }
       document.getElementById("GP41 effect").innerHTML = shorten(1e3)
-    } else {
-      document.getElementById("upgrades").style.display = "none"
-    }
-    if (subTab["points"] == "autobuyers") {
-      document.getElementById('autobuyers').style.display = ""
+    } else if (subTab["points"] == "autobuyers") {
       for (var i = 0; i<user.points.autobuyerUpgCosts.length; i++){
         document.getElementById("autobuyer"+(i+1)+"upg").innerHTML = "Current Speed: "+user.points.autobuyerTimes[i] + "ms<br> Cost: " + user.points.autobuyerUpgCosts[i] + " GP"
         document.getElementById("autobuyer"+(i+1)+"upg").className = "upgradebtn buttonbought"
@@ -813,14 +822,7 @@ function update() {
         if (isGPupgradePossible("GPA"+(i+1)) && user.points.amount.gte(upgCost-0.0001)) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn button"
         if (user.points.upgrades.includes("GPA"+(i+1))) document.getElementById("autobuyer"+(i+1)+"unlock").className = "upgradebtn buttonbought"
       }
-    } else {
-      document.getElementById('autobuyers').style.display = "none"
     }
-  } else {
-    document.getElementById("upgrades").style.display = "none"
-    document.getElementById('autobuyers').style.display = "none"
-    document.getElementById("upgrades button").style.display = "none"
-    document.getElementById("autobuyers button").style.display = "none"
   }
   //eaters
   if (document.getElementById('eaters').style.display) { // 																																							i did this bc something is wrong with my github
@@ -908,17 +910,23 @@ function showTab(tabName) {
   var tabs = document.getElementsByClassName('tab');
   var tab;
   var highestLore = 0
-  for (var i = 0; i < lore.length; i++) {
-    if (unlockedLore(i)) highestLore = i
-  }
-  if (tabName == "lore") user.notification.loreLen = highestLore
-  if (tabName == "achievements") user.notification.achLen = numOfAch()
   for (var i = 0; i < tabs.length; i++) {
     tab = tabs.item(i);
+	if (tab.style.display == "block") if (tab.id === tabName) return
     if (tab.id === tabName) tab.style.display = 'block';
     else tab.style.display = 'none';
   }
-  resizeCanvas();
+  if (tabName == "lore") {
+    for (var i = 0; i < lore.length; i++) {
+      if (unlockedLore(i)) highestLore = i
+    }
+    user.notification.loreLen = highestLore
+  }
+  if (tabName == "achievements") user.notification.achLen = numOfAch()
+  if (tabName == "points") {
+    document.getElementById("points tabs").style.display = ""
+    if (subTab["points"] == "upgrades") resizeCanvas();
+  } else document.getElementById("points tabs").style.display = "none"
 }
 
 //saving and main loop stuff
@@ -1117,7 +1125,3 @@ function infinityAmountBugFix() {
     if (!user["mk" + i].amount) user["mk" + i].amount = new Decimal(user["mk" + i].base)
   }
 }
-
-
-
-

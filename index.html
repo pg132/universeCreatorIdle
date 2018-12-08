@@ -21,13 +21,14 @@
     <button onclick="showTab('generators')" class="button">Generators</button>
     <button onclick="showTab('points')" class="button" id="points button" style="display:none">Points</button>
     <button onclick="showTab('eaters')" class="button" id='eaters button' style="display:none">Eaters</button>
+    <button onclick="showTab('ripple')" class="button" id='ripple button' style="display:none">Ripple</button>
     <button onclick="showTab('options')" class="button">Options</button>
     <button onclick="showTab('achievements')" class="button">Achievements</button>
     <button onclick="showTab('statistics')" class="button">Statistics</button>
     <button onclick="showTab('lore')" class="button">Lore</button>
-    <div>
-      <button onclick="changeSubTab('points','upgrades')" class="button" id='upgrades button' style="display:none">Upgrades</button>
-      <button onclick="changeSubTab('points','autobuyers')" class="button" id='autobuyers button' style="display:none">Autobuyers</button>
+    <div id="points tabs" style="display: none">
+      <button onclick="changeSubTab('points','upgrades')" class="button">Upgrades</button>
+      <button onclick="changeSubTab('points','autobuyers')" class="button">Autobuyers</button>
     </div>
     <p>You have <span id="gravicle amount">10</span> gravicles</p>
     <div id="achievements" class = "tab">
@@ -212,7 +213,7 @@
     </div>
     <div id='points' class='tab' style="display:none">
       <div id="point amount upgrades">You have 0 Gravitational Points.</div>
-      <div id="upgrades">
+      <div class="points_tab" id="upgrades">
         <canvas id="upgradeCanvas"></canvas>
         <table align=center>
           <tr>
@@ -293,7 +294,7 @@
           </tr>
         </table>
       </div>
-      <div id="autobuyers" style="display:none">
+      <div class="points_tab" id="autobuyers" style="display:none">
         <div>
           <table align = center>
             <tr id = "autorow1">
