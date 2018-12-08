@@ -11,7 +11,7 @@ function canBuyRippleUpg(ID){
 }
 
 function canRipple(){
- return getRippletsToGive() >= 1
+ return getRippletsToGive().gte(1)
 }
 
 function canBuyRUpgCost(ID){
