@@ -587,6 +587,7 @@ function isGPupgradePossible(id) {
     }
     return true
   }
+  return false
 }
 
 function gravityWellBoost(tier) {
