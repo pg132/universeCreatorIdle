@@ -118,5 +118,8 @@ function updateSave() {
   if (user.version < .107){
    user.points.requirements = [""       ,     "",  "GP11,GP12"  , "GP21", "GP31", "GPA1", "GPA2", "GPA3", "GPA4", "GPA5", "GPA6", "GPA7", "GPA8", "GP31", "GP31", "GP41", "GP42" , "GPA9", "GP51,GP52", "GP61", "GP61", "GPA10", "GP71,GP72", "GP81", "GP81"]
   }
-  user.version = .107
+  if (user.version < .108){
+    user.points.upgradesCost =      [1        ,      1,              2,      5,     50,     60,     70,     80,     90,    100,    110,    120,    130,     10,     10,     15,     20,     200,     30,     75     ,    100,     500,    200,          25,     50]
+  }
+  user.version = .108
 }
