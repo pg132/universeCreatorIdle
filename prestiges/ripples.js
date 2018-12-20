@@ -22,7 +22,7 @@ function canBuyRUpgCost(ID){
 }
 
 function canBuyRebuyableRipple(){
- return user.ripple.ripplets.gte(user.ripple.rebuyable.cost) 
+ return user.ripple.ripplets.gte(user.ripple.rebuyable.cost) && user.ripple.upgrades.includes("R13")
 }
 
 function buyRebuyableRipple(){
