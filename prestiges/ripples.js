@@ -1,3 +1,179 @@
+function ripple(){
+ if (canRipple() == false) return
+ //now check if we are in a chall, in which case add it to completeed challs DONE
+ // then we want to check if we are in a harder chall (9 or 10) and do the stuff for that if so
+ if (user.ripple.challenges.current == "chall9" || user.ripple.challenges.current == "chall10" ){
+  updateHarderReward(user.ripple.challenges.current.substring(5)-8,user.gravicles)
+ }
+ user = {
+    gravicles: new Decimal(10),
+    mk1: {
+      cost: new Decimal(10),
+      amount: new Decimal(0),
+      multiplier: new Decimal(1),
+      base: 0,
+      previousTierCost: 0,
+      costMult: new Decimal(1.15)
+    },
+    mk2: {
+      cost: new Decimal(100),
+      amount: new Decimal(0),
+      multiplier: new Decimal(1),
+      base: 0,
+      previousTierCost: 10,
+      costMult: new Decimal(1.165)
+    },
+    mk3: {
+      cost: new Decimal(1000),
+      amount: new Decimal(0),
+      multiplier: new Decimal(1),
+      base: 0,
+      previousTierCost: 10,
+      costMult: new Decimal(1.18)
+    },
+    mk4: {
+      cost: new Decimal(1e4),
+      amount: new Decimal(0),
+      multiplier: new Decimal(1),
+      base: 0,
+      previousTierCost: 10,
+      costMult: new Decimal(1.2)
+    },
+    mk5: {
+      cost: new Decimal(1e6),
+      amount: new Decimal(0),
+      multiplier: new Decimal(1),
+      base: 0,
+      previousTierCost: 10,
+      costMult: new Decimal(1.22)
+    },
+    mk6: {
+      cost: new Decimal(1e9),
+      amount: new Decimal(0),
+      multiplier: new Decimal(1),
+      base: 0,
+      unlocked: false,
+      previousTierCost: 10,
+      costMult: new Decimal(1.24)
+    },
+    mk7: {
+      cost: new Decimal(1e13),
+      amount: new Decimal(0),
+      multiplier: new Decimal(1),
+      base: 0,
+      unlocked: false,
+      previousTierCost: 10,
+      costMult: new Decimal(1.265)
+    },
+    mk8: {
+      cost: new Decimal(1e18),
+      amount: new Decimal(0),
+      multiplier: new Decimal(1),
+      base: 0,
+      unlocked: false,
+      previousTierCost: 10,
+      costMult: new Decimal(1.28)
+    },
+    mk9: {
+      cost: new Decimal(1e25),
+      amount: new Decimal(0),
+      multiplier: new Decimal(1),
+      base: 0,
+      unlocked: false,
+      previousTierCost: 10,
+      costMult: new Decimal(1.3)
+    },
+    wells: {
+      basecost: 20,
+      cost: 20,
+      tiercost: 5,
+      defaultMults: 4,
+      amount: 0,
+      costScale: 20
+    },
+    pulse: {
+      cost: 5,
+      amount: 0,
+      multipliers: []
+    },
+    points: {
+      amount: new Decimal(0),
+      upgradesCost: [1        ,      1,              2,      5,     50,     60,     70,     80,     90,    100,    110,    120,    130,     10,     10,     15,     20,     200,     30,     75     ,    100,     500,    200,          25,     50], //next line GP starts for gravity points and GPA stands for gravity points autobuyer             
+      possibleUpgrade: ["GP11", "GP12", "GP21"        , "GP31", "GPA1", "GPA2", "GPA3", "GPA4", "GPA5", "GPA6", "GPA7", "GPA8", "GPA9", "GP41", "GP42", "GP51", "GP52", "GPA10", "GP61", "GP71"     , "GP72", "GPA11", "GP81", "GP91"     , "GP92"],
+      requirements: [""       ,     "",  "GP11,GP12"  , "GP21", "GP31", "GPA1", "GPA2", "GPA3", "GPA4", "GPA5", "GPA6", "GPA7", "GPA8", "GP31", "GP31", "GP41", "GP42" , "GPA9", "GP51,GP52", "GP61", "GP61", "GPA10", "GP71,GP72", "GP81", "GP81"],
+      upgrades: [],
+      autobuyers: [],
+      autobuyerTimes: [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000],
+      autobuyerUpgCosts: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20], //11 of them
+      lastTimes: user.points.lastTimes
+    },
+    eaters: {
+      GE1: {
+        cost: new Decimal(1e100),
+        scale: new Decimal(1e2),
+        amount: 0
+      },
+      GE2: {
+        cost: new Decimal(1e100),
+        scale: new Decimal(1e2),
+        amount: 0
+      },
+      GE3: {
+        cost: new Decimal(1e100),
+        scale: new Decimal(1e2),
+        amount: 0
+      },
+      GE4: {
+        cost: new Decimal(1e100),
+        scale: new Decimal(1e2),
+        amount: 0
+      },
+      GE5: {
+        cost: new Decimal("1e400"),
+        scale: new Decimal(1e5),
+        amount: 0,
+        unlocked: false
+      },
+      GE6: {
+        cost: new Decimal("1e400"),
+        scale: new Decimal(1e5),
+        amount: 0,
+        unlocked: false
+      }//closes GE6
+    },//closes eaters
+    statistics: user.statistics,
+    options: user.options,
+    achievements: user.achievements,
+    version: user.version,
+    lastTick: user.lastTick,
+    notification: user.notification,
+    ripple:{
+      times: user.ripple.times + 1,
+      ripplets: user.ripple.ripplets + getRippletsToGive(),
+      upgrades: user.ripple.upgrades,
+      costs: user.ripple.costs,
+      unlocked:user.ripple.unlocked,//number of rows
+      challenges:{
+        unlocked: user.ripple.challenges.unlocked,
+        current: "",
+        completed: user.challenges.completed.push(user.ripple.challenges.current),//MIGHT NOT WORK
+        harderUnlocked: user.ripple.challenges.harderUnlocked,
+        HC1record: user.ripple.challenges.HC1record,
+        HC2record: user.ripple.challenges.HC2record,
+      },
+      rebuyable:user.ripple.rebuyable
+    },
+    multiplierGen: user.multiplierGen
+  };
+ //change things here
+}
+
+
+
+
+
+
+
 
 function canBuyRippleUpg(ID){ 
  var thing = "R" + ID
