@@ -140,6 +140,7 @@ function fullPowerWellsUpdate() {
   for (var i = 0; i < user.pulse.amount; i++) {
     constant = Math.ceil(constant * (1 + (multiplier * (user.pulse.multipliers[i] - 1))))
   }
+  if (user.ripple.challenges.current == "chall1") constant = 4
   user.wells.defaultMults = constant
 }
 
