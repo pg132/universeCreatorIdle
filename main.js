@@ -446,6 +446,16 @@ function buyMK(tier, quick) {
   var constScale = Math.max(1, (user["mk" + tier].base - 900) / 100)
   w *= constScale
   mainScale *= constScale
+	
+  var totalCostScale = new Decimal(1)		
+  if (user["mk"+tier].base > 30 + costDelay && user["mk"+tier].base % 10 === 0) {
+        totalCostScale = totalCostScale.times(mainScale);
+        if (user["mk"+tier].base % 50 === 0 && user["mk"+tier].base >= 300 + costDelay) totalCostScale = totalCostScale.times(w)
+        if (user["mk"+tier].base % 100 == 0 && user["mk"+tier].base > 400 + costDelay) totalCostScale = totalCostScale.times((1.25 + 1.75 / getEaterReward(4)) * constScale)
+  } else {
+        totalCostScale = totalCostScale.times(constScale)
+  }
+	
   if (tier == 1) {
     if (gravCost.lte(user.gravicles)) {
       user.gravicles = user.gravicles.minus(gravCost)
@@ -454,13 +464,7 @@ function buyMK(tier, quick) {
       user["mk" + tier].multiplier = user["mk" + tier].multiplier.times(buyingMult)
       user.mk1.amount = user.mk1.amount.plus(1)
       user.mk1.base += 1
-      if (user.mk1.base > 30 + costDelay && user.mk1.base % 10 === 0) {
-        user.mk1.costMult = user.mk1.costMult.times(mainScale);
-        if (user.mk1.base % 50 === 0 && user.mk1.base >= 300 + costDelay) user.mk1.costMult = user.mk1.costMult.times(w)
-        if (user.mk1.base % 100 == 0 && user.mk1.base > 400 + costDelay) user.mk1.costMult = user.mk1.costMult.times((1.25 + 1.75 / getEaterReward(4)) * constScale)
-      } else {
-        user.mk1.costMult = user.mk1.costMult.times(constScale)
-      }
+      user.mk1.costMult = user.mk1.costMult.times(totalCostScale)
       giveAch(10)
     }
   } else if (gravCost.lte(user.gravicles) && user["mk" + (tier - 1)].amount.gte(tierCost) && tier <= 5 && tier >= 2) {
@@ -471,13 +475,8 @@ function buyMK(tier, quick) {
     user["mk" + (tier - 1)].amount = user["mk" + (tier - 1)].amount.minus(tierCost)
     user["mk" + tier].amount = user["mk" + tier].amount.plus(1)
     user["mk" + tier].base += 1
-    if (user["mk" + tier].base > 30 + costDelay && user["mk" + tier].base % 10 === 0) {
-      user["mk" + tier].costMult = user["mk" + tier].costMult.times(mainScale);
-      if (user["mk" + tier].base % 50 === 0 && user["mk" + tier].base >= 300 + costDelay) user["mk" + tier].costMult = user["mk" + tier].costMult.times(w)
-      if (user["mk" + tier].base % 100 == 0 && user["mk" + tier].base > 400 + costDelay) user["mk" + tier].costMult = user["mk" + tier].costMult.times((1.25 + 1.75 / getEaterReward(4)) * constScale)
-    } else {
-      user["mk" + tier].costMult = user["mk" + tier].costMult.times(constScale)
-    }
+    user["mk"+tier].costMult = user["mk"+tier].costMult.times(totalCostScale)
+
     giveAch(9 + tier)
   } else if (gravCost.lte(user.gravicles) && user["mk" + (tier - 1)].amount.gte(tierCost) && tier >= 6) {
     if (user["mk" + tier].unlocked == true) {
@@ -488,13 +487,8 @@ function buyMK(tier, quick) {
       user["mk" + (tier - 1)].amount = user["mk" + (tier - 1)].amount.minus(tierCost)
       user["mk" + tier].amount = user["mk" + tier].amount.plus(1)
       user["mk" + tier].base += 1
-      if (user["mk" + tier].base > 30 + costDelay && user["mk" + tier].base % 10 === 0) {
-        user["mk" + tier].costMult = user["mk" + tier].costMult.times(mainScale);
-        if (user["mk" + tier].base % 50 === 0 && user["mk" + tier].base >= 300 + costDelay) user["mk" + tier].costMult = user["mk" + tier].costMult.times(w)
-        if (user["mk" + tier].base % 100 == 0 && user["mk" + tier].base > 400 + costDelay) user["mk" + tier].costMult = user["mk" + tier].costMult.times((1.25 + 1.75 / getEaterReward(4)) * constScale)
-      } else {
-        user["mk" + tier].costMult = user["mk" + tier].costMult.times(constScale)
-      }
+      user["mk"+tier].costMult = user["mk"+tier].costMult.times(totalCostScale)
+
       giveAch(10 + tier)
     }
   }
