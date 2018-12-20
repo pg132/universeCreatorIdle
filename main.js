@@ -439,6 +439,8 @@ function buyMK(tier, quick) {
   var buyingMult = 1.01
   if (user.ripple.upgrades.includes("R11")) buyingMult = 1.05
   if (hasAch(30) && user["mk" + tier].base < 10) buyingMult = buyingMult**3 //1.01**3
+  if (user.ripple.challenges.current == "Chall2") buyingMult = (buyingMult-1)*(0.0001+0.0099*Math.random())+1
+
   var costDelay = getEaterReward(6)
   var w = 1 + .1 / getEaterReward(4)
   var constScale = Math.max(1, (user["mk" + tier].base - 900) / 100)
