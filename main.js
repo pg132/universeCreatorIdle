@@ -757,7 +757,7 @@ function update() {
     }
     showMK();
     showGravPoints();
-    document.getElementById("pointsBuy1").innerHTML = "Sacrifice one galaxy pulse, for one galaxy point";
+    document.getElementById("pointsBuy1").innerHTML = "Sacrifice one gravitational pulse, for one gravitational point";
     if (buyablePoints()) {
       document.getElementById("pointsBuy1").className = "button"
     } else {
