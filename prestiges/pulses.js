@@ -133,6 +133,7 @@ function gravityPulse(autobuyer) {
       user.gravicles = user.gravicles.plus(1e5)
       user.mk1.amount = user.mk1.amount.plus(200)
     }
+    fullPowerWellsUpdate()
     if (user.wells.defaultMults >= 10) giveAch(23)
   }
 }
